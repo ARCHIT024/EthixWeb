@@ -65,3 +65,28 @@
 - After every task, add a short entry specifying:
   - **What**: The changes made or features implemented.
   - **Why**: The architectural or business rationale behind the decision.
+
+## Visual direction (applies to every page and component)
+
+Goal: premium, modern, world-class, with India expressed through restrained craft details and market-relevant content. India should show up in the details, never as costume.
+
+Palette
+- Primary: Ethixweb brand red (sampled from the logo). Deep near-black for text/dark sections. Warm ivory off-white background. Neutral greys.
+- One accent only: a muted brass/gold, used sparingly (small highlights, dividers, icons).
+- Do NOT use saturated saffron/orange, green+white+orange combinations, or Holi-style multicolour gradients.
+
+Pattern language (SVG, inline, each under 2KB, always low opacity, 4-8%)
+- Jaali: fine geometric lattice. Use as a hero background texture and a faint overlay on dark sections and cards.
+- Rangoli/kolam: abstract dot-grid and symmetric line geometry (not literal festival imagery). Use for section dividers, the form success state animation, and empty states in /admin.
+- Maximum one pattern per viewport. Patterns support content; they never compete with text or reduce contrast below WCAG AA.
+
+Do NOT use
+- Monuments (Taj Mahal, India Gate), elephants, peacocks, mandalas, Om symbols, tricolour, stock photos of saris/turbans, or clip-art "Indian" fonts.
+
+Typography
+- Clean modern sans for body, one confident display face. Devanagari (Noto Sans Devanagari, subsetted) only for Hindi text.
+
+India expressed through content and UX
+- WhatsApp as primary contact, ₹ pricing + GST, +91 validation, Indian industries and cities, IST availability, festive-season campaign angle (Diwali, wedding season, IPL season, year-end sale), mobile-first and light on data.
+
+Tone: confident, warm, direct. Not "namaste" kitsch, no forced Hinglish.
