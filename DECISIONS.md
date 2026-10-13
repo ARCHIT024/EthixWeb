@@ -98,3 +98,25 @@ This log records major architectural, design, and implementation decisions made 
   - Configured dedicated Next.js App Router metadata for each page (`title`, `description`).
 - **Why**:
   - Provides a complete, accessible, and authentic multi-page agency experience using established design system primitives while maintaining 90+ Core Web Vitals budgets.
+
+---
+
+### Entry 008: Supabase Leads Schema & Zero-Trust Security Architecture
+- **Date**: 2026-10-14
+- **What**:
+  - Created database migration `supabase/migrations/20261014000000_create_leads_and_admins.sql` defining:
+    - `lead_status` enum (`new`, `contacted`, `qualified`, `won`, `lost`).
+    - `leads` table with fields for contact info (+91 phone, email, city, business name), service selection, budget range, preferred contact method, attribution source, and audit metadata.
+    - `admins` table mapping to Supabase Auth (`auth.users`) for operator access control.
+    - Performance indexes on `status`, `created_at DESC`, and `email`.
+  - Enabled Row Level Security (RLS) on `leads` with **zero public insert and zero public select policies**.
+  - Documented environment variables in `.env.example`.
+- **Security Decisions & Rationale**:
+  1. **Zero Public Insert Policy on `leads`**:
+     - *Why*: Directly exposing public insert to the anonymous Supabase key allows bots to flood the database, bypass rate limits, and inject spam. Instead, all public submissions must pass through a server-side Next.js route handler (`/api/leads`) that validates Turnstile tokens and sanitizes input before inserting using the server-only `SUPABASE_SERVICE_ROLE_KEY`.
+  2. **Zero Public Select Policy on `leads`**:
+     - *Why*: Prevents unauthorized enumeration or scraping of sensitive prospect PII (names, phone numbers, budgets, business emails).
+  3. **SHA-256 IP Hashing (`ip_hash`) instead of Raw IP**:
+     - *Why*: Storing raw IP addresses exposes sensitive user PII and complicates compliance. Hashing the IP (with a server salt) provides sufficient rate-limiting and duplicate-abuse detection without storing personally identifiable networking data.
+  4. **Admin Authorization Table (`admins`)**:
+     - *Why*: Decouples application administrator privileges from client JWT claims or public metadata. Only authenticated users explicitly listed in the `admins` table can query (`SELECT`) or update (`UPDATE`) leads in the `/admin` portal.
