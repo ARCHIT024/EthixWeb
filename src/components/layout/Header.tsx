@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { IstStatusBadge } from "./IstStatusBadge";
@@ -14,6 +17,8 @@ const NAV_LINKS = [
 ];
 
 export function Header() {
+  const pathname = usePathname();
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-light-border bg-white/80 backdrop-blur-md transition-colors dark:border-dark-border dark:bg-dark-bg/85">
       <Container size="default">
@@ -21,7 +26,8 @@ export function Header() {
           {/* Brand Logo */}
           <Link
             href="/"
-            className="group flex items-center focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-red rounded-lg"
+            className="group flex items-center min-h-[44px] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-red rounded-lg"
+            aria-label="Ethixweb Home"
           >
             <div className="bg-dark-bg px-2.5 py-1.5 rounded-xl inline-flex items-center shadow-xs transition-transform group-hover:scale-[1.02]">
               <Image
@@ -35,20 +41,28 @@ export function Header() {
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation Links with Animated Underline Micro-Interaction */}
           <nav
             aria-label="Main Navigation"
-            className="hidden lg:flex items-center gap-1 bg-light-surface-subtle/80 dark:bg-dark-surface/60 border border-light-border/60 dark:border-dark-border/60 rounded-full px-3 py-1 shadow-2xs"
+            className="hidden lg:flex items-center gap-1 bg-light-surface-subtle/80 dark:bg-dark-surface/60 border border-light-border/60 dark:border-dark-border/60 rounded-full px-2 py-1 shadow-2xs"
           >
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="rounded-full px-4 py-1.5 text-sm font-medium text-gray-700 hover:text-dark-bg hover:bg-white dark:text-gray-300 dark:hover:text-white dark:hover:bg-dark-surface transition-all focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-red"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  data-active={isActive ? "true" : "false"}
+                  className={`nav-link-animated inline-flex items-center min-h-[44px] rounded-full px-4 text-sm font-medium transition-all focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-red ${
+                    isActive
+                      ? "text-brand-red font-semibold bg-white dark:bg-dark-surface shadow-2xs"
+                      : "text-gray-700 hover:text-dark-bg hover:bg-white/80 dark:text-gray-300 dark:hover:text-white dark:hover:bg-dark-surface"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Desktop Right Side: IST Status Badge & CTA */}

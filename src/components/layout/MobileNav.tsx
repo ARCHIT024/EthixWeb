@@ -88,7 +88,7 @@ export function MobileNav({ navLinks }: MobileNavProps) {
         aria-expanded={isOpen}
         aria-controls="mobile-navigation-drawer"
         aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-        className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-light-border bg-white text-dark-bg hover:bg-gray-100 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-red dark:border-dark-border dark:bg-dark-surface dark:text-gray-100"
+        className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-light-border bg-white text-dark-bg hover:bg-gray-100 hover:-translate-y-0.5 active:translate-y-0 transition-transform focus-visible:outline-2 focus-visible:outline-brand-red dark:border-dark-border dark:bg-dark-surface dark:text-gray-100"
       >
         {isOpen ? (
           <svg
@@ -154,9 +154,9 @@ export function MobileNav({ navLinks }: MobileNavProps) {
                   onClick={closeMenu}
                   type="button"
                   aria-label="Close menu"
-                  className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-dark-bg dark:text-gray-400 dark:hover:bg-dark-surface-elevated"
+                  className="rounded-xl h-11 w-11 inline-flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-dark-bg dark:text-gray-400 dark:hover:bg-dark-surface-elevated focus-visible:outline-2 focus-visible:outline-brand-red transition-colors"
                 >
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="2">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="2" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>

@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 interface Differentiator {
   title: string;
@@ -52,61 +53,64 @@ export function WhyEthixweb() {
     <section className="py-20 sm:py-28 bg-light-bg text-dark-bg border-t border-light-border dark:bg-dark-surface dark:border-dark-border">
       <Container size="default">
         {/* Section Heading */}
-        <SectionHeading
-          kicker="The Ethixweb Difference"
-          title="Why Indian Founders &amp; Business Leaders Choose Us"
-          description="We built Ethixweb to eliminate the four biggest frustrations Indian companies face with traditional digital agencies: endless delays, junior hand-offs, lack of GST compliance, and opaque billing."
-          align="center"
-          className="mb-14 sm:mb-16"
-        />
+        <ScrollReveal>
+          <SectionHeading
+            kicker="The Ethixweb Difference"
+            title="Why Indian Founders &amp; Business Leaders Choose Us"
+            description="We built Ethixweb to eliminate the four biggest frustrations Indian companies face with traditional digital agencies: endless delays, junior hand-offs, lack of GST compliance, and opaque billing."
+            align="center"
+            className="mb-14 sm:mb-16"
+          />
+        </ScrollReveal>
 
         {/* 4 Differentiators Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {DIFFERENTIATORS.map((item, index) => (
-            <Card
-              key={item.title}
-              variant="default"
-              padding="lg"
-              className="flex flex-col justify-between bg-white dark:bg-dark-bg border-light-border dark:border-dark-border hover:border-brand-red/30 transition-all duration-300"
-            >
-              <div>
-                {/* Icon & Badge */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="h-11 w-11 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center text-xl font-bold">
-                    {item.icon}
+            <ScrollReveal key={item.title} delayMs={index * 90}>
+              <Card
+                variant="default"
+                padding="lg"
+                className="h-full flex flex-col justify-between bg-white dark:bg-dark-bg border-light-border dark:border-dark-border hover:border-brand-red/30 transition-all duration-300"
+              >
+                <div>
+                  {/* Icon & Badge */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="h-11 w-11 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center text-xl font-bold" aria-hidden="true">
+                      {item.icon}
+                    </div>
+                    <Badge variant="brass" size="sm" className="text-[10px]">
+                      0{index + 1}
+                    </Badge>
                   </div>
-                  <Badge variant="brass" size="sm" className="text-[10px]">
-                    0{index + 1}
-                  </Badge>
+
+                  <div className="mb-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-brand-red dark:text-red-400">
+                      {item.tag}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-display text-lg font-bold text-dark-bg dark:text-white mb-3 leading-snug">
+                    {item.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                    {item.description}
+                  </p>
                 </div>
 
-                <div className="mb-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand-red dark:text-red-400">
-                    {item.tag}
+                {/* India Advantage Callout */}
+                <div className="pt-3 border-t border-light-border dark:border-dark-border bg-gray-50/70 dark:bg-dark-surface/50 -mx-4 -mb-4 p-4 rounded-b-2xl">
+                  <span className="text-[10px] font-semibold text-gray-700 dark:text-gray-300 block uppercase tracking-wider mb-1">
+                    India Fit:
                   </span>
+                  <p className="text-[11px] text-gray-600 dark:text-gray-400 leading-snug">
+                    {item.indiaAdvantage}
+                  </p>
                 </div>
-
-                {/* Title */}
-                <h3 className="font-display text-lg font-bold text-dark-bg dark:text-white mb-3 leading-snug">
-                  {item.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-                  {item.description}
-                </p>
-              </div>
-
-              {/* India Advantage Callout */}
-              <div className="pt-3 border-t border-light-border dark:border-dark-border bg-gray-50/70 dark:bg-dark-surface/50 -mx-4 -mb-4 p-4 rounded-b-2xl">
-                <span className="text-[10px] font-semibold text-gray-700 dark:text-gray-300 block uppercase tracking-wider mb-1">
-                  India Fit:
-                </span>
-                <p className="text-[11px] text-gray-600 dark:text-gray-400 leading-snug">
-                  {item.indiaAdvantage}
-                </p>
-              </div>
-            </Card>
+              </Card>
+            </ScrollReveal>
           ))}
         </div>
       </Container>

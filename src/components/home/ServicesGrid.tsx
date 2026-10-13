@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 interface ServiceItem {
   id: string;
@@ -115,23 +116,25 @@ export function ServicesGrid() {
     <section className="py-20 sm:py-28 bg-white border-t border-light-border dark:bg-dark-bg dark:border-dark-border">
       <Container size="default">
         {/* Section Heading with Business Context */}
-        <SectionHeading
-          kicker="Core Service Capabilities"
-          title="Digital Infrastructure Built For Indian Scale"
-          description="Integrated web development, autonomous AI receptionists, and marketing pipelines tailored specifically for Indian operational realities and domestic buyer behavior."
-          align="center"
-          className="mb-14 sm:mb-16"
-        />
+        <ScrollReveal>
+          <SectionHeading
+            kicker="Core Service Capabilities"
+            title="Digital Infrastructure Built For Indian Scale"
+            description="Integrated web development, autonomous AI receptionists, and marketing pipelines tailored specifically for Indian operational realities and domestic buyer behavior."
+            align="center"
+            className="mb-14 sm:mb-16"
+          />
+        </ScrollReveal>
 
         {/* 6 Services Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {SERVICES_DATA.map((service) => (
-            <Card
-              key={service.id}
-              variant="interactive"
-              padding="lg"
-              className="flex flex-col justify-between group hover:border-brand-red/30 transition-all duration-300"
-            >
+          {SERVICES_DATA.map((service, idx) => (
+            <ScrollReveal key={service.id} delayMs={(idx % 3) * 120} className="h-full">
+              <Card
+                variant="interactive"
+                padding="lg"
+                className="flex flex-col justify-between group hover:border-brand-red/30 transition-all duration-300 h-full"
+              >
               <div>
                 {/* Header: Category & Indicative Pricing */}
                 <div className="flex items-center justify-between gap-2 mb-4">
@@ -188,6 +191,7 @@ export function ServicesGrid() {
                     variant="secondary"
                     size="sm"
                     className="w-full justify-between group-hover:border-brand-red/40 group-hover:bg-red-50/50 dark:group-hover:bg-red-950/20"
+                    aria-label={`Discuss scope for ${service.title}`}
                   >
                     <span>Discuss Scope</span>
                     <span className="text-brand-red font-bold">→</span>
@@ -195,8 +199,9 @@ export function ServicesGrid() {
                 </Link>
               </div>
             </Card>
-          ))}
-        </div>
+          </ScrollReveal>
+        ))}
+      </div>
 
         {/* Pricing Transparency Note */}
         <div className="mt-12 text-center">

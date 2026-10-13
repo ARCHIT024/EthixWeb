@@ -83,3 +83,95 @@ body {
 .font-display {
   font-family: var(--font-display);
 }
+
+/* Accessible Global Focus Visible System */
+:focus-visible {
+  outline: 2px solid var(--color-brand-red);
+  outline-offset: 2px;
+}
+
+/* Micro-Interaction: Animated Nav Underline */
+.nav-link-animated {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-link-animated::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  background-color: var(--color-brand-red);
+  border-radius: 9999px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  opacity: 0;
+}
+
+.nav-link-animated:hover::after,
+.nav-link-animated[data-active="true"]::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* Micro-Interaction: Interactive Card Lift */
+.card-lift-effect {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  will-change: transform, box-shadow;
+}
+
+.card-lift-effect:hover {
+  transform: translateY(-4px);
+}
+
+/* Micro-Interaction: Success Checkmark Draw Animation */
+@keyframes checkmarkStroke {
+  0% {
+    stroke-dashoffset: 48;
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-checkmark-draw {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 0;
+  animation: checkmarkStroke 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Strict prefers-reduced-motion Overrides (WCAG 2.2 AAA & Performance) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .card-lift-effect:hover {
+    transform: none !important;
+  }
+
+  .nav-link-animated::after {
+    transition: none !important;
+  }
+
+  .animate-checkmark-draw {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+    transform: none !important;
+  }
+}

@@ -198,4 +198,32 @@ This log records major architectural, design, and implementation decisions made 
 - **Why**:
   - Provides internal sales and technical teams with an authentic, fast, and secure operations cockpit while guaranteeing zero exposure of prospect PII to unauthorized users or search engine indexers.
 
+---
+
+### Entry 012: Performance-First Motion System & Full Accessibility Audit
+- **Date**: 2026-10-14
+- **What**:
+  1. **Scroll-Reveal Motion Architecture (`ScrollReveal.tsx`)**:
+     - Engineered a lightweight, zero-dependency scroll-reveal wrapper utilizing browser-native `IntersectionObserver` and CSS transitions exclusively on `transform` and `opacity`.
+     - Zero Layout Shift (CLS = 0): Animates only composite properties (`translate-y-4` to `translate-y-0`, `opacity-0` to `opacity-100`). Never animates margin, padding, height, or width.
+     - Once-Per-Element Trigger: Instantly unobserves DOM elements via `observer.unobserve(entry.target)` as soon as revealed, releasing CPU cycles and preventing repetitive, distracting re-triggers.
+     - Staggered delays: Configured subtle cascading offsets (`delayMs={index * 80}`) across service grids, differentiators, case blueprints, industry chips, and address hubs.
+  2. **Micro-Interactions Design System**:
+     - **Button hover/press states**: Added `hover:-translate-y-0.5`, `active:scale-[0.98]`, and subtle colored shadow blooms (`rgba(229,29,37,0.35)`).
+     - **Card lift**: Implemented `.card-lift-effect` on interactive cards with `transition-transform duration-300 hover:-translate-y-1`.
+     - **Animated Nav Underline**: Implemented `.nav-link-animated` in desktop navigation with expanding bottom accent pseudo-element (`scaleX(0)` to `scaleX(1)`) tracking hover and current route state.
+     - **Form field focus states**: High-contrast brand red focus borders with subtle glow (`ring-2 ring-brand-red/15`) and interactive focus scale on quick-pick chips.
+     - **Success-state checkmark**: Keyframed SVG checkmark draw effect (`@keyframes checkmarkStroke` with `stroke-dasharray` and `stroke-dashoffset`) on form submission.
+  3. **Universal `prefers-reduced-motion` Enforcement**:
+     - Handled at both component level (`ScrollReveal.tsx` checks `window.matchMedia("(prefers-reduced-motion: reduce)")` to render immediately without transform/opacity delay) and global CSS level (`@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; ... } }`).
+  4. **Comprehensive Accessibility (a11y) Audit & Remediation**:
+     - **Focus Rings**: Enforced global accessible `:focus-visible` styling (`outline: 2px solid var(--color-brand-red); outline-offset: 2px;`) across all focusable elements without suppressing default navigation.
+     - **Keyboard Navigation**: Validated "Skip to main content" bypass link, logical tab ordering across public forms, modal/drawer keyboard traps (Escape key dismissal, focus trap, initial focus management).
+     - **Alt Text Integrity**: Verified descriptive `alt` tags on all brand logos and `<Image>` elements; ensured decorative icons and SVG accents explicitly declare `aria-hidden="true"`.
+     - **Heading Hierarchy**: Enforced strict single-`h1` per page (`<h1>` -> `<h2>` -> `<h3>`) across Home, Services, About, and Contact pages, correcting subheadings in service catalog cards and process sections.
+     - **Descriptive Link Names**: Enriched repetitive CTA button links with context-specific `aria-label` attributes (e.g., `aria-label="Discuss scope for High-Speed Web Applications"` and `aria-label="Build a solution like Global Technical Spec Portal"`).
+     - **Tap Target Sizes (min 44px)**: Audited all touch targets against WCAG 2.5.5 / 2.5.8 recommendations. Standardized `Button` size `sm` to `min-h-[44px]`, desktop nav links to `min-h-[44px]`, mobile menu toggles to `44x44px` (`h-11 w-11`), and footer social icons to `44x44px` (`h-11 w-11`).
+- **Why**:
+  - Elevates perceived brand craftsmanship, responsiveness, and tactile polish without compromising Next.js sub-second performance budgets or accessibility compliance.
+
 

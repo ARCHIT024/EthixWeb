@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { JaaliPattern } from "@/components/patterns/JaaliPattern";
 import { RangoliDivider } from "@/components/patterns/RangoliDivider";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function FinalCTA() {
   const whatsappUrl =
@@ -17,7 +18,8 @@ export function FinalCTA() {
     <section className="py-20 sm:py-28 bg-light-bg text-dark-bg border-t border-light-border dark:bg-dark-bg dark:border-dark-border relative overflow-hidden">
       <Container size="default">
         {/* Main CTA Card with Inverted Dark Canvas & Subtle Jaali Background */}
-        <div className="relative rounded-3xl bg-dark-bg text-white p-8 sm:p-14 lg:p-16 border border-dark-border shadow-card-dark overflow-hidden">
+        <ScrollReveal>
+          <div className="relative rounded-3xl bg-dark-bg text-white p-8 sm:p-14 lg:p-16 border border-dark-border shadow-card-dark overflow-hidden">
           {/* Subtle Jaali architectural overlay (low opacity 7%) */}
           <JaaliPattern opacity={0.07} inverted={true} />
 
@@ -123,6 +125,7 @@ export function FinalCTA() {
             </div>
           </div>
         </div>
+        </ScrollReveal>
       </Container>
     </section>
   );

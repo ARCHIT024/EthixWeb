@@ -21,12 +21,12 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseClasses =
-    "inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed select-none active:scale-[0.98]";
+    "inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-red disabled:opacity-50 disabled:cursor-not-allowed select-none hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] cursor-pointer will-change-transform";
 
   const sizeClasses = {
-    sm: "text-xs px-3 py-1.5 rounded-lg gap-1.5",
-    md: "text-sm px-4.5 py-2.5 rounded-xl gap-2",
-    lg: "text-base px-6 py-3.5 rounded-xl gap-2.5 font-semibold",
+    sm: "text-xs px-3.5 py-2.5 rounded-lg gap-1.5 min-h-[44px]",
+    md: "text-sm px-5 py-2.5 rounded-xl gap-2 min-h-[44px]",
+    lg: "text-base px-6 py-3.5 rounded-xl gap-2.5 font-semibold min-h-[48px]",
   };
 
   const variantClasses = {

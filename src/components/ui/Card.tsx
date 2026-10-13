@@ -29,7 +29,7 @@ export function Card({
     elevated:
       "bg-white border border-light-border shadow-[0_12px_32px_-8px_rgba(0,0,0,0.06)] dark:bg-dark-surface dark:border-dark-border dark:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.4)] text-dark-bg dark:text-gray-100",
     interactive:
-      "bg-white border border-light-border hover:border-brand-red/30 hover:shadow-[0_12px_32px_-8px_rgba(229,29,37,0.12)] hover:-translate-y-0.5 cursor-pointer dark:bg-dark-surface dark:border-dark-border dark:hover:border-brand-red/40 dark:hover:shadow-[0_12px_32px_-8px_rgba(229,29,37,0.2)] text-dark-bg dark:text-gray-100",
+      "bg-white border border-light-border hover:border-brand-red/40 hover:shadow-[0_16px_36px_-8px_rgba(229,29,37,0.14)] card-lift-effect cursor-pointer dark:bg-dark-surface dark:border-dark-border dark:hover:border-brand-red/40 dark:hover:shadow-[0_16px_36px_-8px_rgba(229,29,37,0.25)] text-dark-bg dark:text-gray-100",
     glass:
       "bg-white/80 backdrop-blur-md border border-white/60 shadow-sm dark:bg-dark-surface/80 dark:backdrop-blur-md dark:border-white/10 text-dark-bg dark:text-gray-100",
     dark:

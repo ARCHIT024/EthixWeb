@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { JaaliPattern } from "@/components/patterns/JaaliPattern";
 import { RangoliDivider } from "@/components/patterns/RangoliDivider";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "About Us · The India Story",
@@ -61,15 +62,17 @@ export default function AboutPage() {
         <JaaliPattern opacity={0.06} inverted={false} />
 
         <Container size="default" className="relative z-10 text-center max-w-3xl mx-auto">
-          <Badge variant="brass" dot size="md" className="mb-4">
-            Honest Positioning
-          </Badge>
-          <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-dark-bg leading-[1.12]">
-            Global Engineering Standards. Rooted in India.
-          </h1>
-          <p className="mt-5 text-base sm:text-lg text-gray-600 leading-relaxed">
-            Ethixweb originated as a digital operations and software team serving high-standard international businesses. Today, through our dedicated India hub, we bring that exact Silicon Valley-grade technical rigor to ambitious Indian SMBs, clinics, D2C brands, and exporters.
-          </p>
+          <ScrollReveal>
+            <Badge variant="brass" dot size="md" className="mb-4">
+              Honest Positioning
+            </Badge>
+            <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-dark-bg leading-[1.12]">
+              Global Engineering Standards. Rooted in India.
+            </h1>
+            <p className="mt-5 text-base sm:text-lg text-gray-600 leading-relaxed">
+              Ethixweb originated as a digital operations and software team serving high-standard international businesses. Today, through our dedicated India hub, we bring that exact Silicon Valley-grade technical rigor to ambitious Indian SMBs, clinics, D2C brands, and exporters.
+            </p>
+          </ScrollReveal>
         </Container>
       </section>
 
@@ -79,82 +82,92 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             {/* Story Statement */}
             <div className="lg:col-span-5 space-y-6">
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-red dark:text-red-400">
-                Who We Are
-              </span>
-              <h2 className="font-display text-3xl font-bold text-dark-bg dark:text-white leading-tight">
-                No Fake Awards. No Bureaucracy. Just Senior Operators.
-              </h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Traditional Indian agencies often suffer from two extremes: cheap freelancers who disappear halfway through a build, or bloated legacy agencies that charge exorbitant retainers while delegating your work to junior trainees.
-              </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Ethixweb is built on a tight-knit model: senior developers, performance marketers, and automation engineers collaborating directly with business owners on transparent 14-day sprints.
-              </p>
-
-              {/* Editable Placeholder Block for Real Stats */}
-              <div className="p-4 rounded-xl bg-gray-50 dark:bg-dark-surface border border-dashed border-gray-300 dark:border-gray-700 text-xs text-gray-600 dark:text-gray-400">
-                <span className="font-semibold text-dark-bg dark:text-white block mb-1">
-                  Verified Agency Metadata [PLACEHOLDER]:
+              <ScrollReveal>
+                <span className="text-xs font-bold uppercase tracking-wider text-brand-red dark:text-red-400">
+                  Who We Are
                 </span>
-                <ul className="space-y-1 font-mono text-[11px]">
-                  <li>• Founded Year: [PLACEHOLDER: 2024]</li>
-                  <li>• Engineering Pod Size: [PLACEHOLDER: 8 Senior Specialists]</li>
-                  <li>• Domestic Entity: Ethixweb Technologies Pvt. Ltd.</li>
-                  <li>• Operating Hubs: [PLACEHOLDER: Bengaluru / Delhi NCR / Kent, WA]</li>
-                </ul>
-              </div>
+                <h2 className="font-display text-3xl font-bold text-dark-bg dark:text-white leading-tight">
+                  No Fake Awards. No Bureaucracy. Just Senior Operators.
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                  Traditional Indian agencies often suffer from two extremes: cheap freelancers who disappear halfway through a build, or bloated legacy agencies that charge exorbitant retainers while delegating your work to junior trainees.
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                  Ethixweb is built on a tight-knit model: senior developers, performance marketers, and automation engineers collaborating directly with business owners on transparent 14-day sprints.
+                </p>
+
+                {/* Editable Placeholder Block for Real Stats */}
+                <div className="p-4 rounded-xl bg-gray-50 dark:bg-dark-surface border border-dashed border-gray-300 dark:border-gray-700 text-xs text-gray-600 dark:text-gray-400">
+                  <span className="font-semibold text-dark-bg dark:text-white block mb-1">
+                    Verified Agency Metadata [PLACEHOLDER]:
+                  </span>
+                  <ul className="space-y-1 font-mono text-[11px]">
+                    <li>• Founded Year: [PLACEHOLDER: 2024]</li>
+                    <li>• Engineering Pod Size: [PLACEHOLDER: 8 Senior Specialists]</li>
+                    <li>• Domestic Entity: Ethixweb Technologies Pvt. Ltd.</li>
+                    <li>• Operating Hubs: [PLACEHOLDER: Bengaluru / Delhi NCR / Kent, WA]</li>
+                  </ul>
+                </div>
+              </ScrollReveal>
             </div>
 
             {/* Core Values (4 Cards) */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <Card padding="md" className="bg-light-bg/50 dark:bg-dark-surface">
-                <span className="text-2xl mb-2 block" aria-hidden="true">
-                  🎯
-                </span>
-                <h3 className="font-display text-base font-bold text-dark-bg dark:text-white mb-1.5">
-                  Zero Vanity Code
-                </h3>
-                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-                  We don&apos;t ship complex frameworks where simple HTML works, and we never add animations that harm mobile LCP or increase battery drain on Indian smartphones.
-                </p>
-              </Card>
+              <ScrollReveal delayMs={60}>
+                <Card padding="md" className="h-full bg-light-bg/50 dark:bg-dark-surface">
+                  <span className="text-2xl mb-2 block" aria-hidden="true">
+                    🎯
+                  </span>
+                  <h3 className="font-display text-base font-bold text-dark-bg dark:text-white mb-1.5">
+                    Zero Vanity Code
+                  </h3>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                    We don&apos;t ship complex frameworks where simple HTML works, and we never add animations that harm mobile LCP or increase battery drain on Indian smartphones.
+                  </p>
+                </Card>
+              </ScrollReveal>
 
-              <Card padding="md" className="bg-light-bg/50 dark:bg-dark-surface">
-                <span className="text-2xl mb-2 block" aria-hidden="true">
-                  🧾
-                </span>
-                <h3 className="font-display text-base font-bold text-dark-bg dark:text-white mb-1.5">
-                  18% GST Compliant
-                </h3>
-                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-                  As a registered Indian business, every milestone invoice includes valid GSTIN details so your accounting team can claim full Input Tax Credit without friction.
-                </p>
-              </Card>
+              <ScrollReveal delayMs={120}>
+                <Card padding="md" className="h-full bg-light-bg/50 dark:bg-dark-surface">
+                  <span className="text-2xl mb-2 block" aria-hidden="true">
+                    🧾
+                  </span>
+                  <h3 className="font-display text-base font-bold text-dark-bg dark:text-white mb-1.5">
+                    18% GST Compliant
+                  </h3>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                    As a registered Indian business, every milestone invoice includes valid GSTIN details so your accounting team can claim full Input Tax Credit without friction.
+                  </p>
+                </Card>
+              </ScrollReveal>
 
-              <Card padding="md" className="bg-light-bg/50 dark:bg-dark-surface">
-                <span className="text-2xl mb-2 block" aria-hidden="true">
-                  ⚡
-                </span>
-                <h3 className="font-display text-base font-bold text-dark-bg dark:text-white mb-1.5">
-                  Direct Line Access
-                </h3>
-                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-                  You communicate with your lead engineer directly via dedicated WhatsApp groups and Slack. No account managers acting as games of telephone.
-                </p>
-              </Card>
+              <ScrollReveal delayMs={180}>
+                <Card padding="md" className="h-full bg-light-bg/50 dark:bg-dark-surface">
+                  <span className="text-2xl mb-2 block" aria-hidden="true">
+                    ⚡
+                  </span>
+                  <h3 className="font-display text-base font-bold text-dark-bg dark:text-white mb-1.5">
+                    Direct Line Access
+                  </h3>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                    You communicate with your lead engineer directly via dedicated WhatsApp groups and Slack. No account managers acting as games of telephone.
+                  </p>
+                </Card>
+              </ScrollReveal>
 
-              <Card padding="md" className="bg-light-bg/50 dark:bg-dark-surface">
-                <span className="text-2xl mb-2 block" aria-hidden="true">
-                  🌐
-                </span>
-                <h3 className="font-display text-base font-bold text-dark-bg dark:text-white mb-1.5">
-                  Global Craft, Domestic INR
-                </h3>
-                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-                  We apply the exact same high-precision Next.js and AI architectures we deploy for global platforms, priced fairly for Indian domestic growth.
-                </p>
-              </Card>
+              <ScrollReveal delayMs={240}>
+                <Card padding="md" className="h-full bg-light-bg/50 dark:bg-dark-surface">
+                  <span className="text-2xl mb-2 block" aria-hidden="true">
+                    🌐
+                  </span>
+                  <h3 className="font-display text-base font-bold text-dark-bg dark:text-white mb-1.5">
+                    Global Craft, Domestic INR
+                  </h3>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                    We apply the exact same high-precision Next.js and AI architectures we deploy for global platforms, priced fairly for Indian domestic growth.
+                  </p>
+                </Card>
+              </ScrollReveal>
             </div>
           </div>
         </Container>
@@ -163,64 +176,69 @@ export default function AboutPage() {
       {/* Operational Hours Timeline Across IST & US Hours */}
       <section className="py-20 sm:py-28 bg-light-bg dark:bg-dark-surface">
         <Container size="default">
-          <SectionHeading
-            kicker="Operational Rhythm"
-            title="How We Work Across IST &amp; Global Timezones"
-            description="Our dual-timezone operational flow ensures rapid domestic execution during Indian business hours with global infrastructure synergy."
-            align="center"
-            className="mb-14"
-          />
+          <ScrollReveal>
+            <SectionHeading
+              kicker="Operational Rhythm"
+              title="How We Work Across IST &amp; Global Timezones"
+              description="Our dual-timezone operational flow ensures rapid domestic execution during Indian business hours with global infrastructure synergy."
+              align="center"
+              className="mb-14"
+            />
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {WORKING_HOURS_TIMELINE.map((item, index) => (
-              <Card
-                key={item.timeWindow}
-                variant="default"
-                padding="lg"
-                className="flex flex-col justify-between bg-white dark:bg-dark-bg border-light-border dark:border-dark-border"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <Badge variant="brass" size="sm" className="font-mono text-[10px]">
-                      Phase 0{index + 1}
-                    </Badge>
-                    <span className="text-[11px] font-bold text-brand-red font-mono">
-                      {item.timeWindow}
-                    </span>
+              <ScrollReveal key={item.timeWindow} delayMs={index * 80}>
+                <Card
+                  variant="default"
+                  padding="lg"
+                  className="h-full flex flex-col justify-between bg-white dark:bg-dark-bg border-light-border dark:border-dark-border"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <Badge variant="brass" size="sm" className="font-mono text-[10px]">
+                        Phase 0{index + 1}
+                      </Badge>
+                      <span className="text-[11px] font-bold text-brand-red font-mono">
+                        {item.timeWindow}
+                      </span>
+                    </div>
+
+                    <h3 className="font-display text-base font-bold text-dark-bg dark:text-white mb-2 leading-snug">
+                      {item.phase}
+                    </h3>
+
+                    <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                      {item.description}
+                    </p>
                   </div>
 
-                  <h3 className="font-display text-base font-bold text-dark-bg dark:text-white mb-2 leading-snug">
-                    {item.phase}
-                  </h3>
-
-                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                    {item.description}
-                  </p>
-                </div>
-
-                <div className="pt-3 border-t border-light-border dark:border-dark-border text-[11px] text-gray-500 font-medium">
-                  📍 {item.activeRegions}
-                </div>
-              </Card>
+                  <div className="pt-3 border-t border-light-border dark:border-dark-border text-[11px] text-gray-500 font-medium">
+                    📍 {item.activeRegions}
+                  </div>
+                </Card>
+              </ScrollReveal>
             ))}
           </div>
 
           <RangoliDivider opacity={0.25} inverted={false} className="mt-14" />
 
           {/* Bottom Action */}
-          <div className="text-center mt-6">
-            <h4 className="font-display text-xl font-bold text-dark-bg dark:text-white mb-2">
-              Ready to collaborate with a serious technical partner?
-            </h4>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">
-              Book a 20-minute discovery consultation to review your current tech stack.
-            </p>
-            <Link href="/contact">
-              <Button variant="primary" size="lg">
-                Schedule a Consultation →
-              </Button>
-            </Link>
-          </div>
+          <ScrollReveal delayMs={150}>
+            <div className="text-center mt-6">
+              <h3 className="font-display text-xl font-bold text-dark-bg dark:text-white mb-2">
+                Ready to collaborate with a serious technical partner?
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">
+                Book a 20-minute discovery consultation to review your current tech stack.
+              </p>
+              <Link href="/contact">
+                <Button variant="primary" size="lg">
+                  Schedule a Consultation →
+                </Button>
+              </Link>
+            </div>
+          </ScrollReveal>
         </Container>
       </section>
     </div>

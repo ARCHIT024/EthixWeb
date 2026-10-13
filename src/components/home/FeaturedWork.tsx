@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 interface ConceptProject {
   id: string;
@@ -128,27 +129,29 @@ export function FeaturedWork() {
     <section className="py-20 sm:py-28 bg-white border-t border-light-border dark:bg-dark-bg dark:border-dark-border">
       <Container size="default">
         {/* Section Heading with Integrity Disclaimer */}
-        <div className="max-w-3xl mx-auto text-center mb-14 sm:mb-16">
-          <Badge variant="brass" dot size="md" className="mb-4">
-            Engineering Blueprints
-          </Badge>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-dark-bg dark:text-white leading-[1.15]">
-            Featured Concept Projects
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-            In adherence to our strict transparency policy, we do not publish fabricated client logos or unverified testimonials. These blueprints illustrate the exact technical architectures and measurable impact ranges we deliver for Indian industry verticals.
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="max-w-3xl mx-auto text-center mb-14 sm:mb-16">
+            <Badge variant="brass" dot size="md" className="mb-4">
+              Engineering Blueprints
+            </Badge>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-dark-bg dark:text-white leading-[1.15]">
+              Featured Concept Projects
+            </h2>
+            <p className="mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+              In adherence to our strict transparency policy, we do not publish fabricated client logos or unverified testimonials. These blueprints illustrate the exact technical architectures and measurable impact ranges we deliver for Indian industry verticals.
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* 3 Concept Project Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {CONCEPT_PROJECTS.map((project) => (
-            <Card
-              key={project.id}
-              variant="interactive"
-              padding="lg"
-              className="flex flex-col justify-between bg-light-bg/50 dark:bg-dark-surface border-light-border dark:border-dark-border"
-            >
+          {CONCEPT_PROJECTS.map((project, idx) => (
+            <ScrollReveal key={project.id} delayMs={idx * 150} className="h-full">
+              <Card
+                variant="interactive"
+                padding="lg"
+                className="flex flex-col justify-between bg-light-bg/50 dark:bg-dark-surface border-light-border dark:border-dark-border h-full"
+              >
               <div>
                 {/* Visual Diagram Graphic (CSS / SVG) */}
                 <div className="mb-6">{project.svgGraphic}</div>
@@ -209,14 +212,20 @@ export function FeaturedWork() {
                 </div>
 
                 <Link href="/contact" className="block w-full">
-                  <Button variant="secondary" size="sm" className="w-full justify-center font-medium">
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    className="w-full justify-center font-medium"
+                    aria-label={`Build a solution like ${project.projectType}`}
+                  >
                     Build a Solution Like This →
                   </Button>
                 </Link>
               </div>
             </Card>
-          ))}
-        </div>
+          </ScrollReveal>
+        ))}
+      </div>
       </Container>
     </section>
   );

@@ -187,9 +187,9 @@ export function ContactForm() {
 
     return (
       <div className="rounded-2xl border border-emerald-500/30 bg-emerald-50/40 p-8 sm:p-10 text-center dark:bg-emerald-950/20">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-900/60 dark:text-emerald-300">
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 shadow-md shadow-emerald-500/20 dark:bg-emerald-900/60 dark:text-emerald-300">
           <svg className="h-8 w-8 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth="2.5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            <path className="animate-checkmark-draw" strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
 
@@ -325,7 +325,7 @@ export function ContactForm() {
           onChange={handleInputChange}
           error={fieldErrors.city?.[0]}
         />
-        <div className="mt-2 flex flex-wrap items-center gap-1.5">
+        <div className="mt-2.5 flex flex-wrap items-center gap-2">
           <span className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mr-1">
             Quick Pick:
           </span>
@@ -334,9 +334,9 @@ export function ContactForm() {
               key={c}
               type="button"
               onClick={() => setFormData((prev) => ({ ...prev, city: c }))}
-              className={`rounded-md px-2 py-0.5 text-[10px] font-medium transition-colors ${
+              className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all min-h-[36px] inline-flex items-center justify-center cursor-pointer hover:-translate-y-0.5 active:translate-y-0 ${
                 formData.city?.includes(c)
-                  ? "bg-brand-red text-white"
+                  ? "bg-brand-red text-white shadow-xs"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-dark-surface dark:text-gray-300 dark:hover:bg-gray-800"
               }`}
             >
@@ -356,7 +356,7 @@ export function ContactForm() {
             name="service"
             value={formData.service}
             onChange={handleInputChange}
-            className="w-full rounded-xl border border-light-border dark:border-dark-border bg-white dark:bg-dark-surface text-dark-bg dark:text-gray-100 text-sm py-2.5 px-3.5 focus:border-brand-red focus:outline-hidden focus:ring-2 focus:ring-red-100"
+            className="w-full rounded-xl border border-light-border dark:border-dark-border bg-white dark:bg-dark-surface text-dark-bg dark:text-gray-100 text-sm py-2.5 px-3.5 transition-all duration-200 focus:border-brand-red focus:outline-hidden focus:ring-2 focus:ring-red-100 dark:focus:ring-brand-red/20 focus:shadow-[0_0_12px_rgba(229,29,37,0.12)] min-h-[44px]"
           >
             {SERVICE_CATEGORIES.map((cat) => (
               <option key={cat} value={cat}>
@@ -377,7 +377,7 @@ export function ContactForm() {
             name="budget_range"
             value={formData.budget_range}
             onChange={handleInputChange}
-            className="w-full rounded-xl border border-light-border dark:border-dark-border bg-white dark:bg-dark-surface text-dark-bg dark:text-gray-100 text-sm py-2.5 px-3.5 focus:border-brand-red focus:outline-hidden focus:ring-2 focus:ring-red-100"
+            className="w-full rounded-xl border border-light-border dark:border-dark-border bg-white dark:bg-dark-surface text-dark-bg dark:text-gray-100 text-sm py-2.5 px-3.5 transition-all duration-200 focus:border-brand-red focus:outline-hidden focus:ring-2 focus:ring-red-100 dark:focus:ring-brand-red/20 focus:shadow-[0_0_12px_rgba(229,29,37,0.12)] min-h-[44px]"
           >
             {BUDGET_RANGES.map((b) => (
               <option key={b} value={b}>
@@ -404,9 +404,9 @@ export function ContactForm() {
           ].map((mode) => (
             <label
               key={mode.id}
-              className={`flex flex-col items-center justify-center p-2.5 rounded-xl border text-center cursor-pointer transition-all ${
+              className={`flex flex-col items-center justify-center p-2.5 rounded-xl border text-center cursor-pointer min-h-[44px] transition-all hover:-translate-y-0.5 active:translate-y-0 ${
                 formData.preferred_contact === mode.id
-                  ? "border-brand-red bg-red-50/50 text-brand-red dark:bg-red-950/20 dark:border-brand-red font-semibold"
+                  ? "border-brand-red bg-red-50/50 text-brand-red dark:bg-red-950/20 dark:border-brand-red font-semibold shadow-xs"
                   : "border-light-border dark:border-dark-border hover:bg-gray-50 text-gray-600 dark:text-gray-300 dark:hover:bg-dark-surface"
               }`}
             >
@@ -436,10 +436,10 @@ export function ContactForm() {
           placeholder="Briefly describe your current bottlenecks, target audience, and desired launch timeline (min 10 characters)..."
           value={formData.message || ""}
           onChange={handleInputChange}
-          className={`w-full rounded-xl border bg-white dark:bg-dark-surface text-dark-bg dark:text-gray-100 text-sm py-2.5 px-3.5 focus:outline-hidden focus:ring-2 placeholder:text-gray-400 ${
+          className={`w-full rounded-xl border bg-white dark:bg-dark-surface text-dark-bg dark:text-gray-100 text-sm py-2.5 px-3.5 transition-all duration-200 placeholder:text-gray-400 focus:outline-hidden focus:ring-2 focus:shadow-[0_0_12px_rgba(229,29,37,0.12)] ${
             fieldErrors.message?.[0]
               ? "border-red-500 focus:ring-red-100"
-              : "border-light-border dark:border-dark-border focus:border-brand-red focus:ring-red-100"
+              : "border-light-border dark:border-dark-border focus:border-brand-red focus:ring-red-100 dark:focus:ring-brand-red/20"
           }`}
           required
         />
