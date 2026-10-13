@@ -18,6 +18,7 @@ export function Footer() {
                   alt="Ethixweb Logo"
                   width={140}
                   height={24}
+                  loading="lazy"
                   className="h-6 w-auto object-contain"
                 />
               </div>

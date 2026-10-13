@@ -146,6 +146,7 @@ export function MobileNav({ navLinks }: MobileNavProps) {
                       alt="Ethixweb"
                       width={120}
                       height={20}
+                      loading="lazy"
                       className="h-5 w-auto object-contain"
                     />
                   </div>

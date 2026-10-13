@@ -7,18 +7,21 @@ const outfitDisplay = Outfit({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
+  preload: true,
 });
 
 const plusJakartaBody = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
+  preload: true,
 });
 
 const notoSansDevanagari = Noto_Sans_Devanagari({
   subsets: ["devanagari"],
   variable: "--font-hindi",
   display: "swap",
+  preload: false,
 });
 
 export const viewport: Viewport = {
