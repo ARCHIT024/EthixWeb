@@ -42,3 +42,20 @@ This log records major architectural, design, and implementation decisions made 
 - **Why**:
   - Fulfills the 20% UI/UX and 30% Design + India fit rubric by providing authentic, high-contrast, accessible foundations without external runtime library bloat.
   - Zero heavy third-party CSS or JS dependencies ensures instant paint times and 90+ PageSpeed metrics across mobile and desktop.
+
+---
+
+### Entry 004: Global Layout Architecture, Accessible Header, Footer & Floating WhatsApp
+- **Date**: 2026-10-13
+- **What**:
+  - Implemented sticky `Header` with logo, clean navigation links (`Home`, `Services`, `About`, `Contact`), desktop IST status badge, and "Get a quote" CTA.
+  - Built mobile-first accessible `MobileNav` drawer with focus trapping, Escape key dismissal, backdrop lock, and ARIA dialog semantics.
+  - Built comprehensive `Footer` with one-line agency pitch, verified social links from ethixweb.com (LinkedIn, Instagram, X), multi-city India presence (Bengaluru, Delhi NCR, Mumbai), official GST legal line with 18% ITC declaration, and geometric `<RangoliDivider />`.
+  - Built `FloatingWhatsApp` button anchored at `bottom-6 right-6` with safe z-index, pulse glow, `aria-label`, and prefilled contextual inquiry URL (`wa.me`).
+  - Created client-side leaf component `IstStatusBadge` computing Indian Standard Time (UTC+5:30) availability (Mon–Sat 09:30–20:00 IST) with zero layout shift and safe server fallback.
+  - Implemented Next.js App Router metadata template (`%s | Ethixweb India`), OpenGraph tags, dynamic `sitemap.ts`, and `robots.ts`.
+  - Created starter pages for `/services`, `/about`, and `/contact` to strictly guarantee zero broken links across internal navigation.
+- **Why**:
+  - Sets up the complete application layout structure required for the 24-hour assessment.
+  - Enforces accessible mobile-first navigation without shipping heavy UI libraries.
+  - Highlights Indian market requirements (+91 validation, IST operating hours, GST compliance) across the layout.
