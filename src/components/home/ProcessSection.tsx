@@ -1,10 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Card } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
+import { SectionSeam } from "@/components/patterns/SectionSeam";
+import { SectionBackdrop } from "@/components/patterns/SectionBackdrop";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 interface ProcessStep {
@@ -66,96 +64,108 @@ const PROCESS_STEPS: ProcessStep[] = [
 
 export function ProcessSection() {
   return (
-    <section className="py-20 sm:py-28 bg-light-bg text-dark-bg border-t border-light-border dark:bg-dark-surface dark:border-dark-border">
-      <Container size="default">
+    <section className="relative bg-[#FAF6EF] text-[#14110F] py-14 sm:py-[88px] border-t border-[rgba(184,146,74,0.5)] overflow-hidden">
+      {/* Brass Seam Diamond */}
+      <SectionSeam />
+
+      {/* Bandhani Pattern Backdrop with Radial Mask */}
+      <SectionBackdrop pattern="bandhani" opacity={0.1} />
+
+      <Container size="default" className="relative z-10">
         {/* Section Heading */}
         <ScrollReveal>
-          <SectionHeading
-            kicker="Delivery Methodology"
-            title="From Discovery To Live Deployment in Under 14 Days"
-            description="A structured, predictable development roadmap with daily milestone updates. No endless delays or missing agency contacts."
-            align="center"
-            className="mb-14 sm:mb-16"
-          />
+          <div className="text-center max-w-[760px] mx-auto mb-11">
+            <span className="font-bold text-[13px] tracking-[0.12em] uppercase text-[#B3202A] block mb-2">
+              Delivery methodology
+            </span>
+            <h2 className="font-display text-[32px] sm:text-[42px] font-bold text-[#14110F] leading-[1.1] mb-3.5">
+              From Discovery To Live Deployment in Under 14 Days
+            </h2>
+            <p className="text-[17px] text-[#5C5347] leading-relaxed max-w-[620px] mx-auto">
+              A structured, predictable development roadmap with daily milestone updates. No endless delays or missing agency contacts.
+            </p>
+          </div>
         </ScrollReveal>
 
         {/* 5 Steps Process Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 sm:gap-6">
-          {PROCESS_STEPS.map((step, idx) => (
-            <ScrollReveal key={step.stepNumber} delayMs={idx * 100} className="h-full">
-              <Card
-                variant="default"
-                padding="md"
-                className="relative flex flex-col justify-between border-t-4 border-t-brand-red dark:border-t-brand-red bg-white dark:bg-dark-bg h-full card-lift-effect"
-              >
-                <div>
-                  {/* Step Number & Timeline Badge */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="font-display font-extrabold text-3xl text-gray-300 dark:text-gray-700">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
+          {PROCESS_STEPS.map((step, idx) => {
+            const isLast = step.stepNumber === "05";
+            return (
+              <ScrollReveal key={step.stepNumber} delayMs={idx * 80} className="h-full">
+                <div
+                  className={`bg-white rounded-[16px] p-[26px] flex flex-col justify-between h-full border ${
+                    isLast ? "border-[#B3202A]" : "border-[#E6DCCB]"
+                  }`}
+                >
+                  <div>
+                    {/* Big Step Number in #E3D5BD or #B3202A */}
+                    <div
+                      className={`font-display text-[44px] font-[800] leading-none mb-2 ${
+                        isLast ? "text-[#B3202A]" : "text-[#E3D5BD]"
+                      }`}
+                    >
                       {step.stepNumber}
-                    </span>
-                    <Badge variant="brass" size="sm" className="font-mono">
-                      {step.timeline}
-                    </Badge>
+                    </div>
+
+                    {/* Step Title */}
+                    <h3 className="font-display text-[21px] font-bold text-[#14110F] mb-1 leading-snug">
+                      {step.title}
+                    </h3>
+
+                    {/* Timeline & Deliverable */}
+                    <div className="text-xs font-semibold text-[#8A6A2E] mb-3">
+                      {step.timeline} · {step.deliverables}
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-[15px] text-[#5C5347] leading-relaxed mb-4">
+                      {step.description}
+                    </p>
                   </div>
 
-                  {/* Step Title */}
-                  <h3 className="font-display text-lg font-bold text-dark-bg dark:text-white mb-1.5">
-                    {step.title}
-                  </h3>
-
-                  {/* Deliverable Badge */}
-                  <p className="text-xs font-semibold text-brand-red dark:text-red-400 mb-3">
-                    {step.deliverables}
-                  </p>
-
-                  {/* Description */}
-                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                    {step.description}
-                  </p>
+                  {/* Bottom Highlight */}
+                  <div className="pt-3 border-t border-[#E6DCCB]">
+                    <span className="text-[11px] text-[#5C5347] font-medium block">
+                      ⚡ {step.highlight}
+                    </span>
+                  </div>
                 </div>
-
-                {/* Bottom Key Highlight */}
-                <div className="pt-3 border-t border-light-border dark:border-dark-border">
-                  <span className="text-[11px] text-gray-500 dark:text-gray-400 block font-medium">
-                    ⚡ {step.highlight}
-                  </span>
-                </div>
-              </Card>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            );
+          })}
         </div>
 
         {/* Process CTA Bar */}
-        <ScrollReveal delayMs={200}>
-          <div className="mt-14 rounded-2xl bg-white border border-light-border p-6 sm:p-8 dark:bg-dark-bg dark:border-dark-border flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
-          <div>
-            <h3 className="font-display text-xl font-bold text-dark-bg dark:text-white">
-              Ready to kick off your 14-day sprint?
-            </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-              Book a 20-minute discovery call with our technical lead or chat on WhatsApp for a quick estimate.
-            </p>
-          </div>
+        <ScrollReveal delayMs={150}>
+          <div className="mt-12 rounded-[16px] bg-white border border-[#E6DCCB] p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div>
+              <h3 className="font-display text-[22px] font-bold text-[#14110F]">
+                Ready to kick off your 14-day sprint?
+              </h3>
+              <p className="text-[15px] text-[#5C5347] mt-1">
+                Book a 20-minute discovery call with our technical lead or chat on WhatsApp for a quick estimate.
+              </p>
+            </div>
 
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
-            <Link href="/contact">
-              <Button variant="primary" size="md">
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center min-h-[46px] px-6 rounded-full bg-[#B3202A] hover:bg-[#9c1822] text-white font-bold text-[15px] transition-colors"
+              >
                 Schedule Discovery Call →
-              </Button>
-            </Link>
-            <a
-              href="https://wa.me/919876543210?text=Hello%20Ethixweb%2C%20I%20would%20like%20to%20discuss%20a%20new%20sprint"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="secondary" size="md">
+              </Link>
+              <a
+                href="https://wa.me/919876543210?text=Hello%20Ethixweb%2C%20I%20would%20like%20to%20discuss%20a%20new%20sprint"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center min-h-[46px] px-6 rounded-full bg-transparent border border-[#14110F] hover:bg-black/5 text-[#14110F] font-bold text-[15px] transition-colors"
+              >
                 WhatsApp Quick Estimate
-              </Button>
-            </a>
+              </a>
+            </div>
           </div>
-        </div>
-      </ScrollReveal>
+        </ScrollReveal>
       </Container>
     </section>
   );

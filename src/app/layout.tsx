@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, DM_Sans, Noto_Sans_Devanagari } from "next/font/google";
 import "./globals.css";
 import { PublicChrome } from "@/components/layout/PublicChrome";
+import { PatternDefs } from "@/components/patterns/PatternDefs";
 
 const bricolageDisplay = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -111,6 +112,7 @@ export default function RootLayout({
       className={`${bricolageDisplay.variable} ${dmSansBody.variable} ${notoSansDevanagari.variable} h-full scroll-smooth`}
     >
       <body className="min-h-full flex flex-col font-sans antialiased bg-[#FAF6EF] text-[#14110F] selection:bg-[#B3202A] selection:text-white">
+        <PatternDefs />
         <PublicChrome>{children}</PublicChrome>
       </body>
     </html>

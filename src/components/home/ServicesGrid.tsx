@@ -1,10 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Card } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
+import { SectionSeam } from "@/components/patterns/SectionSeam";
+import { SectionBackdrop } from "@/components/patterns/SectionBackdrop";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 interface ServiceItem {
@@ -68,7 +66,7 @@ const SERVICES_DATA: ServiceItem[] = [
     id: "ads",
     title: "Google & Meta Performance Ads",
     category: "Paid Acquisition",
-    priceStarting: "₹22,000*",
+    priceStarting: "₹12,000*",
     targetIndustries: "D2C Brands, Coaching Centres, Real Estate",
     description:
       "Data-backed ad campaigns timed to Indian purchase triggers: festive seasons (Diwali, Eid, Akshaya Tritiya, New Year) and local high-intent search queries.",
@@ -113,99 +111,97 @@ const SERVICES_DATA: ServiceItem[] = [
 
 export function ServicesGrid() {
   return (
-    <section className="py-20 sm:py-28 bg-white border-t border-light-border dark:bg-dark-bg dark:border-dark-border">
-      <Container size="default">
-        {/* Section Heading with Business Context */}
+    <section className="relative bg-[#1C1714] text-white py-14 sm:py-[88px] border-t border-[rgba(184,146,74,0.35)] overflow-hidden">
+      {/* Brass Seam Diamond */}
+      <SectionSeam />
+
+      {/* Kolam Pattern Backdrop with Radial Mask */}
+      <SectionBackdrop pattern="kolam" opacity={0.05} />
+
+      <Container size="default" className="relative z-10">
+        {/* Section Heading */}
         <ScrollReveal>
-          <SectionHeading
-            kicker="Core Service Capabilities"
-            title="Digital Infrastructure Built For Indian Scale"
-            description="Integrated web development, autonomous AI receptionists, and marketing pipelines tailored specifically for Indian operational realities and domestic buyer behavior."
-            align="center"
-            className="mb-14 sm:mb-16"
-          />
+          <div className="text-center max-w-[760px] mx-auto mb-11">
+            <span className="font-bold text-[13px] tracking-[0.12em] uppercase text-[#E0414B] block mb-2">
+              Core service capabilities
+            </span>
+            <h2 className="font-display text-[32px] sm:text-[42px] font-bold text-white leading-[1.1] mb-3.5">
+              Digital Infrastructure Built For Indian Scale
+            </h2>
+            <p className="text-[17px] text-[#D8D0C4] leading-relaxed max-w-[620px] mx-auto">
+              Web, AI and marketing pipelines tailored to Indian operations and buyers.
+            </p>
+          </div>
         </ScrollReveal>
 
         {/* 6 Services Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {SERVICES_DATA.map((service, idx) => (
-            <ScrollReveal key={service.id} delayMs={(idx % 3) * 120} className="h-full">
-              <Card
-                variant="interactive"
-                padding="lg"
-                className="flex flex-col justify-between group hover:border-brand-red/30 transition-all duration-300 h-full"
-              >
-              <div>
-                {/* Header: Category & Indicative Pricing */}
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="text-2xl" aria-hidden="true">
-                    {service.icon}
-                  </span>
-                  <div className="text-right">
-                    <span className="font-display font-bold text-sm sm:text-base text-brand-red dark:text-red-400">
-                      {service.priceStarting}
+            <ScrollReveal key={service.id} delayMs={(idx % 3) * 100} className="h-full">
+              <div className="bg-[#14110F] border border-[rgba(184,146,74,0.3)] rounded-[16px] p-[26px] text-white flex flex-col justify-between h-full transition-colors hover:border-[#D9B873]/60">
+                <div>
+                  {/* Card Title & Icon */}
+                  <div className="flex items-center justify-between gap-3 mb-2">
+                    <h3 className="font-display text-[21px] font-bold text-white leading-snug">
+                      {service.title}
+                    </h3>
+                    <span className="text-2xl shrink-0" aria-hidden="true">
+                      {service.icon}
                     </span>
-                    <span className="block text-[10px] text-gray-500 uppercase tracking-wider">
-                      Indicative · +18% GST
+                  </div>
+
+                  {/* Target Industry Badge */}
+                  <div className="mb-3">
+                    <span className="inline-block text-[11px] font-medium text-[#D9B873] border border-[rgba(184,146,74,0.3)] rounded-full px-2.5 py-0.5">
+                      Built for: {service.targetIndustries}
                     </span>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-[15px] text-[#D8D0C4] leading-relaxed mb-4">
+                    {service.description}
+                  </p>
+
+                  {/* Price Starting */}
+                  <div className="font-bold text-[15px] text-[#D9B873] mb-4">
+                    {service.priceStarting}
+                    <span className="text-[11px] font-normal text-[#A89F90] ml-2">
+                      (excl. 18% GST)
+                    </span>
+                  </div>
+
+                  {/* Key Deliverables Bulleted List */}
+                  <div className="pt-3 border-t border-white/10 mb-4">
+                    <ul className="space-y-1.5 text-xs text-[#D8D0C4]">
+                      {service.keyDeliverables.map((item, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <span className="text-[#E0414B] font-bold shrink-0">✓</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
 
-                {/* Service Title */}
-                <h3 className="font-display text-xl font-bold text-dark-bg dark:text-white mb-2 leading-snug group-hover:text-brand-red transition-colors">
-                  {service.title}
-                </h3>
-
-                {/* Indian Target Verticals Badge */}
-                <div className="mb-4">
-                  <Badge variant="neutral" size="sm" className="text-[11px]">
-                    Built for: {service.targetIndustries}
-                  </Badge>
-                </div>
-
-                {/* Description */}
-                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-                  {service.description}
-                </p>
-
-                {/* Key Deliverables Bulleted List */}
-                <div className="pt-4 border-t border-light-border dark:border-dark-border mb-6">
-                  <p className="text-[11px] font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-2.5">
-                    What You Get:
-                  </p>
-                  <ul className="space-y-2 text-xs text-gray-600 dark:text-gray-400">
-                    {service.keyDeliverables.map((item, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <span className="text-brand-red font-bold shrink-0">✓</span>
-                        <span className="leading-tight">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Card Footer Action */}
-              <div className="pt-2">
-                <Link href="/contact" className="block w-full">
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    className="w-full justify-between group-hover:border-brand-red/40 group-hover:bg-red-50/50 dark:group-hover:bg-red-950/20"
+                {/* Card Footer Action */}
+                <div className="pt-2">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-between w-full min-h-[44px] px-4 rounded-xl bg-[#1C1714] border border-[rgba(184,146,74,0.3)] hover:border-[#D9B873] hover:bg-[#14110F] text-white text-sm font-semibold transition-colors"
                     aria-label={`Discuss scope for ${service.title}`}
                   >
                     <span>Discuss Scope</span>
-                    <span className="text-brand-red font-bold">→</span>
-                  </Button>
-                </Link>
+                    <span className="text-[#D9B873] font-bold">→</span>
+                  </Link>
+                </div>
               </div>
-            </Card>
-          </ScrollReveal>
-        ))}
-      </div>
+            </ScrollReveal>
+          ))}
+        </div>
 
         {/* Pricing Transparency Note */}
-        <div className="mt-12 text-center">
-          <p className="text-xs text-gray-500 max-w-xl mx-auto">
+        <div className="mt-10 text-center">
+          <p className="text-xs text-[#A89F90] max-w-xl mx-auto">
             * All prices shown are indicative starting estimates tailored to Indian SMEs. Final quotes depend on custom technical scope, integration volume, and sprint timelines. Full 18% GST invoice provided with valid GSTIN.
           </p>
         </div>

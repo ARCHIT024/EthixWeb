@@ -3,11 +3,13 @@
 @theme {
   /* Approved Reference Theme Tokens */
   --color-ink: #14110F;
+  --color-ink-2: #1C1714;
   --color-red: #B3202A;
   --color-red-on-dark: #E0414B;
   --color-brass: #B8924A;
   --color-brass-light: #D9B873;
   --color-ivory: #FAF6EF;
+  --color-sand: #F1E9DA;
   --color-sand-border: #E6DCCB;
   --color-text-on-dark: #D8D0C4;
   --color-muted-on-dark: #A89F90;

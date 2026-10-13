@@ -1,8 +1,7 @@
 import React from "react";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Card } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
+import { SectionSeam } from "@/components/patterns/SectionSeam";
+import { SectionBackdrop } from "@/components/patterns/SectionBackdrop";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 interface Differentiator {
@@ -15,7 +14,7 @@ interface Differentiator {
 
 const DIFFERENTIATORS: Differentiator[] = [
   {
-    title: "Senior Technical Operators",
+    title: "Senior-only operators",
     tag: "No Junior Delegation",
     description:
       "When you partner with Ethixweb, you work directly with senior architects and growth engineers. Your project isn't handed off to freshers or sub-contracted out.",
@@ -23,7 +22,7 @@ const DIFFERENTIATORS: Differentiator[] = [
     icon: "⚡",
   },
   {
-    title: "Dedicated WhatsApp Direct Line",
+    title: "Dedicated WhatsApp line",
     tag: "Instant IST Turnaround",
     description:
       "No waiting in bureaucratic 48-hour email ticketing queues. We operate during 09:30–20:00 IST and respond within minutes for real-time campaign adjustments.",
@@ -31,7 +30,7 @@ const DIFFERENTIATORS: Differentiator[] = [
     icon: "💬",
   },
   {
-    title: "18% GST Invoicing with ITC",
+    title: "18% GST invoicing",
     tag: "B2B Tax Compliance",
     description:
       "A fully compliant Indian corporate entity. Every rupee billed comes with an itemized tax invoice containing our valid GSTIN, allowing you to claim full Input Tax Credit.",
@@ -39,7 +38,7 @@ const DIFFERENTIATORS: Differentiator[] = [
     icon: "🧾",
   },
   {
-    title: "Transparent ₹ Pricing & Global Standards",
+    title: "Global standards",
     tag: "Silicon Valley Craft",
     description:
       "We build with Next.js App Router, Supabase, and TypeScript — the exact tech stack used by Silicon Valley leaders — priced transparently in Indian Rupees without hidden charges.",
@@ -50,66 +49,69 @@ const DIFFERENTIATORS: Differentiator[] = [
 
 export function WhyEthixweb() {
   return (
-    <section className="py-20 sm:py-28 bg-light-bg text-dark-bg border-t border-light-border dark:bg-dark-surface dark:border-dark-border">
-      <Container size="default">
+    <section className="relative bg-[#F1E9DA] text-[#14110F] py-14 sm:py-[88px] border-t border-[rgba(184,146,74,0.5)] overflow-hidden">
+      {/* Brass Seam Diamond */}
+      <SectionSeam />
+
+      {/* Butta Pattern Backdrop with Radial Mask */}
+      <SectionBackdrop pattern="butta" opacity={0.1} />
+
+      <Container size="default" className="relative z-10">
         {/* Section Heading */}
         <ScrollReveal>
-          <SectionHeading
-            kicker="The Ethixweb Difference"
-            title="Why Indian Founders &amp; Business Leaders Choose Us"
-            description="We built Ethixweb to eliminate the four biggest frustrations Indian companies face with traditional digital agencies: endless delays, junior hand-offs, lack of GST compliance, and opaque billing."
-            align="center"
-            className="mb-14 sm:mb-16"
-          />
+          <div className="text-center max-w-[760px] mx-auto mb-11">
+            <span className="font-bold text-[13px] tracking-[0.12em] uppercase text-[#B3202A] block mb-2">
+              The Ethixweb difference
+            </span>
+            <h2 className="font-display text-[32px] sm:text-[42px] font-bold text-[#14110F] leading-[1.1] mb-3.5">
+              Why Indian Founders &amp; Business Leaders Choose Us
+            </h2>
+            <p className="text-[17px] text-[#5C5347] leading-relaxed max-w-[620px] mx-auto">
+              No agency theatre. Senior people, clear pricing, fast replies. We eliminate endless delays, junior hand-offs, lack of GST compliance, and opaque billing.
+            </p>
+          </div>
         </ScrollReveal>
 
         {/* 4 Differentiators Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {DIFFERENTIATORS.map((item, index) => (
-            <ScrollReveal key={item.title} delayMs={index * 90}>
-              <Card
-                variant="default"
-                padding="lg"
-                className="h-full flex flex-col justify-between bg-white dark:bg-dark-bg border-light-border dark:border-dark-border hover:border-brand-red/30 transition-all duration-300"
-              >
+            <ScrollReveal key={item.title} delayMs={index * 80} className="h-full">
+              <div className="bg-white border border-[#E6DCCB] rounded-[16px] p-[26px] h-full flex flex-col justify-between">
                 <div>
-                  {/* Icon & Badge */}
+                  {/* Icon & Index */}
                   <div className="flex items-center justify-between mb-4">
-                    <div className="h-11 w-11 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center text-xl font-bold" aria-hidden="true">
+                    <div
+                      className="h-10 w-10 rounded-xl bg-[#B3202A]/10 text-[#B3202A] flex items-center justify-center text-lg font-bold"
+                      aria-hidden="true"
+                    >
                       {item.icon}
                     </div>
-                    <Badge variant="brass" size="sm" className="text-[10px]">
+                    <span className="text-xs font-mono font-bold text-[#8A6A2E] bg-[#F1E9DA] px-2 py-0.5 rounded">
                       0{index + 1}
-                    </Badge>
-                  </div>
-
-                  <div className="mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-brand-red dark:text-red-400">
-                      {item.tag}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-display text-lg font-bold text-dark-bg dark:text-white mb-3 leading-snug">
+                  <h3 className="font-display text-[20px] font-bold text-[#14110F] mb-2 leading-snug">
                     {item.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                  <p className="text-[15px] text-[#5C5347] leading-relaxed mb-4">
                     {item.description}
                   </p>
                 </div>
 
                 {/* India Advantage Callout */}
-                <div className="pt-3 border-t border-light-border dark:border-dark-border bg-gray-50/70 dark:bg-dark-surface/50 -mx-4 -mb-4 p-4 rounded-b-2xl">
-                  <span className="text-[10px] font-semibold text-gray-700 dark:text-gray-300 block uppercase tracking-wider mb-1">
-                    India Fit:
+                <div className="pt-3 border-t border-[#E6DCCB]">
+                  <span className="text-[10px] font-bold text-[#8A6A2E] block uppercase tracking-wider mb-1">
+                    India Advantage:
                   </span>
-                  <p className="text-[11px] text-gray-600 dark:text-gray-400 leading-snug">
+                  <p className="text-xs text-[#5C5347] leading-relaxed">
                     {item.indiaAdvantage}
                   </p>
                 </div>
-              </Card>
+              </div>
             </ScrollReveal>
           ))}
         </div>
