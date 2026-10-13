@@ -1,18 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, Plus_Jakarta_Sans, Noto_Sans_Devanagari } from "next/font/google";
+import { Bricolage_Grotesque, DM_Sans, Noto_Sans_Devanagari } from "next/font/google";
 import "./globals.css";
 import { PublicChrome } from "@/components/layout/PublicChrome";
 
-const outfitDisplay = Outfit({
+const bricolageDisplay = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-display",
+  weight: ["500", "700", "800"],
   display: "swap",
   preload: true,
 });
 
-const plusJakartaBody = Plus_Jakarta_Sans({
+const dmSansBody = DM_Sans({
   subsets: ["latin"],
   variable: "--font-body",
+  weight: ["400", "500", "700"],
   display: "swap",
   preload: true,
 });
@@ -20,6 +22,7 @@ const plusJakartaBody = Plus_Jakarta_Sans({
 const notoSansDevanagari = Noto_Sans_Devanagari({
   subsets: ["devanagari"],
   variable: "--font-hindi",
+  weight: ["500"],
   display: "swap",
   preload: false,
 });
@@ -105,9 +108,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfitDisplay.variable} ${plusJakartaBody.variable} ${notoSansDevanagari.variable} h-full scroll-smooth`}
+      className={`${bricolageDisplay.variable} ${dmSansBody.variable} ${notoSansDevanagari.variable} h-full scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col font-sans antialiased bg-light-bg text-dark-bg selection:bg-brand-red selection:text-white">
+      <body className="min-h-full flex flex-col font-sans antialiased bg-[#FAF6EF] text-[#14110F] selection:bg-[#B3202A] selection:text-white">
         <PublicChrome>{children}</PublicChrome>
       </body>
     </html>

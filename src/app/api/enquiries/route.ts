@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { enquirySchema } from "@/lib/validations/enquiry";
+import { enquirySchema, quickEnquirySchema } from "@/lib/validations/enquiry";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { hashIp, validateIndianPhone } from "@/lib/security";
 import { verifyTurnstileToken } from "@/lib/turnstile";
@@ -69,7 +69,83 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // 6. Zod Validation (Shared Schema)
+    const isHero = bodyObj?.source === "hero";
+
+    // 6. Zod Validation (Quick Hero Schema or Full Contact Schema)
+    if (isHero) {
+      const quickParse = quickEnquirySchema.safeParse(rawBody);
+      if (!quickParse.success) {
+        const fieldErrors: Record<string, string[]> = {};
+        for (const issue of quickParse.error.issues) {
+          const fieldName = issue.path[0]?.toString() || "form";
+          if (!fieldErrors[fieldName]) {
+            fieldErrors[fieldName] = [];
+          }
+          fieldErrors[fieldName].push(issue.message);
+        }
+
+        return jsonResponse(422, {
+          ok: false,
+          error: "Validation failed. Please correct the highlighted fields.",
+          fieldErrors,
+        });
+      }
+
+      const validHero = quickParse.data;
+
+      // Verify Cloudflare Turnstile Anti-Bot Token Server-Side
+      const turnstileResult = await verifyTurnstileToken(
+        validHero.turnstile_token,
+        clientIp
+      );
+      if (!turnstileResult.success) {
+        return jsonResponse(400, {
+          ok: false,
+          error: "Bot challenge verification failed. Please refresh and try again.",
+        });
+      }
+
+      const phoneNormalized = validateIndianPhone(validHero.phone).normalized;
+      const cleanDigits = phoneNormalized.replace(/\D/g, "");
+      const supabase = createAdminClient();
+
+      const { data, error } = await supabase
+        .from("leads")
+        .insert({
+          name: validHero.name,
+          business_name: null,
+          phone: phoneNormalized,
+          email: `${cleanDigits}@quicklead.ethixweb.com`,
+          city: null,
+          service: "Websites & High-Speed Portals",
+          budget_range: validHero.budget_range,
+          message: `Hero quick callback requested. Monthly budget: ${validHero.budget_range}. Preferred contact: WhatsApp / Call.`,
+          preferred_contact: "whatsapp",
+          status: "new",
+          ip_hash: ipHash,
+          user_agent: userAgent,
+          source: "hero",
+        })
+        .select("id")
+        .single();
+
+      if (error) {
+        console.error("Supabase enquiry insertion error:", error);
+        return jsonResponse(500, {
+          ok: false,
+          error: "Failed to record inquiry due to a temporary database issue. Please message us directly via WhatsApp.",
+        });
+      }
+
+      return jsonResponse(201, {
+        ok: true,
+        data: {
+          id: data.id,
+          message: "Thanks, we'll reach out shortly.",
+        },
+      });
+    }
+
     const parseResult = enquirySchema.safeParse(rawBody);
     if (!parseResult.success) {
       const fieldErrors: Record<string, string[]> = {};

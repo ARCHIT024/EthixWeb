@@ -283,6 +283,29 @@ This log records major architectural, design, and implementation decisions made 
 - **Why**:
   - Delivers a production-grade, leak-proof, zero-placeholder agency web application meeting strict enterprise quality, compliance, and security criteria.
 
+---
+
+### Entry 015: Reference-Accurate Dark Header & Hero Redesign with Quick Enquiry Funnel
+- **Date**: 2026-10-14
+- **What**:
+  1. **Site-Wide Typography Modernization**:
+     - Migrated global typography to self-hosted `next/font`: **Bricolage Grotesque** (weights 500, 700, 800) for display headings and buttons, **DM Sans** (weights 400, 500, 700) for body copy, and **Noto Sans Devanagari** (weight 500) dedicated to the Hindi proposition.
+  2. **Dark Sticky Header Architecture**:
+     - Implemented sticky 76px header on `#14110F` ink background with 1px `rgba(255, 255, 255, 0.1)` bottom border.
+     - Styled brand logo with 1px `rgba(255, 255, 255, 0.25)` border and 8px border-radius to preserve crisp contrast against the dark background.
+     - Centered desktop navigation links with 28px gap and active route state indicated by a 2px `#E0414B` underline with 6px offset.
+     - Integrated "Get a quote" red `#B3202A` pill CTA and responsive hamburger drawer collapsing below 900px.
+  3. **Two-Column Asymmetrical Hero Section**:
+     - **Left Column**: Live IST availability badge (`AvailabilityBadge.tsx`) computing operating hours (Mon-Sat 10:00–19:00 IST), 64px clamped H1 with accent word "business." in `#E0414B`, permanent Hindi tagline in `#D9B873`, value proposition paragraph in `#D8D0C4`, dual CTAs (Red consultation pill + white ghost WhatsApp button), and operational hours text.
+     - **Right Column**: Ivory `#FAF6EF` Quick Enquiry Card (`QuickEnquiryCard.tsx`) with Name, Mobile, and 4-tier Monthly Budget dropdown, backed by Zod validation, lazy Turnstile loading, and `/api/enquiries` persistence.
+  4. **Key Design Rationales**:
+     - **Dark Hero (`#14110F`)**: Anchors visual authority, prevents harsh white glare on first paint, and creates high-contrast focus on the red CTA and ivory quick-action form card.
+     - **Jaali Texture Opacity (`0.09`)**: Engineered as a zero-JS, lightweight inline SVG repeating 44x44 pattern with diamond, circle, and center dot. Setting opacity to 0.09 preserves subtle architectural richness without competing with reading contrast or degrading WCAG AA compliance.
+     - **Removal of Language Toggle**: Replaced the previous EN/हिंदी toggle button with a permanently visible Hindi line. Indian business decision-makers naturally operate in a bilingual paradigm; showing both languages simultaneously establishes immediate cultural authenticity and local presence without requiring user interaction.
+- **Why**:
+  - Delivers an exact match to the approved visual reference while maintaining sub-second performance, zero CLS, and an instant lead generation engine.
+
+
 
 
 

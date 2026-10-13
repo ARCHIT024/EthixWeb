@@ -7,61 +7,49 @@ export interface JaaliPatternProps {
 }
 
 /**
- * JaaliPattern: Lightweight (<1KB) SVG geometric lattice pattern.
- * Uses fine 8-point geometric intersections inspired by traditional Indian architectural screens.
- * Designed to sit at low opacity (4-8%) in backgrounds without degrading WCAG AA text contrast.
+ * JaaliPattern: Decorative architectural jaali lattice SVG texture.
+ * Repeating 44x44 pattern with diamond, concentric circle, and center accent dot.
+ * Rendered at low opacity (default 0.09), pure inline SVG, zero images, zero JS.
  */
 export function JaaliPattern({
   className = "",
-  opacity = 0.05,
+  opacity = 0.09,
   inverted = false,
 }: JaaliPatternProps) {
-  const strokeColor = inverted ? "#FFFFFF" : "#0C0D10";
-
+  const strokeColor = inverted ? "#FAF6EF" : "#B8924A";
   return (
-    <div
-      className={`absolute inset-0 pointer-events-none overflow-hidden select-none ${className}`}
-      style={{ opacity }}
+    <svg
       aria-hidden="true"
+      width="100%"
+      height="100%"
+      className={`absolute inset-0 pointer-events-none select-none ${className}`}
+      style={{ opacity }}
     >
-      <svg
-        className="w-full h-full"
-        xmlns="http://www.w3.org/2000/svg"
-        width="100%"
-        height="100%"
-      >
-        <defs>
-          <pattern
-            id="ethix-jaali-lattice"
-            width="40"
-            height="40"
-            patternUnits="userSpaceOnUse"
-          >
-            {/* Outer Diamond */}
-            <path
-              d="M20 0 L40 20 L20 40 L0 20 Z"
-              fill="none"
-              stroke={strokeColor}
-              strokeWidth="0.8"
-            />
-            {/* Center Octagram Cross */}
-            <path
-              d="M20 8 L24 16 L32 20 L24 24 L20 32 L16 24 L8 20 L16 16 Z"
-              fill="none"
-              stroke={strokeColor}
-              strokeWidth="0.8"
-            />
-            {/* Corner connection accents */}
-            <path
-              d="M0 0 L6 6 M40 0 L34 6 M40 40 L34 34 M0 40 L6 34"
-              fill="none"
-              stroke={strokeColor}
-              strokeWidth="0.8"
-            />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#ethix-jaali-lattice)" />
-      </svg>
-    </div>
+      <defs>
+        <pattern
+          id="jaali"
+          width="44"
+          height="44"
+          patternUnits="userSpaceOnUse"
+        >
+          <path
+            d="M22 2 L42 22 L22 42 L2 22Z"
+            fill="none"
+            stroke={strokeColor}
+            strokeWidth="1"
+          />
+          <circle
+            cx="22"
+            cy="22"
+            r="7"
+            fill="none"
+            stroke={strokeColor}
+            strokeWidth="1"
+          />
+          <circle cx="22" cy="22" r="1.5" fill={strokeColor} />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#jaali)" />
+    </svg>
   );
 }

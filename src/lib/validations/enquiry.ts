@@ -83,3 +83,34 @@ export const enquirySchema = z.object({
 });
 
 export type EnquiryInput = z.infer<typeof enquirySchema>;
+
+export const QUICK_BUDGET_RANGES = [
+  "under ₹25,000",
+  "₹25,000–₹50,000",
+  "₹50,000 – ₹2 lakh",
+  "₹2 lakh+",
+] as const;
+
+export const quickEnquirySchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(2, "Please enter your name (min 2 characters)")
+    .max(80, "Name cannot exceed 80 characters"),
+  phone: z
+    .string()
+    .trim()
+    .min(10, "Phone number is required")
+    .regex(
+      INDIAN_PHONE_REGEX,
+      "Please enter a valid 10-digit Indian phone number (starting 6-9, optional +91)"
+    ),
+  budget_range: z.string().trim().default("₹50,000 – ₹2 lakh"),
+  honeypot: z.string().optional().or(z.literal("")),
+  form_loaded_at: z.number().optional(),
+  turnstile_token: z.string().optional().or(z.literal("")),
+  source: z.string().optional().default("hero"),
+});
+
+export type QuickEnquiryInput = z.infer<typeof quickEnquirySchema>;
+

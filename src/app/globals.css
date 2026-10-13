@@ -1,60 +1,73 @@
 @import "tailwindcss";
 
 @theme {
+  /* Approved Reference Theme Tokens */
+  --color-ink: #14110F;
+  --color-red: #B3202A;
+  --color-red-on-dark: #E0414B;
+  --color-brass: #B8924A;
+  --color-brass-light: #D9B873;
+  --color-ivory: #FAF6EF;
+  --color-sand-border: #E6DCCB;
+  --color-text-on-dark: #D8D0C4;
+  --color-muted-on-dark: #A89F90;
+  --color-online-green: #3DBE7A;
+  --color-offline-amber: #E0A030;
+
   /* Brand Palette */
-  --color-brand-red: #e51d25;
-  --color-brand-red-dark: #b31b21;
-  --color-brand-red-hover: #cc1820;
+  --color-brand-red: #B3202A;
+  --color-brand-red-dark: #8E1620;
+  --color-brand-red-hover: #9c1822;
   --color-brand-red-light: #fef2f2;
-  --color-brand-red-glow: rgba(229, 29, 37, 0.22);
+  --color-brand-red-glow: rgba(179, 32, 42, 0.22);
 
   /* Deep Near-Black Dark Surfaces */
-  --color-dark-bg: #0c0d10;
-  --color-dark-surface: #14161c;
-  --color-dark-surface-elevated: #1c1f27;
-  --color-dark-border: #262a36;
-  --color-dark-border-subtle: #1c202a;
+  --color-dark-bg: #14110F;
+  --color-dark-surface: #1B1816;
+  --color-dark-surface-elevated: #24201D;
+  --color-dark-border: rgba(255, 255, 255, 0.1);
+  --color-dark-border-subtle: rgba(255, 255, 255, 0.05);
 
   /* Warm Ivory Light Surfaces */
-  --color-light-bg: #faf8f5;
+  --color-light-bg: #FAF6EF;
   --color-light-surface: #ffffff;
-  --color-light-surface-subtle: #f5f2eb;
-  --color-light-border: #e8e4dd;
-  --color-light-border-subtle: #efece5;
+  --color-light-surface-subtle: #F1E9DA;
+  --color-light-border: #E6DCCB;
+  --color-light-border-subtle: #EFECE5;
 
   /* Accent Muted Brass / Gold */
-  --color-accent-brass: #c59b4b;
-  --color-accent-brass-dark: #916e2c;
-  --color-accent-brass-hover: #b0873a;
-  --color-accent-brass-light: #fbf8f0;
-  --color-accent-brass-glow: rgba(197, 155, 75, 0.2);
+  --color-accent-brass: #B8924A;
+  --color-accent-brass-dark: #8A6A2E;
+  --color-accent-brass-hover: #A07C38;
+  --color-accent-brass-light: #D9B873;
+  --color-accent-brass-glow: rgba(184, 146, 74, 0.2);
 
   /* Semantic State Colors */
-  --color-success: #15803d;
+  --color-success: #3DBE7A;
   --color-success-light: #f0fdf4;
-  --color-warning: #b45309;
+  --color-warning: #E0A030;
   --color-warning-light: #fffbeb;
 
   /* Typography Families */
-  --font-display: var(--font-display), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-hindi: var(--font-hindi), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-display), "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: var(--font-body), "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-hindi: var(--font-hindi), "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Box Shadows */
-  --shadow-glow-red: 0 0 24px -4px rgba(229, 29, 37, 0.35);
-  --shadow-glow-brass: 0 0 24px -4px rgba(197, 155, 75, 0.3);
+  --shadow-glow-red: 0 0 24px -4px rgba(179, 32, 42, 0.35);
+  --shadow-glow-brass: 0 0 24px -4px rgba(184, 146, 74, 0.3);
   --shadow-card-dark: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
   --shadow-card-light: 0 10px 30px -10px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
 
 :root {
-  --background: #faf8f5;
-  --foreground: #0c0d10;
+  --background: #FAF6EF;
+  --foreground: #14110F;
   --card: #ffffff;
-  --card-foreground: #0c0d10;
-  --border: #e8e4dd;
-  --muted: #525866;
-  --muted-bg: #f4efe6;
+  --card-foreground: #14110F;
+  --border: #E6DCCB;
+  --muted: #5C5347;
+  --muted-bg: #F1E9DA;
 }
 
 .dark {
@@ -150,6 +163,22 @@ body {
   animation: checkmarkStroke 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* Hero Section Simple 400ms CSS Fade-Up */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-fade-up {
+  animation: heroFadeUp 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* Strict prefers-reduced-motion Overrides (WCAG 2.2 AAA & Performance) */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -159,6 +188,12 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .hero-fade-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .card-lift-effect:hover {

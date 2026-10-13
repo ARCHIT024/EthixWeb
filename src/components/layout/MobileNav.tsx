@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/Button";
 
 interface NavLink {
   label: string;
@@ -79,7 +78,7 @@ export function MobileNav({ navLinks }: MobileNavProps) {
   }, [isOpen]);
 
   return (
-    <div className="lg:hidden">
+    <div>
       {/* Accessible Hamburger Button */}
       <button
         ref={triggerRef}
@@ -88,7 +87,7 @@ export function MobileNav({ navLinks }: MobileNavProps) {
         aria-expanded={isOpen}
         aria-controls="mobile-navigation-drawer"
         aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-        className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-light-border bg-white text-dark-bg hover:bg-gray-100 hover:-translate-y-0.5 active:translate-y-0 transition-transform focus-visible:outline-2 focus-visible:outline-brand-red dark:border-dark-border dark:bg-dark-surface dark:text-gray-100"
+        className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-[#14110F] text-white hover:bg-white/10 active:scale-95 transition-transform focus-visible:outline-2 focus-visible:outline-white"
       >
         {isOpen ? (
           <svg
@@ -117,12 +116,12 @@ export function MobileNav({ navLinks }: MobileNavProps) {
         )}
       </button>
 
-      {/* Backdrop & Drawer */}
+      {/* Backdrop & Dark Drawer Panel */}
       {isOpen && (
         <div className="fixed inset-0 z-50 flex">
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-dark-bg/60 backdrop-blur-xs transition-opacity duration-200"
+            className="fixed inset-0 bg-black/70 backdrop-blur-xs transition-opacity duration-200"
             onClick={closeMenu}
             aria-hidden="true"
           />
@@ -134,20 +133,20 @@ export function MobileNav({ navLinks }: MobileNavProps) {
             role="dialog"
             aria-modal="true"
             aria-label="Navigation Menu"
-            className="relative ml-auto flex h-full w-full max-w-xs flex-col justify-between bg-white p-6 shadow-2xl dark:bg-dark-surface"
+            className="relative ml-auto flex h-full w-full max-w-xs flex-col justify-between bg-[#14110F] text-white p-6 shadow-2xl border-l border-white/10"
           >
             <div>
               {/* Drawer Header */}
-              <div className="flex items-center justify-between pb-6 border-b border-light-border dark:border-dark-border">
+              <div className="flex items-center justify-between pb-6 border-b border-white/10">
                 <Link href="/" onClick={closeMenu} className="flex items-center">
-                  <div className="bg-dark-bg p-2 rounded-xl inline-flex items-center shadow-xs">
+                  <div className="rounded-[8px] border border-white/25 px-2 py-1 bg-[#14110F] inline-flex items-center">
                     <Image
                       src="/brand/logo.webp"
                       alt="Ethixweb"
-                      width={120}
-                      height={20}
+                      width={110}
+                      height={18}
                       loading="lazy"
-                      className="h-5 w-auto object-contain"
+                      className="h-4.5 w-auto object-contain"
                     />
                   </div>
                 </Link>
@@ -155,7 +154,7 @@ export function MobileNav({ navLinks }: MobileNavProps) {
                   onClick={closeMenu}
                   type="button"
                   aria-label="Close menu"
-                  className="rounded-xl h-11 w-11 inline-flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-dark-bg dark:text-gray-400 dark:hover:bg-dark-surface-elevated focus-visible:outline-2 focus-visible:outline-brand-red transition-colors"
+                  className="rounded-xl h-11 w-11 inline-flex items-center justify-center text-white/70 hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-white transition-colors"
                 >
                   <svg className="h-5 w-5" viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="2" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -170,35 +169,41 @@ export function MobileNav({ navLinks }: MobileNavProps) {
                     key={link.href}
                     href={link.href}
                     onClick={closeMenu}
-                    className="flex items-center justify-between rounded-xl px-4 py-3 text-base font-semibold text-dark-bg hover:bg-light-bg dark:text-gray-100 dark:hover:bg-dark-surface-elevated transition-colors"
+                    className="flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium text-white hover:bg-white/10 transition-colors"
                   >
                     <span>{link.label}</span>
-                    <span className="text-gray-400 text-sm">→</span>
+                    <span className="text-white/40 text-sm">→</span>
                   </Link>
                 ))}
               </nav>
             </div>
 
             {/* CTAs in drawer */}
-            <div className="pt-6 border-t border-light-border dark:border-dark-border flex flex-col gap-3">
+            <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
               <Link href="/contact" onClick={closeMenu} className="w-full">
-                <Button variant="primary" size="lg" className="w-full">
+                <button
+                  type="button"
+                  className="w-full min-h-[44px] px-6 rounded-full bg-[#B3202A] hover:bg-[#9c1822] text-white font-bold text-[16px] transition-colors"
+                >
                   Get a quote
-                </Button>
+                </button>
               </Link>
               <a
-                href="https://wa.me/919876543210?text=Hi%20Ethixweb%2C%20I%20would%20like%20to%20discuss%20a%20project"
+                href="https://wa.me/919876543210?text=Hi%20Ethixweb%2C%20I%20would%20like%20to%20discuss%20a%20project%20for%20my%20business."
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMenu}
                 className="w-full"
               >
-                <Button variant="secondary" size="md" className="w-full">
-                  WhatsApp (+91)
-                </Button>
+                <button
+                  type="button"
+                  className="w-full min-h-[44px] px-6 rounded-full bg-transparent border-[1.5px] border-white/50 hover:bg-white/10 text-white font-bold text-[16px] transition-colors"
+                >
+                  Chat on WhatsApp
+                </button>
               </a>
-              <p className="text-center text-[11px] text-gray-400 mt-2">
-                Office Hours: 09:30–20:00 IST
+              <p className="text-center text-[12px] text-[#A89F90] mt-2">
+                Mon–Sat, 10 AM–7 PM IST
               </p>
             </div>
           </div>
