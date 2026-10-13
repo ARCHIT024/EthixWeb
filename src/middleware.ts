@@ -91,9 +91,9 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(unauthorizedUrl);
   }
 
-  // If authenticated admin visits /admin/login, redirect to /admin
+  // Allow user to always view and submit credentials on /admin/login
   if (isLoginPage) {
-    return NextResponse.redirect(new URL("/admin", request.url));
+    return response;
   }
 
   return response;

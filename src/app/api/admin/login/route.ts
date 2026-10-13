@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 
@@ -56,7 +57,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       ok: true,
       user: {
         id: authData.user.id,
@@ -64,6 +65,22 @@ export async function POST(req: NextRequest) {
         role: adminRecord.role || "admin",
       },
     });
+
+    // Mirror session cookies directly onto the response object without multi-month persistence
+    const cookieStore = await cookies();
+    cookieStore.getAll().forEach((c) => {
+      if (c.name.includes("sb-") || c.name.includes("auth")) {
+        response.cookies.set(c.name, c.value, {
+          path: "/",
+          httpOnly: true,
+          sameSite: "lax",
+          secure: process.env.NODE_ENV === "production",
+          // No maxAge or expires -> true browser session cookie
+        });
+      }
+    });
+
+    return response;
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Authentication error";
     return NextResponse.json({ ok: false, error: message }, { status: 500 });

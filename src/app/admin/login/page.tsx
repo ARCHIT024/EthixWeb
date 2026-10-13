@@ -49,9 +49,8 @@ function LoginFormContent() {
         return;
       }
 
-      // Successful login
-      router.push(redirectParam);
-      router.refresh();
+      // Successful login - hard navigation ensures fresh cookie transmission
+      window.location.href = redirectParam || "/admin";
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Network error. Please try again.";
       setErrorMessage(msg);

@@ -35,9 +35,9 @@ export function AdminHeader({ adminEmail }: AdminHeaderProps) {
     setIsLoggingOut(true);
     try {
       await fetch("/api/admin/logout", { method: "POST" });
-      router.push("/admin/login");
-      router.refresh();
-    } catch {
+    } catch (err) {
+      console.error("Logout failed:", err);
+    } finally {
       window.location.href = "/admin/login";
     }
   };
