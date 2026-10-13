@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { JaaliPattern } from "@/components/patterns/JaaliPattern";
 import { RangoliDivider } from "@/components/patterns/RangoliDivider";
 import { IstStatusBadge } from "@/components/layout/IstStatusBadge";
+import { LeadInquiryForm } from "@/components/forms/LeadInquiryForm";
 
 export const metadata: Metadata = {
   title: "Contact & Start a Project",
@@ -201,24 +202,8 @@ export default function ContactPage() {
                     Tell us about your project objectives. Our technical lead will review your submission and provide an itemized timeline and fixed ₹ quote within 24 hours.
                   </p>
 
-                  {/* Form Container Placement (Form Component Plug-in Slot) */}
-                  <div className="rounded-2xl border-2 border-dashed border-gray-200 dark:border-gray-800 p-6 sm:p-8 bg-gray-50/50 dark:bg-dark-bg/50 text-center">
-                    <span className="text-3xl block mb-3" aria-hidden="true">
-                      📋
-                    </span>
-                    <h4 className="font-display font-bold text-base text-dark-bg dark:text-white mb-1">
-                      Interactive Inquiry Form Slot
-                    </h4>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 max-w-sm mx-auto mb-6">
-                      Configured with +91 Indian phone validation, Turnstile bot protection, and automated Supabase database intake.
-                    </p>
-
-                    <div className="space-y-3 max-w-xs mx-auto">
-                      <div className="h-10 rounded-xl bg-gray-200/60 dark:bg-dark-surface animate-pulse" />
-                      <div className="h-10 rounded-xl bg-gray-200/60 dark:bg-dark-surface animate-pulse" />
-                      <div className="h-20 rounded-xl bg-gray-200/60 dark:bg-dark-surface animate-pulse" />
-                    </div>
-                  </div>
+                  {/* Interactive Inquiry Form */}
+                  <LeadInquiryForm />
                 </div>
 
                 {/* Privacy & Compliance Assurance */}

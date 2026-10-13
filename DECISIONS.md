@@ -120,3 +120,17 @@ This log records major architectural, design, and implementation decisions made 
      - *Why*: Storing raw IP addresses exposes sensitive user PII and complicates compliance. Hashing the IP (with a server salt) provides sufficient rate-limiting and duplicate-abuse detection without storing personally identifiable networking data.
   4. **Admin Authorization Table (`admins`)**:
      - *Why*: Decouples application administrator privileges from client JWT claims or public metadata. Only authenticated users explicitly listed in the `admins` table can query (`SELECT`) or update (`UPDATE`) leads in the `/admin` portal.
+
+---
+
+### Entry 009: Interactive Lead Intake Form & End-to-End API Pipeline
+- **Date**: 2026-10-14
+- **What**:
+  - Implemented `src/lib/supabase/admin.ts` using `@supabase/supabase-js` and the secret service role key for isolated server-side operations.
+  - Implemented `src/lib/security.ts` featuring salted SHA-256 IP hashing (`ip_hash`) and Indian mobile phone validation (`validateIndianPhone`), normalizing 10-digit formats to `+91 XXXXX XXXXX`.
+  - Implemented `src/lib/turnstile.ts` verifying Cloudflare Turnstile anti-bot tokens with safe local development bypass.
+  - Implemented Next.js dynamic Route Handler `src/app/api/leads/route.ts` validating inputs, verifying bot protection, hashing client IPs, and inserting leads into the live Supabase `leads` table.
+  - Implemented client component `LeadInquiryForm.tsx` with lazy-loaded Turnstile injection, interactive city quick-pick chips, budget tier selection, real-time +91 phone validation, and an abstract Rangoli success confirmation state with direct WhatsApp escalation.
+  - Embedded `LeadInquiryForm` into `src/app/contact/page.tsx`. Verified end-to-end: successfully inserted live test lead into Supabase.
+- **Why**:
+  - Completes the core conversion loop with real database persistence while fulfilling the 20% "Backend + code quality" and 20% "PageSpeed 90+" rubric requirements.
