@@ -165,3 +165,37 @@ This log records major architectural, design, and implementation decisions made 
 - **Why**:
   - Delivers a resilient, enterprise-grade intake system that protects backend databases and sales teams from spam while delivering an effortless, reassuring conversion experience for genuine Indian clients.
 
+---
+
+### Entry 011: Protected /admin Console & Role-Based Authorization
+- **Date**: 2026-10-14
+- **What**:
+  - Implemented secure administrative portal for operations personnel:
+    1. **Authentication & Middleware Gatekeeper (`src/middleware.ts`)**:
+       - Uses `@supabase/ssr` to synchronize session cookies across Next.js requests.
+       - Protects all `/admin/:path*` routes except `/admin/login`.
+       - Validates authenticated user session with `supabase.auth.getUser()`.
+       - Cross-references user identity against the server `public.admins` table. Unregistered accounts are rejected with `403` and redirected to `/admin/login?error=unauthorized`.
+       - Redirects logged-in admins accessing `/admin/login` directly into `/admin`.
+    2. **Search Engine Protection (`noindex, nofollow`)**:
+       - Set strict `robots: { index: false, follow: false, nocache: true }` in `admin/layout.tsx`, `admin/page.tsx`, and `admin/login/page.tsx`, supplemented by `/admin/` disallow directives in `src/app/robots.ts`.
+    3. **Leads Management Dashboard (`LeadsDashboard.tsx`)**:
+       - Live KPI counters across pipeline statuses: Total, New, Contacted, Qualified, Won, and Lost, serving as interactive filters.
+       - Debounced search across Name, Business Name, Email, and Phone.
+       - Filters for pipeline status and service offering, date sorting, and pagination (10 rows/page).
+       - Fully handles loading skeletons, empty states with filter resets, and error retry states.
+    4. **Lead Detail Slide-Over Drawer (`LeadDetailDrawer.tsx`)**:
+       - Slide-over panel displaying comprehensive lead metadata, message, and telemetry (`ip_hash`, user agent, timestamps in IST).
+       - In-place pipeline status transition controller (`new` -> `contacted` -> `qualified` -> `won` / `lost`).
+       - Internal team notes editor with instantaneous save action.
+       - Quick communication action buttons: "Reply on WhatsApp" (`wa.me` pre-populated URL), "Email Lead" (`mailto:`), and direct call.
+       - Permanent deletion safeguard with dual-step confirmation modal.
+    5. **RFC 4180 CSV Export (`src/lib/csv-export.ts`)**:
+       - Exports filtered lead records with UTF-8 BOM (`\uFEFF`) for accurate rendering of currency signs (₹) and regional text in Microsoft Excel and Google Sheets.
+    6. **Server-Side Security & Next.js 16 Partial Prerendering**:
+       - Server API endpoints (`/api/admin/leads`, `/api/admin/leads/[id]`, `/api/admin/login`, `/api/admin/logout`) verify admin authorization before reading or mutating the database.
+       - Uses `await connection()` and `<Suspense>` boundaries to cleanly integrate server cookies with Next.js 16 partial prerendering without dynamic build errors.
+- **Why**:
+  - Provides internal sales and technical teams with an authentic, fast, and secure operations cockpit while guaranteeing zero exposure of prospect PII to unauthorized users or search engine indexers.
+
+
