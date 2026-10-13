@@ -1,26 +1,85 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand Palette */
+  --color-brand-red: #e51d25;
+  --color-brand-red-dark: #b31b21;
+  --color-brand-red-hover: #cc1820;
+  --color-brand-red-light: #fef2f2;
+  --color-brand-red-glow: rgba(229, 29, 37, 0.22);
+
+  /* Deep Near-Black Dark Surfaces */
+  --color-dark-bg: #0c0d10;
+  --color-dark-surface: #14161c;
+  --color-dark-surface-elevated: #1c1f27;
+  --color-dark-border: #262a36;
+  --color-dark-border-subtle: #1c202a;
+
+  /* Warm Ivory Light Surfaces */
+  --color-light-bg: #faf8f5;
+  --color-light-surface: #ffffff;
+  --color-light-surface-subtle: #f5f2eb;
+  --color-light-border: #e8e4dd;
+  --color-light-border-subtle: #efece5;
+
+  /* Accent Muted Brass / Gold */
+  --color-accent-brass: #c59b4b;
+  --color-accent-brass-dark: #916e2c;
+  --color-accent-brass-hover: #b0873a;
+  --color-accent-brass-light: #fbf8f0;
+  --color-accent-brass-glow: rgba(197, 155, 75, 0.2);
+
+  /* Semantic State Colors */
+  --color-success: #15803d;
+  --color-success-light: #f0fdf4;
+  --color-warning: #b45309;
+  --color-warning-light: #fffbeb;
+
+  /* Typography Families */
+  --font-display: var(--font-display), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-hindi: var(--font-hindi), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Box Shadows */
+  --shadow-glow-red: 0 0 24px -4px rgba(229, 29, 37, 0.35);
+  --shadow-glow-brass: 0 0 24px -4px rgba(197, 155, 75, 0.3);
+  --shadow-card-dark: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --shadow-card-light: 0 10px 30px -10px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf8f5;
+  --foreground: #0c0d10;
+  --card: #ffffff;
+  --card-foreground: #0c0d10;
+  --border: #e8e4dd;
+  --muted: #525866;
+  --muted-bg: #f4efe6;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #0c0d10;
+  --foreground: #f3f4f6;
+  --card: #14161c;
+  --card-foreground: #f3f4f6;
+  --border: #262a36;
+  --muted: #9ca3af;
+  --muted-bg: #181b22;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Devanagari Utility Class */
+.font-hindi {
+  font-family: var(--font-hindi);
+}
+
+.font-display {
+  font-family: var(--font-display);
 }
