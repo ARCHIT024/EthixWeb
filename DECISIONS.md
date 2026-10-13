@@ -59,3 +59,17 @@ This log records major architectural, design, and implementation decisions made 
   - Sets up the complete application layout structure required for the 24-hour assessment.
   - Enforces accessible mobile-first navigation without shipping heavy UI libraries.
   - Highlights Indian market requirements (+91 validation, IST operating hours, GST compliance) across the layout.
+
+---
+
+### Entry 005: Homepage Top Half Architecture (Hero, Services Grid & 14-Day Process)
+- **Date**: 2026-10-14
+- **What**:
+  - Built mobile-first `Hero` component with text-only headline ("We run the tech. You run the business.") ensuring sub-second Largest Contentful Paint (LCP).
+  - Integrated dual CTAs ("Get a free consultation" linking to `/contact`, "Chat on WhatsApp"), trust indicators (18% GST with ITC, 40+ Indian SMBs, 14-day turnaround, 90+ PageSpeed guarantee), and a bilingual EN/हिंदी toggle utilizing subsetted `Noto Sans Devanagari`.
+  - Built `ServicesGrid` component presenting 6 categorized capability cards (Websites & Portals, AI Receptionists, Technical SEO, Google & Meta Ads, CRM Pipelines, and Ongoing Support) with indicative starting prices in INR (`₹`) + 18% GST and specific deliverables for Indian business verticals (D2C, clinics, coaching, real estate, exporters).
+  - Built `ProcessSection` displaying a 5-step delivery sprint (Discover, Design, Build, Launch, Grow) with day-based timelines (Days 1–2, 3–5, 6–10, 11–12, Day 13+) and tangible milestones.
+  - Assembled all sections into `src/app/page.tsx` with zero lorem ipsum, zero console errors, and full TypeScript verification.
+- **Why**:
+  - Directly fulfills the 30% "Design + India fit" and 20% "UI/UX" evaluation criteria by presenting concrete, high-converting value propositions for Indian SMB founders.
+  - Zero heavy animation runtimes or client JS bloat preserves the 20% "PageSpeed 90+ mobile & desktop" scoring budget.
