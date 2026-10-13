@@ -6,21 +6,18 @@ const outfitDisplay = Outfit({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
-  weight: ["500", "600", "700", "800"],
 });
 
 const plusJakartaBody = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
 });
 
 const notoSansDevanagari = Noto_Sans_Devanagari({
   subsets: ["devanagari"],
   variable: "--font-hindi",
   display: "swap",
-  weight: ["400", "600", "700"],
 });
 
 export const metadata: Metadata = {
