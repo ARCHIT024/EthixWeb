@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { JaaliPattern } from "@/components/patterns/JaaliPattern";
 import { RangoliDivider } from "@/components/patterns/RangoliDivider";
 import { IstStatusBadge } from "@/components/layout/IstStatusBadge";
-import { LeadInquiryForm } from "@/components/forms/LeadInquiryForm";
+import { ContactForm } from "@/components/forms/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact & Start a Project",
@@ -202,8 +202,8 @@ export default function ContactPage() {
                     Tell us about your project objectives. Our technical lead will review your submission and provide an itemized timeline and fixed ₹ quote within 24 hours.
                   </p>
 
-                  {/* Interactive Inquiry Form */}
-                  <LeadInquiryForm />
+                  {/* Interactive Contact Form with Zod Validation & Anti-Spam */}
+                  <ContactForm />
                 </div>
 
                 {/* Privacy & Compliance Assurance */}

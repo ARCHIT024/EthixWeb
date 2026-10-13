@@ -134,3 +134,34 @@ This log records major architectural, design, and implementation decisions made 
   - Embedded `LeadInquiryForm` into `src/app/contact/page.tsx`. Verified end-to-end: successfully inserted live test lead into Supabase.
 - **Why**:
   - Completes the core conversion loop with real database persistence while fulfilling the 20% "Backend + code quality" and 20% "PageSpeed 90+" rubric requirements.
+
+---
+
+### Entry 010: Enquiry Pipeline Architecture (`POST /api/enquiries`)
+- **Date**: 2026-10-14
+- **What**:
+  - Built production enquiry pipeline honoring hiring assessment specification:
+    1. **Shared Zod Validation (`src/lib/validations/enquiry.ts`)**:
+       - Shared schema between client and server for `name` (2–80 chars), Indian `phone` (`^(?:(?:\+91|91|0)[\s-]?)?[6-9]\d{4}[\s-]?\d{5}$`), `email`, `city` (max 80 chars), `service` (enum of 6 offerings), `budget_range` (enum in ₹), `message` (10–1000 chars), and `preferred_contact` (`whatsapp` | `phone` | `email`).
+    2. **Multi-Layered Spam & Bot Defense**:
+       - **Hidden Honeypot Field**: An invisible field named `honeypot` with `tabIndex={-1}`, `autoComplete="off"`, and `aria-hidden="true"`. Populated inputs trigger an instant `400 Bad Request`.
+       - **Minimum Time-to-Submit Check**: Compares submission time with client timestamp (`form_loaded_at`). Submissions faster than 2.0s are rejected with `400 Bad Request` to neutralize automated form blasters.
+       - **Server-Side Cloudflare Turnstile Verification**: Evaluates tokens against `https://challenges.cloudflare.com/turnstile/v0/siteverify` using `CLOUDFLARE_TURNSTILE_SECRET_KEY` with local fallback bypass.
+       - **Per-IP Rate Limiting (`src/lib/rate-limit.ts`)**: In-memory sliding window tracking salted SHA-256 IP hashes. Limits connections to 5 requests per 10 minutes, returning `429 Too Many Requests` with a retry delay.
+    3. **Isolated Server-Side Database Persistence**:
+       - Uses Supabase service-role client (`src/lib/supabase/admin.ts`) exclusively inside the server route handler (`POST /api/enquiries`). Never bundles or imports administrative credentials into client-side JS bundles.
+       - Persists clean records to `leads` table with sanitized values, normalized `+91 XXXXX XXXXX` phone formatting, and salted `ip_hash`.
+    4. **Standardized Response Envelope**:
+       - Always returns consistent JSON structure: `{ ok: boolean, error?: string, fieldErrors?: Record<string, string[]>, data?: { id, message } }`.
+       - Employs strict HTTP status codes: `201` (Created), `400` (Bad Request / Honeypot / Fast Submit), `422` (Zod Validation Failure), `429` (Rate Limited), `500` (Internal Error) with zero internal system stack leaks.
+    5. **Accessible Client Component (`ContactForm.tsx`)**:
+       - Inline field error rendering beneath individual inputs with `role="alert"`.
+       - Lazy loads Cloudflare Turnstile script dynamically on the user's first input focus event, preserving initial Core Web Vitals and zero render-blocking script overhead.
+       - Instant city quick-select pills and ₹ budget tier chips.
+       - Engaging submission states: animated spinner in submit button, friendly network error recovery banners, and a success confirmation card with direct one-click WhatsApp escalation pre-filled with project context.
+    6. **Automated Integration Test Suite (`scripts/test-enquiries.mjs`)**:
+       - Verifies 5 distinct scenarios: valid payload (201), invalid payload with fieldErrors (422), honeypot spam detection (400), sub-2-second fast submit detection (400), and rapid flood rate-limiting (429).
+       - Passes 5/5 integration tests against live local endpoint.
+- **Why**:
+  - Delivers a resilient, enterprise-grade intake system that protects backend databases and sales teams from spam while delivering an effortless, reassuring conversion experience for genuine Indian clients.
+
