@@ -20,20 +20,16 @@ export function ScrollReveal({
   delayMs = 0,
   direction = "up",
 }: ScrollRevealProps) {
-  const [isRevealed, setIsRevealed] = useState(false);
+  const [isRevealed, setIsRevealed] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }
+    return false;
+  });
   const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Respect prefers-reduced-motion
-    if (typeof window !== "undefined") {
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-      if (prefersReducedMotion) {
-        setIsRevealed(true);
-        return;
-      }
-    }
+    if (isRevealed) return;
 
     const node = elementRef.current;
     if (!node) return;
@@ -58,7 +54,7 @@ export function ScrollReveal({
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [isRevealed]);
 
   const delayStyle = delayMs > 0 ? { transitionDelay: `${delayMs}ms` } : {};
 

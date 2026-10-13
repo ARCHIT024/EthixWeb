@@ -36,23 +36,23 @@ export function LeadDetailDrawer({
   onLeadUpdated,
   onLeadDeleted,
 }: LeadDetailDrawerProps) {
-  const [currentStatus, setCurrentStatus] = useState<Lead["status"]>("new");
-  const [notes, setNotes] = useState<string>("");
+  const [prevLeadId, setPrevLeadId] = useState<string | null>(null);
+  const [currentStatus, setCurrentStatus] = useState<Lead["status"]>(lead?.status || "new");
+  const [notes, setNotes] = useState<string>(lead?.notes || "");
   const [isSavingNotes, setIsSavingNotes] = useState(false);
   const [isUpdatingStatus, setIsUpdatingStatus] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // Sync state when lead changes
-  useEffect(() => {
-    if (lead) {
-      setCurrentStatus(lead.status);
-      setNotes(lead.notes || "");
-      setShowDeleteConfirm(false);
-      setToastMessage(null);
-    }
-  }, [lead]);
+  // Sync state when lead changes (React pattern: adjust state during render)
+  if (lead && lead.id !== prevLeadId) {
+    setPrevLeadId(lead.id);
+    setCurrentStatus(lead.status);
+    setNotes(lead.notes || "");
+    setShowDeleteConfirm(false);
+    setToastMessage(null);
+  }
 
   // Handle escape key
   useEffect(() => {

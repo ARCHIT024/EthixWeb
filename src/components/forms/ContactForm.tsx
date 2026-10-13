@@ -8,7 +8,6 @@ import {
   enquirySchema,
   SERVICE_CATEGORIES,
   BUDGET_RANGES,
-  PREFERRED_CONTACT_METHODS,
   type EnquiryInput,
 } from "@/lib/validations/enquiry";
 
@@ -60,15 +59,14 @@ export function ContactForm() {
   const [generalError, setGeneralError] = useState("");
   const [turnstileToken, setTurnstileToken] = useState("");
   const [turnstileLoaded, setTurnstileLoaded] = useState(false);
-  const [formLoadedAt, setFormLoadedAt] = useState<number>(0);
+  const formLoadedAtRef = useRef<number>(0);
+
+  useEffect(() => {
+    formLoadedAtRef.current = Date.now();
+  }, []);
 
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
-
-  // Capture load timestamp on mount for anti-bot time-to-submit verification
-  useEffect(() => {
-    setFormLoadedAt(Date.now());
-  }, []);
 
   // Lazy-load Cloudflare Turnstile script ONLY on first interaction or focus
   const triggerTurnstileLoad = () => {
@@ -125,7 +123,7 @@ export function ContactForm() {
     // 1. Client-Side Pre-Validation using shared Zod Schema
     const payload = {
       ...formData,
-      form_loaded_at: formLoadedAt,
+      form_loaded_at: formLoadedAtRef.current || Date.now(),
       turnstile_token: turnstileToken || "dev_bypass",
       source: "contact_page",
     };
@@ -227,7 +225,7 @@ export function ContactForm() {
                 message: "",
                 honeypot: "",
               });
-              setFormLoadedAt(Date.now());
+              formLoadedAtRef.current = Date.now();
             }}
             className="text-xs font-semibold text-gray-500 hover:text-dark-bg dark:hover:text-white py-2 px-3"
           >

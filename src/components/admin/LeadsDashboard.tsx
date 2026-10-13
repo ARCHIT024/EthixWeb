@@ -97,7 +97,15 @@ export function LeadsDashboard({ initialAdminEmail }: LeadsDashboardProps) {
   }, [debouncedSearch, statusFilter, serviceFilter, sortOrder, currentPage]);
 
   useEffect(() => {
-    fetchLeads();
+    let isMounted = true;
+    void Promise.resolve().then(() => {
+      if (isMounted) {
+        fetchLeads();
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
   }, [fetchLeads]);
 
   // Export current filtered results to CSV

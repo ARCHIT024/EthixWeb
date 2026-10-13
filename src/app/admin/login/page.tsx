@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import React, { useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 function LoginFormContent() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const redirectParam = searchParams.get("redirect") || "/admin";
   const errorParam = searchParams.get("error");
@@ -13,22 +12,20 @@ function LoginFormContent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [formError, setFormError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (errorParam === "unauthorized") {
-      setErrorMessage(
-        "Access Denied: Your account is authenticated in Supabase but lacks administrator permissions in the `admins` table."
-      );
-    }
-  }, [errorParam]);
+  const displayError =
+    formError ||
+    (errorParam === "unauthorized"
+      ? "Access Denied: Your account is authenticated in Supabase but lacks administrator permissions in the `admins` table."
+      : null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErrorMessage(null);
+    setFormError(null);
 
     if (!email.trim() || !password) {
-      setErrorMessage("Please enter both email and password.");
+      setFormError("Please enter both email and password.");
       return;
     }
 
@@ -44,7 +41,7 @@ function LoginFormContent() {
       const data = await res.json();
 
       if (!res.ok || !data.ok) {
-        setErrorMessage(data.error || "Authentication failed. Please check credentials.");
+        setFormError(data.error || "Authentication failed. Please check credentials.");
         setIsLoading(false);
         return;
       }
@@ -53,7 +50,7 @@ function LoginFormContent() {
       window.location.href = redirectParam || "/admin";
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Network error. Please try again.";
-      setErrorMessage(msg);
+      setFormError(msg);
       setIsLoading(false);
     }
   };
@@ -94,7 +91,7 @@ function LoginFormContent() {
       </div>
 
       {/* Error Alert */}
-      {errorMessage && (
+      {displayError && (
         <div
           role="alert"
           className="mb-6 p-4 rounded-xl bg-red-950/40 border border-red-800/60 text-red-200 text-xs leading-relaxed flex items-start gap-3 animate-in fade-in duration-200"
@@ -114,7 +111,7 @@ function LoginFormContent() {
           </svg>
           <div>
             <strong className="font-semibold block text-red-100 mb-0.5">Authentication Alert</strong>
-            {errorMessage}
+            {displayError}
           </div>
         </div>
       )}

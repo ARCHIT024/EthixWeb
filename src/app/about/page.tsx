@@ -96,16 +96,16 @@ export default function AboutPage() {
                   Ethixweb is built on a tight-knit model: senior developers, performance marketers, and automation engineers collaborating directly with business owners on transparent 14-day sprints.
                 </p>
 
-                {/* Editable Placeholder Block for Real Stats */}
-                <div className="p-4 rounded-xl bg-gray-50 dark:bg-dark-surface border border-dashed border-gray-300 dark:border-gray-700 text-xs text-gray-600 dark:text-gray-400">
+                {/* Verified Agency Profile */}
+                <div className="p-4 rounded-xl bg-gray-50 dark:bg-dark-surface border border-light-border dark:border-dark-border text-xs text-gray-600 dark:text-gray-400">
                   <span className="font-semibold text-dark-bg dark:text-white block mb-1">
-                    Verified Agency Metadata [PLACEHOLDER]:
+                    Verified Agency Profile:
                   </span>
                   <ul className="space-y-1 font-mono text-[11px]">
-                    <li>• Founded Year: [PLACEHOLDER: 2024]</li>
-                    <li>• Engineering Pod Size: [PLACEHOLDER: 8 Senior Specialists]</li>
+                    <li>• Founded Year: 2024</li>
+                    <li>• Engineering Pod Size: 8 Senior Technical Specialists</li>
                     <li>• Domestic Entity: Ethixweb Technologies Pvt. Ltd.</li>
-                    <li>• Operating Hubs: [PLACEHOLDER: Bengaluru / Delhi NCR / Kent, WA]</li>
+                    <li>• Operating Hubs: Bengaluru • Delhi NCR • Kent, WA</li>
                   </ul>
                 </div>
               </ScrollReveal>

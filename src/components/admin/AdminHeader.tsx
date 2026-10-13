@@ -38,7 +38,8 @@ export function AdminHeader({ adminEmail }: AdminHeaderProps) {
     } catch (err) {
       console.error("Logout failed:", err);
     } finally {
-      window.location.href = "/admin/login";
+      router.push("/admin/login");
+      router.refresh();
     }
   };
 
