@@ -65,6 +65,7 @@
 - After every task, add a short entry specifying:
   - **What**: The changes made or features implemented.
   - **Why**: The architectural or business rationale behind the decision.
+- **Git Push Policy**: **NEVER run `git push` without explicit user permission**. All changes must only be committed locally unless the user specifically asks to push.
 
 ## Visual direction (applies to every page and component)
 
