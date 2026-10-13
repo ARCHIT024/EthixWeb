@@ -86,3 +86,15 @@ This log records major architectural, design, and implementation decisions made 
   - Ran `next build` production analysis: verified that all 8 routes prerender statically with zero errors. Gzipped HTML page weight is only ~32 KB for the full home page, easily securing the 90+ PageSpeed budget.
 - **Why**:
   - Meets the 30% "Design + India fit", 20% "UI/UX", and 20% "PageSpeed 90+ mobile & desktop" assessment criteria while maintaining strict integrity (concept projects explicitly marked).
+
+---
+
+### Entry 007: Core Marketing Subpages (/services, /about, /contact)
+- **Date**: 2026-10-14
+- **What**:
+  - Built comprehensive `/services` page detailing 6 categorized service disciplines (Websites, AI, Growth, Data, Accessibility, Support) with deliverables, indicative ₹ starting prices, and typical sprint turnaround times. Added an interactive FAQ section implemented using native HTML `<details>` and `<summary>` tags for zero-JS runtime bloat.
+  - Built honest `/about` page narrating the India story: a global technical team establishing an active India hub to serve domestic businesses. Highlighted 4 core engineering values, senior operator pods, transparent `[PLACEHOLDER]` markers for unverified stats, and a 4-phase shift timeline illustrating synchronized execution across IST (09:30–20:00) and US hours.
+  - Built `/contact` page with multi-channel direct communication: WhatsApp fast-track, direct business email, active IST operating hours, an integrated inquiry form placeholder slot, and a map-free address block across Bengaluru, Delhi NCR, and Mumbai hubs to preserve sub-second mobile page loads.
+  - Configured dedicated Next.js App Router metadata for each page (`title`, `description`).
+- **Why**:
+  - Provides a complete, accessible, and authentic multi-page agency experience using established design system primitives while maintaining 90+ Core Web Vitals budgets.
