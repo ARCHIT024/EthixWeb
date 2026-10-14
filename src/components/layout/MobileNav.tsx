@@ -138,17 +138,15 @@ export function MobileNav({ navLinks }: MobileNavProps) {
             <div>
               {/* Drawer Header */}
               <div className="flex items-center justify-between pb-6 border-b border-white/10">
-                <Link href="/" onClick={closeMenu} className="flex items-center">
-                  <div className="rounded-[8px] border border-white/25 px-2 py-1 bg-[#14110F] inline-flex items-center">
-                    <Image
-                      src="/brand/logo.webp"
-                      alt="Ethixweb"
-                      width={110}
-                      height={18}
-                      loading="lazy"
-                      className="h-4.5 w-auto object-contain"
-                    />
-                  </div>
+                <Link href="/" onClick={closeMenu} className="flex items-center transition-opacity hover:opacity-85">
+                  <Image
+                    src="/brand/logo.webp"
+                    alt="Ethixweb"
+                    width={110}
+                    height={18}
+                    loading="lazy"
+                    className="h-5 w-auto object-contain"
+                  />
                 </Link>
                 <button
                   onClick={closeMenu}

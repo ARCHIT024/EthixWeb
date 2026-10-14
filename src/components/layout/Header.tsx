@@ -17,24 +17,22 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#14110F] text-white border-b border-white/10">
+    <header className="sticky top-0 z-40 w-full bg-[#14110F]/75 backdrop-blur-md backdrop-saturate-150 text-white border-b border-white/[0.08] shadow-[0_4px_30px_rgba(0,0,0,0.25)] transition-colors">
       <div className="max-w-[1200px] mx-auto px-6 h-[76px] flex items-center justify-between gap-4">
-        {/* Brand Logo with 1px rgba(255,255,255,0.25) border and 8px radius */}
+        {/* Brand Logo without pill wrapper */}
         <Link
           href="/"
-          className="flex items-center focus-visible:outline-2 focus-visible:outline-white rounded-lg"
+          className="flex items-center focus-visible:outline-2 focus-visible:outline-white rounded-lg transition-opacity hover:opacity-85"
           aria-label="Ethixweb Home"
         >
-          <div className="rounded-[8px] border border-white/25 px-2.5 py-1.5 bg-[#14110F] inline-flex items-center transition-opacity hover:opacity-90">
-            <Image
-              src="/brand/logo.webp"
-              alt="Ethixweb Logo"
-              width={132}
-              height={22}
-              className="h-5.5 w-auto object-contain"
-              priority
-            />
-          </div>
+          <Image
+            src="/brand/logo.webp"
+            alt="Ethixweb Logo"
+            width={132}
+            height={22}
+            className="h-6 w-auto object-contain"
+            priority
+          />
         </Link>
 
         {/* Desktop Navigation Links (Centred, 28px gap, 15px font-medium, 2px #E0414B underline on active) */}
