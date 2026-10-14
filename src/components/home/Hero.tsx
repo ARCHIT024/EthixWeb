@@ -14,8 +14,8 @@ export function Hero() {
       {/* Decorative Architectural Jaali SVG Texture (0.09 Opacity, 0 Images, 0 JS) */}
       <JaaliPattern opacity={0.09} />
 
-      {/* 1200px Max-Width Content Grid: 2-column vertically centered, stacks below 900px */}
-      <div className="relative z-10 max-w-[1200px] mx-auto px-6 pt-12 pb-20 sm:pt-[72px] sm:pb-[84px] grid grid-cols-1 min-[900px]:grid-cols-2 gap-12 items-center">
+      {/* 1260px Max-Width Content Grid: 2-column vertically centered, stacks below 900px */}
+      <div className="relative z-10 max-w-[1260px] mx-auto px-6 pt-12 pb-20 sm:pt-[72px] sm:pb-[84px] grid grid-cols-1 min-[900px]:grid-cols-2 gap-10 lg:gap-12 items-center">
         {/* Left Column: Proposition & CTAs with 400ms CSS-only Fade-Up */}
         <div className="hero-fade-up text-left">
           {/* 1. Availability Badge (IST Real-Time Calculation) */}
@@ -62,7 +62,7 @@ export function Hero() {
         </div>
 
         {/* Right Column: City Constellation */}
-        <div className="w-full flex items-center justify-center">
+        <div className="w-full flex items-center justify-center min-[900px]:justify-end">
           <CityConstellation />
         </div>
       </div>

@@ -57,7 +57,7 @@ export function CityConstellation() {
   return (
     <div
       id="wrap"
-      className="relative w-full max-w-[520px] [aspect-ratio:520/640] mx-auto select-none"
+      className="relative w-full max-w-[580px] lg:max-w-[640px] xl:max-w-[680px] [aspect-ratio:520/535] mx-auto min-[900px]:mr-0 min-[900px]:ml-auto min-[900px]:translate-x-4 lg:min-[900px]:translate-x-8 select-none"
       role="group"
       aria-label="Ethixweb serves businesses across India. Cities: Delhi, Jaipur, Lucknow, Ahmedabad, Kolkata, Mumbai, Pune, Bhubaneswar, Bengaluru, Chennai."
       onMouseEnter={() => {
@@ -71,7 +71,7 @@ export function CityConstellation() {
       }}
     >
       <svg
-        viewBox="0 0 520 640"
+        viewBox="0 0 520 535"
         width="100%"
         height="100%"
         className="absolute inset-0 block overflow-visible"
@@ -206,48 +206,6 @@ export function CityConstellation() {
           </g>
         </g>
       </svg>
-
-      {/* Wordmark Pill under the SVG */}
-      <div
-        style={{
-          position: "absolute",
-          left: "50%",
-          top: "89%",
-          transform: "translateX(-50%)",
-          background: "#000000",
-          border: "1px solid rgba(255, 255, 255, 0.35)",
-          borderRadius: "10px",
-          padding: "7px 20px",
-          fontFamily: "var(--font-display), 'Bricolage Grotesque', sans-serif",
-          fontWeight: 800,
-          fontSize: "20px",
-          letterSpacing: "0.05em",
-          color: "#ffffff",
-          pointerEvents: "none",
-        }}
-      >
-        ETHIXWEB
-      </div>
-
-      {/* Subtitle Caption under the SVG */}
-      <div
-        style={{
-          position: "absolute",
-          left: 0,
-          right: 0,
-          top: "96%",
-          textAlign: "center",
-          fontSize: "11px",
-          letterSpacing: "0.28em",
-          textTransform: "uppercase",
-          color: "#A89F90",
-          fontWeight: 500,
-          whiteSpace: "nowrap",
-          pointerEvents: "none",
-        }}
-      >
-        Nakshatra network <span style={{ color: "#B8924A" }}>◆</span> across India
-      </div>
     </div>
   );
 }
