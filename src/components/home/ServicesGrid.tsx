@@ -137,11 +137,15 @@ export function ServicesGrid() {
         {/* 6 Services Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {SERVICES_DATA.map((service, idx) => (
-            <ScrollReveal key={service.id} delayMs={(idx % 3) * 100} className="h-full">
-              <div className="bg-[#14110F] border border-[rgba(184,146,74,0.3)] rounded-[16px] p-[26px] text-white flex flex-col justify-between h-full transition-colors hover:border-[#D9B873]/60">
+            <ScrollReveal
+              key={service.id}
+              delayMs={(idx % 3) * 100}
+              className="h-full flex flex-col"
+            >
+              <div className="bg-[#14110F] border border-[rgba(184,146,74,0.3)] rounded-[16px] p-[26px] text-white flex-1 flex flex-col justify-between h-full transition-colors hover:border-[#D9B873]/60">
                 <div>
                   {/* Card Title & Icon */}
-                  <div className="flex items-center justify-between gap-3 mb-2">
+                  <div className="flex items-start justify-between gap-3 mb-2 md:min-h-[58px]">
                     <h3 className="font-display text-[21px] font-bold text-white leading-snug">
                       {service.title}
                     </h3>
@@ -151,17 +155,20 @@ export function ServicesGrid() {
                   </div>
 
                   {/* Target Industry Badge */}
-                  <div className="mb-3">
+                  <div className="mb-3 min-h-[26px] flex items-center">
                     <span className="inline-block text-[11px] font-medium text-[#D9B873] border border-[rgba(184,146,74,0.3)] rounded-full px-2.5 py-0.5">
                       Built for: {service.targetIndustries}
                     </span>
                   </div>
 
                   {/* Description */}
-                  <p className="text-[15px] text-[#D8D0C4] leading-relaxed mb-4">
+                  <p className="text-[15px] text-[#D8D0C4] leading-relaxed mb-4 md:min-h-[96px]">
                     {service.description}
                   </p>
+                </div>
 
+                {/* Bottom Section: Price, Deliverables, Action */}
+                <div className="mt-auto">
                   {/* Price Starting */}
                   <div className="font-bold text-[15px] text-[#D9B873] mb-4">
                     {service.priceStarting}
@@ -172,7 +179,7 @@ export function ServicesGrid() {
 
                   {/* Key Deliverables Bulleted List */}
                   <div className="pt-3 border-t border-white/10 mb-4">
-                    <ul className="space-y-1.5 text-xs text-[#D8D0C4]">
+                    <ul className="space-y-1.5 text-xs text-[#D8D0C4] md:min-h-[84px]">
                       {service.keyDeliverables.map((item, index) => (
                         <li key={index} className="flex items-start gap-2">
                           <span className="text-[#E0414B] font-bold shrink-0">✓</span>
@@ -181,18 +188,18 @@ export function ServicesGrid() {
                       ))}
                     </ul>
                   </div>
-                </div>
 
-                {/* Card Footer Action */}
-                <div className="pt-2">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-between w-full min-h-[44px] px-4 rounded-xl bg-[#1C1714] border border-[rgba(184,146,74,0.3)] hover:border-[#D9B873] hover:bg-[#14110F] text-white text-sm font-semibold transition-colors"
-                    aria-label={`Discuss scope for ${service.title}`}
-                  >
-                    <span>Discuss Scope</span>
-                    <span className="text-[#D9B873] font-bold">→</span>
-                  </Link>
+                  {/* Card Footer Action */}
+                  <div className="pt-2">
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center justify-between w-full min-h-[44px] px-4 rounded-xl bg-[#1C1714] border border-[rgba(184,146,74,0.3)] hover:border-[#D9B873] hover:bg-[#14110F] text-white text-sm font-semibold transition-colors"
+                      aria-label={`Discuss scope for ${service.title}`}
+                    >
+                      <span>Discuss Scope</span>
+                      <span className="text-[#D9B873] font-bold">→</span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </ScrollReveal>
