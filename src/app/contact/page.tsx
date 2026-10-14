@@ -46,9 +46,9 @@ export default function ContactPage() {
     );
 
   return (
-    <div className="py-12 sm:py-20 bg-light-bg text-dark-bg selection:bg-brand-red selection:text-white">
+    <div className="flex-1 flex flex-col selection:bg-brand-red selection:text-white">
       {/* Hero Header */}
-      <section className="relative overflow-hidden pb-14 sm:pb-20">
+      <section className="relative overflow-hidden pt-12 sm:pt-20 pb-14 sm:pb-20 bg-light-bg text-dark-bg">
         <JaaliPattern opacity={0.06} inverted={false} />
 
         <Container size="default" className="relative z-10 text-center max-w-3xl mx-auto">

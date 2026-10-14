@@ -56,16 +56,13 @@ const WORKING_HOURS_TIMELINE: ShiftSchedule[] = [
 
 export default function AboutPage() {
   return (
-    <div className="py-12 sm:py-20 bg-light-bg text-dark-bg selection:bg-brand-red selection:text-white">
+    <div className="flex-1 flex flex-col selection:bg-brand-red selection:text-white">
       {/* Hero: The Honest Story */}
-      <section className="relative overflow-hidden pb-16 sm:pb-24">
+      <section className="relative overflow-hidden pt-12 sm:pt-20 pb-16 sm:pb-24 bg-light-bg text-dark-bg">
         <JaaliPattern opacity={0.06} inverted={false} />
 
         <Container size="default" className="relative z-10 text-center max-w-3xl mx-auto">
           <ScrollReveal>
-            <Badge variant="brass" dot size="md" className="mb-4">
-              Honest Positioning
-            </Badge>
             <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-dark-bg leading-[1.12]">
               Global Engineering Standards. Rooted in India.
             </h1>
@@ -79,14 +76,14 @@ export default function AboutPage() {
       {/* Honest Background & Values */}
       <section className="py-16 bg-white border-y border-light-border dark:bg-dark-bg dark:border-dark-border">
         <Container size="default">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             {/* Story Statement */}
-            <div className="lg:col-span-5 space-y-6">
-              <ScrollReveal>
+            <div className="lg:col-span-5">
+              <ScrollReveal className="flex flex-col gap-4">
                 <span className="text-xs font-bold uppercase tracking-wider text-brand-red dark:text-red-400">
                   Who We Are
                 </span>
-                <h2 className="font-display text-3xl font-bold text-dark-bg dark:text-white leading-tight">
+                <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-dark-bg dark:text-white leading-[1.2]">
                   No Fake Awards. No Bureaucracy. Just Senior Operators.
                 </h2>
                 <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -95,26 +92,13 @@ export default function AboutPage() {
                 <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                   Ethixweb is built on a tight-knit model: senior developers, performance marketers, and automation engineers collaborating directly with business owners on transparent 14-day sprints.
                 </p>
-
-                {/* Verified Agency Profile */}
-                <div className="p-4 rounded-xl bg-gray-50 dark:bg-dark-surface border border-light-border dark:border-dark-border text-xs text-gray-600 dark:text-gray-400">
-                  <span className="font-semibold text-dark-bg dark:text-white block mb-1">
-                    Verified Agency Profile:
-                  </span>
-                  <ul className="space-y-1 font-mono text-[11px]">
-                    <li>• Founded Year: 2024</li>
-                    <li>• Engineering Pod Size: 8 Senior Technical Specialists</li>
-                    <li>• Domestic Entity: Ethixweb Technologies Pvt. Ltd.</li>
-                    <li>• Operating Hubs: Bengaluru • Delhi NCR • Kent, WA</li>
-                  </ul>
-                </div>
               </ScrollReveal>
             </div>
 
             {/* Core Values (4 Cards) */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <ScrollReveal delayMs={60}>
-                <Card padding="md" className="h-full bg-light-bg/50 dark:bg-dark-surface">
+              <ScrollReveal delayMs={60} className="h-full">
+                <Card padding="md" className="h-full flex flex-col justify-start bg-light-bg/50 dark:bg-dark-surface">
                   <span className="text-2xl mb-2 block" aria-hidden="true">
                     🎯
                   </span>
@@ -127,8 +111,8 @@ export default function AboutPage() {
                 </Card>
               </ScrollReveal>
 
-              <ScrollReveal delayMs={120}>
-                <Card padding="md" className="h-full bg-light-bg/50 dark:bg-dark-surface">
+              <ScrollReveal delayMs={120} className="h-full">
+                <Card padding="md" className="h-full flex flex-col justify-start bg-light-bg/50 dark:bg-dark-surface">
                   <span className="text-2xl mb-2 block" aria-hidden="true">
                     🧾
                   </span>
@@ -141,8 +125,8 @@ export default function AboutPage() {
                 </Card>
               </ScrollReveal>
 
-              <ScrollReveal delayMs={180}>
-                <Card padding="md" className="h-full bg-light-bg/50 dark:bg-dark-surface">
+              <ScrollReveal delayMs={180} className="h-full">
+                <Card padding="md" className="h-full flex flex-col justify-start bg-light-bg/50 dark:bg-dark-surface">
                   <span className="text-2xl mb-2 block" aria-hidden="true">
                     ⚡
                   </span>
@@ -155,8 +139,8 @@ export default function AboutPage() {
                 </Card>
               </ScrollReveal>
 
-              <ScrollReveal delayMs={240}>
-                <Card padding="md" className="h-full bg-light-bg/50 dark:bg-dark-surface">
+              <ScrollReveal delayMs={240} className="h-full">
+                <Card padding="md" className="h-full flex flex-col justify-start bg-light-bg/50 dark:bg-dark-surface">
                   <span className="text-2xl mb-2 block" aria-hidden="true">
                     🌐
                   </span>
@@ -178,7 +162,6 @@ export default function AboutPage() {
         <Container size="default">
           <ScrollReveal>
             <SectionHeading
-              kicker="Operational Rhythm"
               title="How We Work Across IST &amp; Global Timezones"
               description="Our dual-timezone operational flow ensures rapid domestic execution during Indian business hours with global infrastructure synergy."
               align="center"
