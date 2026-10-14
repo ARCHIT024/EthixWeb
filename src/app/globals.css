@@ -142,27 +142,44 @@ body {
   transform: translateY(-4px);
 }
 
-/* Micro-Interaction: Success Checkmark Draw Animation */
+/* Micro-Interaction: Success Checkmark & Circle Pop Animation */
 @keyframes checkmarkStroke {
   0% {
     stroke-dashoffset: 48;
     opacity: 0;
-    transform: scale(0.7);
   }
-  50% {
+  30% {
     opacity: 1;
   }
   100% {
     stroke-dashoffset: 0;
     opacity: 1;
+  }
+}
+
+@keyframes checkmarkCirclePop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  65% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
     transform: scale(1);
+    opacity: 1;
   }
 }
 
 .animate-checkmark-draw {
   stroke-dasharray: 48;
-  stroke-dashoffset: 0;
-  animation: checkmarkStroke 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  stroke-dashoffset: 48;
+  animation: checkmarkStroke 0.65s 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-circle-pop {
+  animation: checkmarkCirclePop 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Hero Section Simple 400ms CSS Fade-Up */
@@ -206,7 +223,8 @@ body {
     transition: none !important;
   }
 
-  .animate-checkmark-draw {
+  .animate-checkmark-draw,
+  .animate-circle-pop {
     animation: none !important;
     stroke-dashoffset: 0 !important;
     transform: none !important;
