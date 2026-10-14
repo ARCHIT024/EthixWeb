@@ -45,11 +45,11 @@ const CONCEPT_PROJECTS: ConceptProject[] = [
     industry: "CONCEPT · B2B EXPORT",
     projectType: "Global Technical Spec Portal & RFQ Engine",
     problem:
-      "Overseas procurement managers struggle to navigate legacy PDF catalogs, while domestic trade inquiries get buried without automated lead scoring.",
+      "Overseas buyers struggle with legacy PDF catalogs, while domestic trade inquiries get buried without automated lead scoring.",
     whatWeBuild:
-      "A bilingual spec catalog portal with instant multi-currency RFQ generator, technical drawings viewer, and automated routing into Zoho CRM with WhatsApp team alerts.",
+      "A bilingual spec catalog portal with instant multi-currency RFQs, technical drawings viewer, and automated routing into Zoho CRM with WhatsApp team alerts.",
     expectedResultRange:
-      "25% – 40% increase in qualified overseas RFQ submissions; 50% – 70% faster sales engineer quote response.",
+      "25% – 40% increase in overseas RFQ submissions; 50% – 70% faster sales engineer quote response.",
     techStack: ["Next.js App Router", "Zoho CRM API", "Technical Schema", "Multi-Currency"],
   },
 ];
@@ -116,11 +116,11 @@ export function FeaturedWork() {
                   </div>
 
                   {/* Expected Result Range */}
-                  <div className="rounded-xl bg-[#14110F] p-3.5 border border-[rgba(184,146,74,0.25)] mb-5 lg:min-h-[102px] flex flex-col justify-center">
+                  <div className="rounded-xl bg-[#14110F] p-3.5 border border-[rgba(184,146,74,0.25)] mb-5 lg:h-[90px] lg:min-h-[90px] flex flex-col justify-center">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#D9B873] block mb-1">
                       Expected Result Range:
                     </span>
-                    <p className="text-xs font-semibold text-white leading-relaxed">
+                    <p className="text-xs font-semibold text-white leading-snug">
                       {project.expectedResultRange}
                     </p>
                   </div>
