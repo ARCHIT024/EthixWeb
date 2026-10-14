@@ -82,7 +82,8 @@ export const metadata: Metadata = {
     title: "Ethixweb | India Digital Operations & Growth Partner",
     description:
       "We run the tech. You run the business. High-performance digital operations and AI automations for modern Indian enterprises.",
-    creator: "@ethixweb",
+    creator: "@ETHIXWEB",
+    site: "@ETHIXWEB",
     images: ["/brand/logo.webp"],
   },
   robots: {

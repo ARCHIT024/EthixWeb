@@ -30,7 +30,7 @@ export function Footer() {
             <div className="flex items-center gap-2.5">
               {/* LinkedIn */}
               <a
-                href="https://www.linkedin.com/company/ethixweb/"
+                href="https://www.linkedin.com/company/ethixweb/home/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Ethixweb LinkedIn Company Profile"
@@ -56,10 +56,10 @@ export function Footer() {
 
               {/* Twitter / X */}
               <a
-                href="https://twitter.com/ethixweb"
+                href="https://x.com/ETHIXWEB"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Ethixweb on X (Twitter)"
+                aria-label="Ethixweb on X"
                 className="flex h-11 w-11 items-center justify-center rounded-xl border border-[rgba(184,146,74,0.3)] text-[#D8D0C4] hover:border-[#D9B873] hover:text-[#D9B873] hover:-translate-y-0.5 active:translate-y-0 bg-[#1C1714] transition-all focus-visible:outline-2 focus-visible:outline-[#D9B873]"
               >
                 <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">

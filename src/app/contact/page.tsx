@@ -183,6 +183,41 @@ export default function ContactPage() {
                         </p>
                       </div>
                     </div>
+
+                    <div className="pt-3 border-t border-light-border dark:border-dark-border">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 block mb-2">
+                        Official Social Channels
+                      </span>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <a
+                          href="https://www.linkedin.com/company/ethixweb/home/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-light-border dark:border-dark-border text-xs font-medium text-dark-bg dark:text-gray-200 hover:text-brand-red dark:hover:text-red-400 hover:border-brand-red/30 transition-colors"
+                        >
+                          <span>LinkedIn</span>
+                          <span className="text-[10px] text-gray-400">↗</span>
+                        </a>
+                        <a
+                          href="https://www.instagram.com/ethix.web/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-light-border dark:border-dark-border text-xs font-medium text-dark-bg dark:text-gray-200 hover:text-brand-red dark:hover:text-red-400 hover:border-brand-red/30 transition-colors"
+                        >
+                          <span>Instagram</span>
+                          <span className="text-[10px] text-gray-400">↗</span>
+                        </a>
+                        <a
+                          href="https://x.com/ETHIXWEB"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-light-border dark:border-dark-border text-xs font-medium text-dark-bg dark:text-gray-200 hover:text-brand-red dark:hover:text-red-400 hover:border-brand-red/30 transition-colors"
+                        >
+                          <span>X (Twitter)</span>
+                          <span className="text-[10px] text-gray-400">↗</span>
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </Card>
               </ScrollReveal>
