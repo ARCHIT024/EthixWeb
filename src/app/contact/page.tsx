@@ -1,15 +1,8 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Card } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
 import { JaaliPattern } from "@/components/patterns/JaaliPattern";
-import { RangoliDivider } from "@/components/patterns/RangoliDivider";
-import { IstStatusBadge } from "@/components/layout/IstStatusBadge";
 import { ContactForm } from "@/components/forms/ContactForm";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { siteConfig, getWhatsAppUrl } from "@/lib/siteConfig";
 
 export const metadata: Metadata = {
   title: "Contact & Start a Project",
@@ -17,306 +10,281 @@ export const metadata: Metadata = {
     "Direct contact channels for Ethixweb India. Connect via WhatsApp, direct email, or phone. Operating hours in IST with GST-compliant invoicing.",
 };
 
-const ADDRESS_BLOCKS = [
-  {
-    city: "Bengaluru (Primary Technical Hub)",
-    tag: "Core Engineering",
-    address: "Indiranagar 100ft Road, Bengaluru, Karnataka 560038, India",
-    focus: "AI Research, Full-Stack Architecture & Sprint Delivery",
-  },
-  {
-    city: "Delhi NCR (Operations Satellite)",
-    tag: "Client Strategy",
-    address: "Cyber City, DLF Phase 2, Gurugram, Haryana 122002, India",
-    focus: "Enterprise Growth, Performance Marketing & B2B Invoicing",
-  },
-  {
-    city: "Mumbai (Commercial Presence)",
-    tag: "B2B Relations",
-    address: "Bandra Kurla Complex (BKC), Mumbai, Maharashtra 400051, India",
-    focus: "D2C Brand Partnerships & Retail Integrations",
-  },
-];
-
 export default function ContactPage() {
-  const whatsappUrl =
-    "https://wa.me/919876543210?text=" +
-    encodeURIComponent(
-      "Hi Ethixweb, I would like to discuss a project scope for my business (Web / AI / SEO / Ads / CRM)."
-    );
+  const whatsappUrl = getWhatsAppUrl();
 
   return (
-    <div className="flex-1 flex flex-col selection:bg-brand-red selection:text-white">
-      {/* Hero Header */}
-      <section className="relative overflow-hidden pt-12 sm:pt-20 pb-14 sm:pb-20 bg-light-bg text-dark-bg">
+    <div className="flex-1 flex flex-col selection:bg-[#B3202A] selection:text-white">
+      {/* 1. Heading Band: Background ivory #FAF6EF, 64px 0 72px */}
+      <section className="relative overflow-hidden bg-[#FAF6EF] text-[#14110F] text-center pt-[64px] pb-[72px]">
         <JaaliPattern opacity={0.06} inverted={false} />
 
-        <Container size="default" className="relative z-10 text-center max-w-3xl mx-auto">
-          <ScrollReveal>
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Badge variant="red" dot size="md">
-                Direct Communication
-              </Badge>
-              <IstStatusBadge />
-            </div>
-
-            <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-dark-bg leading-[1.12]">
-              Start a Direct Conversation With Our Senior Team
-            </h1>
-
-            <p className="mt-5 text-base sm:text-lg text-gray-600 leading-relaxed">
-              Whether you need a full 14-day web sprint, an autonomous WhatsApp AI receptionist, or a high-converting ad funnel. Direct technical responses within 15 minutes during IST operational hours.
-            </p>
-          </ScrollReveal>
-        </Container>
+        <div className="relative z-10 max-w-[1160px] mx-auto px-6 text-center">
+          <h1 className="font-display font-extrabold text-[40px] sm:text-[56px] leading-[1.06] tracking-[-0.02em] text-[#14110F] max-w-[880px] mx-auto mt-0 mb-[18px]">
+            Start a Direct Conversation With Our Senior Team
+          </h1>
+          <p className="text-[19px] text-[#5C5347] max-w-[860px] mx-auto leading-relaxed m-0">
+            Whether you need a full 14-day web sprint, an autonomous WhatsApp AI receptionist, or a high-converting ad funnel. Direct technical responses within 15 minutes during IST operational hours.
+          </p>
+        </div>
       </section>
 
-      {/* Main Contact Grid */}
-      <section className="py-12 bg-white border-y border-light-border dark:bg-dark-bg dark:border-dark-border">
-        <Container size="default">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-            {/* Primary Action Channels (WhatsApp & Direct Channels) */}
-            <div className="lg:col-span-6 space-y-6">
-              <ScrollReveal>
-                {/* WhatsApp Fast-Track Hero Card */}
-                <Card padding="lg" className="border-l-4 border-l-[#25D366] bg-emerald-50/20 dark:bg-dark-surface">
-                  <div className="flex items-center justify-between mb-4">
-                    <Badge variant="success" dot size="sm">
-                      Recommended Fast-Track
-                    </Badge>
-                    <span className="text-xs text-emerald-800 dark:text-emerald-400 font-bold">
-                      Avg Response: &lt;15 mins
-                    </span>
-                  </div>
-
-                  <h2 className="font-display text-2xl font-bold text-dark-bg dark:text-white mb-2">
-                    Chat With Us on WhatsApp (+91)
-                  </h2>
-
-                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-                    Skip email ping-pong. Share your website URL or current operational bottleneck directly with our technical lead for an instant scope breakdown and estimate.
-                  </p>
-
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-block"
-                  >
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      className="w-full bg-[#25D366] hover:bg-[#20ba59] font-semibold text-white shadow-md shadow-emerald-900/10 gap-2"
-                      leftIcon={
-                        <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                          <path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.676.15-.2.301-.776.98-.952 1.18-.175.2-.351.226-.652.075s-1.27-.468-2.42-1.494c-.894-.798-1.498-1.784-1.674-2.085-.175-.301-.019-.464.132-.614.136-.135.301-.351.452-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526s-.676-1.629-.927-2.231c-.244-.587-.493-.507-.677-.516-.175-.008-.376-.01-.577-.01s-.527.075-.802.376c-.276.301-1.053 1.028-1.053 2.507 0 1.479 1.078 2.908 1.228 3.109.15.2 2.121 3.239 5.138 4.542.718.311 1.279.497 1.716.636.721.229 1.377.197 1.896.119.579-.087 1.782-.728 2.033-1.43.25-.702.25-1.303.175-1.429-.075-.126-.276-.201-.577-.352z" />
-                        </svg>
-                      }
-                    >
-                      Open WhatsApp Chat (+91 98765 43210) →
-                    </Button>
-                  </a>
-                </Card>
-              </ScrollReveal>
-
-              <ScrollReveal delayMs={100}>
-                {/* Email & Phone Contact Card */}
-                <Card padding="lg" className="bg-light-bg/50 dark:bg-dark-surface">
-                  <h3 className="font-display text-lg font-bold text-dark-bg dark:text-white mb-4">
-                    Direct Inquiries &amp; RFP Submissions
-                  </h3>
-
-                  <div className="space-y-4 text-sm">
-                    <div className="flex items-start gap-3">
-                      <span className="text-xl shrink-0" aria-hidden="true">
-                        ✉️
-                      </span>
-                      <div>
-                        <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 block">
-                          Official Business Email
-                        </span>
-                        <a
-                          href="mailto:hello@ethixweb.com"
-                          className="text-base font-semibold text-brand-red hover:underline"
-                        >
-                          hello@ethixweb.com
-                        </a>
-                        <p className="text-xs text-gray-500 mt-0.5">
-                          For RFPs, formal enterprise statements of work, and NDA requests.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3 pt-3 border-t border-light-border dark:border-dark-border">
-                      <span className="text-xl shrink-0" aria-hidden="true">
-                        📞
-                      </span>
-                      <div>
-                        <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 block">
-                          Direct Phone Line
-                        </span>
-                        <a
-                          href="tel:+919876543210"
-                          className="text-base font-semibold text-dark-bg dark:text-white hover:text-brand-red"
-                        >
-                          +91 98765 43210
-                        </a>
-                        <p className="text-xs text-gray-500 mt-0.5">
-                          Operational line active Monday through Saturday.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3 pt-3 border-t border-light-border dark:border-dark-border">
-                      <span className="text-xl shrink-0" aria-hidden="true">
-                        ⏱️
-                      </span>
-                      <div>
-                        <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 block">
-                          Active Operating Hours (IST)
-                        </span>
-                        <span className="text-sm font-semibold text-dark-bg dark:text-white">
-                          09:30 AM – 08:00 PM IST (Mon – Sat)
-                        </span>
-                        <p className="text-xs text-gray-500 mt-0.5">
-                          Sunday: Automated emergency monitoring only.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="pt-3 border-t border-light-border dark:border-dark-border">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 block mb-2">
-                        Official Social Channels
-                      </span>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <a
-                          href="https://www.linkedin.com/company/ethixweb/home/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-light-border dark:border-dark-border text-xs font-medium text-dark-bg dark:text-gray-200 hover:text-brand-red dark:hover:text-red-400 hover:border-brand-red/30 transition-colors"
-                        >
-                          <span>LinkedIn</span>
-                          <span className="text-[10px] text-gray-400">↗</span>
-                        </a>
-                        <a
-                          href="https://www.instagram.com/ethix.web/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-light-border dark:border-dark-border text-xs font-medium text-dark-bg dark:text-gray-200 hover:text-brand-red dark:hover:text-red-400 hover:border-brand-red/30 transition-colors"
-                        >
-                          <span>Instagram</span>
-                          <span className="text-[10px] text-gray-400">↗</span>
-                        </a>
-                        <a
-                          href="https://x.com/ETHIXWEB"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-light-border dark:border-dark-border text-xs font-medium text-dark-bg dark:text-gray-200 hover:text-brand-red dark:hover:text-red-400 hover:border-brand-red/30 transition-colors"
-                        >
-                          <span>X (Twitter)</span>
-                          <span className="text-[10px] text-gray-400">↗</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              </ScrollReveal>
+      {/* 2. Contact Section: Background ink #14110F, 72px 0 */}
+      <section className="relative bg-[#14110F] text-white py-[72px]">
+        <div className="max-w-[1160px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-[28px] items-stretch">
+          {/* Left Card: Dark Info Card (#1C1714) */}
+          <div className="rounded-[24px] p-[22px] lg:p-[36px] bg-[#1C1714] border border-[rgba(184,146,74,0.35)] text-white flex flex-col h-full order-2 lg:order-1">
+            {/* a) Top Row: Fastest route & Avg response */}
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <span className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[13px] font-medium bg-[rgba(61,190,122,0.14)] text-[#6FD9A0]">
+                Fastest route
+              </span>
+              <span className="text-[14px] text-[#D9B873] font-medium">
+                Avg response: under 15 mins
+              </span>
             </div>
 
-            {/* Form Slot Teaser (Form Component Integration Point) */}
-            <div className="lg:col-span-6">
-              <ScrollReveal delayMs={150}>
-                <Card padding="lg" className="h-full flex flex-col justify-between bg-white dark:bg-dark-surface border-light-border dark:border-dark-border">
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <Badge variant="brass" size="sm">
-                        Detailed Proposal Route
-                      </Badge>
-                      <span className="text-[11px] text-gray-400 font-mono">
-                        18% GST Invoicing
-                      </span>
-                    </div>
+            {/* b) H2: Chat with us on WhatsApp */}
+            <h2 className="font-display text-[30px] font-bold text-white leading-[1.15] mt-[18px] mb-[10px]">
+              Chat with us on WhatsApp
+            </h2>
 
-                    <h3 className="font-display text-2xl font-bold text-dark-bg dark:text-white mb-2">
-                      Submit Project Scope
-                    </h3>
+            {/* c) Paragraph */}
+            <p className="text-[16px] text-[#D8D0C4] mt-0 mb-[22px] leading-relaxed">
+              Skip the email ping-pong. Share your website or your current bottleneck, and our technical lead replies with an instant scope breakdown.
+            </p>
 
-                    <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-                      Tell us about your project objectives. Our technical lead will review your submission and provide an itemized timeline and fixed ₹ quote within 24 hours.
-                    </p>
+            {/* d) WhatsApp Full-Width Red Pill */}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center min-h-[54px] w-full px-6 rounded-full bg-[#B3202A] hover:bg-[#9c1822] text-white font-bold text-[16px] transition-colors focus-visible:outline-2 focus-visible:outline-white"
+            >
+              Open WhatsApp chat · {siteConfig.phone}
+            </a>
 
-                    {/* Interactive Contact Form with Zod Validation & Anti-Spam */}
-                    <ContactForm />
-                  </div>
+            {/* e) Hairline */}
+            <hr className="border-0 border-t border-[rgba(184,146,74,0.3)] my-[28px]" />
 
-                  {/* Privacy & Compliance Assurance */}
-                  <div className="pt-6 border-t border-light-border dark:border-dark-border mt-6">
-                    <div className="flex items-center justify-between text-xs text-gray-500">
-                      <span className="flex items-center gap-1.5">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                        Strict NDA &amp; Privacy Protected
-                      </span>
-                      <span>GSTIN: 07AAAAA0000A1Z5</span>
-                    </div>
-                  </div>
-                </Card>
-              </ScrollReveal>
+            {/* f) Three Detail Rows */}
+            {/* 1. Business email */}
+            <div className="flex gap-4 items-start mb-[22px]">
+              <div className="w-[44px] h-[44px] rounded-[12px] border border-[rgba(184,146,74,0.5)] flex items-center justify-center shrink-0">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#D9B873"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="M3 7l9 6 9-6" />
+                </svg>
+              </div>
+              <div>
+                <div className="text-[12px] uppercase tracking-[0.12em] text-[#D9B873] font-bold">
+                  Business email
+                </div>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="font-display text-[20px] font-bold text-white hover:underline block leading-snug"
+                >
+                  {siteConfig.email}
+                </a>
+                <div className="text-[14px] text-[#A89F90] mt-0.5">
+                  For RFPs, formal statements of work and NDAs.
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Direct phone line */}
+            <div className="flex gap-4 items-start mb-[22px]">
+              <div className="w-[44px] h-[44px] rounded-[12px] border border-[rgba(184,146,74,0.5)] flex items-center justify-center shrink-0">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#D9B873"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" />
+                </svg>
+              </div>
+              <div>
+                <div className="text-[12px] uppercase tracking-[0.12em] text-[#D9B873] font-bold">
+                  Direct phone line
+                </div>
+                <a
+                  href={`tel:${siteConfig.phoneRaw}`}
+                  className="font-display text-[20px] font-bold text-white hover:underline block leading-snug"
+                >
+                  {siteConfig.phone}
+                </a>
+                <div className="text-[14px] text-[#A89F90] mt-0.5">
+                  Active Monday to Saturday.
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Operating hours */}
+            <div className="flex gap-4 items-start mb-[22px]">
+              <div className="w-[44px] h-[44px] rounded-[12px] border border-[rgba(184,146,74,0.5)] flex items-center justify-center shrink-0">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#D9B873"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 7v5l3 2" />
+                </svg>
+              </div>
+              <div>
+                <div className="text-[12px] uppercase tracking-[0.12em] text-[#D9B873] font-bold">
+                  Operating hours (IST)
+                </div>
+                <div className="font-display text-[20px] font-bold text-white leading-snug">
+                  {siteConfig.operatingHours.display}
+                </div>
+                <div className="text-[14px] text-[#A89F90] mt-0.5">
+                  {siteConfig.operatingHours.note}
+                </div>
+              </div>
+            </div>
+
+            {/* g) Hairline & What happens next */}
+            <hr className="border-0 border-t border-[rgba(184,146,74,0.3)] mt-[10px] mb-[28px]" />
+
+            <div className="text-[12px] uppercase tracking-[0.12em] text-[#D9B873] font-bold mb-[16px]">
+              What happens next
+            </div>
+
+            <div className="flex gap-[14px] mb-[18px] items-start">
+              <span className="w-[30px] h-[30px] rounded-full bg-[#B3202A] text-white font-bold text-[14px] flex items-center justify-center shrink-0">
+                1
+              </span>
+              <div>
+                <div className="font-bold text-white text-[15px]">We reply</div>
+                <div className="text-[14px] text-[#A89F90]">
+                  Within 15 minutes on WhatsApp, within 24 hours by email.
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-[14px] mb-[18px] items-start">
+              <span className="w-[30px] h-[30px] rounded-full bg-[#B3202A] text-white font-bold text-[14px] flex items-center justify-center shrink-0">
+                2
+              </span>
+              <div>
+                <div className="font-bold text-white text-[15px]">A short scope call</div>
+                <div className="text-[14px] text-[#A89F90]">
+                  Your technical lead goes through the project with you.
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-[14px] mb-[18px] items-start">
+              <span className="w-[30px] h-[30px] rounded-full bg-[#B3202A] text-white font-bold text-[14px] flex items-center justify-center shrink-0">
+                3
+              </span>
+              <div>
+                <div className="font-bold text-white text-[15px]">An itemised ₹ quote</div>
+                <div className="text-[14px] text-[#A89F90]">
+                  Clear timeline, fixed price, GST invoice with ITC.
+                </div>
+              </div>
+            </div>
+
+            {/* h) Social Row (Pinned to bottom) */}
+            <div className="mt-auto pt-[22px] border-t border-[rgba(184,146,74,0.3)] flex gap-[10px] flex-wrap items-center">
+              <span className="text-[12px] uppercase tracking-[0.12em] text-[#D9B873] font-bold mr-[6px]">
+                Follow
+              </span>
+              <a
+                href={siteConfig.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full px-3.5 py-1.5 text-[14px] text-white border border-[rgba(184,146,74,0.45)] bg-transparent hover:border-[#D9B873] hover:text-[#D9B873] transition-colors focus-visible:outline-2 focus-visible:outline-white"
+              >
+                LinkedIn
+              </a>
+              <a
+                href={siteConfig.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full px-3.5 py-1.5 text-[14px] text-white border border-[rgba(184,146,74,0.45)] bg-transparent hover:border-[#D9B873] hover:text-[#D9B873] transition-colors focus-visible:outline-2 focus-visible:outline-white"
+              >
+                Instagram
+              </a>
+              <a
+                href={siteConfig.social.x}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full px-3.5 py-1.5 text-[14px] text-white border border-[rgba(184,146,74,0.45)] bg-transparent hover:border-[#D9B873] hover:text-[#D9B873] transition-colors focus-visible:outline-2 focus-visible:outline-white"
+              >
+                X (Twitter)
+              </a>
             </div>
           </div>
-        </Container>
+
+          {/* Right Card: Light Form Card (#FAF6EF) */}
+          <ContactForm />
+        </div>
       </section>
 
-      {/* Map-Free Address Block (High-Speed & Zero External Script Bloat) */}
-      <section className="py-20 sm:py-24 bg-light-bg dark:bg-dark-surface">
-        <Container size="default">
-          <ScrollReveal>
-            <SectionHeading
-              kicker="Domestic Footprint"
-              title="Map-Free Domestic Presence Across India"
-              description="We deliberately avoid slow, battery-draining Google Maps iframes to protect page performance and guarantee sub-second load times."
-              align="center"
-              className="mb-14"
-            />
-          </ScrollReveal>
+      {/* 3. Domestic Presence Section: Background sand #F1E9DA, 88px 0 */}
+      <section className="bg-[#F1E9DA] text-[#14110F] py-[88px]">
+        <div className="max-w-[1160px] mx-auto px-6">
+          <div className="text-center">
+            <span className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[13px] font-medium bg-[#FBEDEC] text-[#B3202A] mx-auto">
+              Domestic footprint
+            </span>
+            <h2 className="font-display text-[32px] sm:text-[44px] font-extrabold tracking-[-0.01em] leading-[1.1] mt-4 mb-3 max-w-[760px] mx-auto text-[#14110F]">
+              Map-Free Domestic Presence Across India
+            </h2>
+            <p className="text-[18px] text-[#5C5347] max-w-[640px] mx-auto mb-11 leading-relaxed">
+              We avoid slow, battery-draining map embeds to protect page performance and keep load times fast.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {ADDRESS_BLOCKS.map((item, index) => (
-              <ScrollReveal key={item.city} delayMs={index * 90}>
-                <Card
-                  variant="default"
-                  padding="lg"
-                  className="h-full flex flex-col justify-between bg-white dark:bg-dark-bg border-light-border dark:border-dark-border hover:border-brand-red/30 transition-colors"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-xl" aria-hidden="true">
-                        📍
-                      </span>
-                      <Badge variant="neutral" size="sm" className="text-[10px]">
-                        {item.tag}
-                      </Badge>
-                    </div>
-
-                    <h3 className="font-display text-base font-bold text-dark-bg dark:text-white mb-2">
-                      {item.city}
-                    </h3>
-
-                    <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                      {item.address}
-                    </p>
-                  </div>
-
-                  <div className="pt-3 border-t border-light-border dark:border-dark-border text-[11px] text-gray-500">
-                    <strong className="text-dark-bg dark:text-gray-300">Hub Focus:</strong>{" "}
-                    {item.focus}
-                  </div>
-                </Card>
-              </ScrollReveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
+            {siteConfig.hubs.map((hub) => (
+              <div
+                key={hub.city}
+                className="bg-white border border-[#E6DCCB] rounded-[20px] p-[28px] flex flex-col h-full"
+              >
+                <div>
+                  <span className="inline-flex items-center rounded-full px-3.5 py-1.5 text-[13px] bg-[#F1E9DA] text-[#14110F] font-medium">
+                    {hub.tag}
+                  </span>
+                </div>
+                <h3 className="font-display text-[22px] font-bold text-[#14110F] mt-4 mb-1.5 leading-snug">
+                  {hub.title}
+                </h3>
+                <p className="text-[15px] text-[#5C5347] m-0 leading-relaxed">
+                  {hub.address}
+                </p>
+                <div className="mt-auto pt-[18px] border-t border-[#E6DCCB] text-[14px] text-[#5C5347]">
+                  <b className="font-bold text-[#14110F]">Hub focus:</b> {hub.focus}
+                </div>
+              </div>
             ))}
           </div>
-
-          <RangoliDivider opacity={0.25} inverted={false} className="mt-14" />
-        </Container>
+        </div>
       </section>
     </div>
   );

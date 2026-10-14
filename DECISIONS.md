@@ -372,6 +372,34 @@ This log records major architectural, design, and implementation decisions made 
      - Fixed `aspect-ratio: 520 / 640` container guarantees zero Cumulative Layout Shift (CLS = 0).
      - Full WCAG keyboard accessibility: each city group features `tabIndex={0}`, `role="button"`, `aria-label`, Enter/Space key triggers, and a high-contrast 2px focus ring.
 
+---
+
+### Entry 018: Contact Page Redesign Architecture & Rationale
+- **Date**: 2026-10-15
+- **What**:
+  - Rebuilt the `/contact` page matching the approved reference (`ethixweb-contact-reference.html`, `contact-desktop.png`, `contact-mobile.png`) without copying HTML or inline styles, utilizing Next.js components and existing design tokens.
+  - Consolidated single source of truth for all contact and presence details into `src/lib/siteConfig.ts` and linked it across `/contact`, `Footer.tsx`, and `FloatingWhatsApp.tsx`.
+  - Implemented 2-column contact section on `ink #14110F` with equal-height cards:
+    - **Left Dark Card (`#1C1714`)**: WhatsApp fast-track CTA, response promise, hairline dividers, contact channels with inline SVGs, 3-step "What happens next" flow, and pinned bottom social row.
+    - **Right Light Card (`#FAF6EF`)**: Project scope enquiry form with 4 structured groups ("About you", "Your project", "How should we reply?", "Tell us more"), 6 quick-pick city buttons, 3 reply radio tiles, character counter, inline validation, and pinned bottom NDA/GSTIN row.
+  - Refactored Domestic Presence section on `sand #F1E9DA` with 3 equal-height cards sourced directly from `siteConfig.hubs`.
+- **Architectural & Design Decisions**:
+  1. **Why Equal-Height Cards**:
+     - Visual asymmetry between primary contact routes creates cognitive friction and implies an imbalance in service quality.
+     - By locking both cards to equal height via CSS grid `items-stretch` and pinning bottom rows via `mt-auto`, both routes (fast-track WhatsApp vs. detailed scope submission) are framed as equally professional, structured options. The desktop viewport maintains clean geometric alignment with 0 awkward negative space or ragged card bottoms.
+  2. **Why a Light Form Card on a Dark Section**:
+     - The dark `ink #14110F` section background establishes authority, high-contrast framing, and focused containment.
+     - However, comprehensive multi-input forms on dark backgrounds frequently cause optical fatigue, high cognitive load, and reduced completion rates on mobile devices.
+     - Placing a warm ivory (`#FAF6EF`) form card inside the dark container provides maximum readability and contrast for form fields (dark text on white inputs with `#CFC3AE` borders and `#B3202A` focus rings) while retaining the premium dark-mode presence of the surrounding section.
+  3. **Why the Step List ("What Happens Next")**:
+     - Indian enterprise buyers and founders are wary of agency communication black holes where inquiries disappear into junior account manager queues.
+     - Explicitly detailing the 3 concrete operational milestones (1: We reply within 15 min; 2: Short scope call with technical lead; 3: Itemised ₹ quote with 18% GST and ITC) sets transparent expectations, reduces inquiry abandonment, and builds immediate trust before a founder even submits their scope.
+  4. **Why the Top Heading Pills Were Removed**:
+     - The previous heading band contained two redundant pills ("Direct communication" and "Offline · Opens 9:30 AM IST").
+     - The global sticky header already features operational status, while the cards below immediately articulate the direct communication model and IST operating hours with dedicated detail rows.
+     - Removing the pills eliminates visual clutter above the H1, letting the primary value proposition ("Start a Direct Conversation With Our Senior Team") command immediate visual hierarchy directly below the clean 64px top padding.
+
+
 
 
 

@@ -1,11 +1,10 @@
 import React from "react";
+import { getWhatsAppUrl } from "@/lib/siteConfig";
 
 export function FloatingWhatsApp() {
-  const whatsappNumber = "919876543210";
-  const prefilledMessage = encodeURIComponent(
+  const whatsappUrl = getWhatsAppUrl(
     "Hi Ethixweb, I would like to discuss a project (Website / AI Automation / SEO / Ads / CRM)."
   );
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${prefilledMessage}`;
 
   return (
     <aside

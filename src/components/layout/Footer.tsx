@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
+import { siteConfig } from "@/lib/siteConfig";
 
 export function Footer() {
   return (
@@ -30,7 +31,7 @@ export function Footer() {
             <div className="flex items-center gap-2.5">
               {/* LinkedIn */}
               <a
-                href="https://www.linkedin.com/company/ethixweb/home/"
+                href={siteConfig.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Ethixweb LinkedIn Company Profile"
@@ -43,7 +44,7 @@ export function Footer() {
 
               {/* Instagram */}
               <a
-                href="https://www.instagram.com/ethix.web/"
+                href={siteConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Ethixweb Instagram Page"
@@ -56,7 +57,7 @@ export function Footer() {
 
               {/* Twitter / X */}
               <a
-                href="https://x.com/ETHIXWEB"
+                href={siteConfig.social.x}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Ethixweb on X"
@@ -125,28 +126,28 @@ export function Footer() {
             <div className="space-y-3 text-sm text-[#D8D0C4]">
               <p className="flex items-start gap-2">
                 <span className="text-[#E0414B] font-bold">📍</span>
-                <span>Bengaluru • Delhi NCR • Mumbai, India</span>
+                <span>{siteConfig.hubs.map((h) => h.city).join(" • ")}, India</span>
               </p>
               <p className="flex items-center gap-2">
                 <span className="text-[#E0414B] font-bold">✉️</span>
                 <a
-                  href="mailto:hello@ethixweb.com"
+                  href={`mailto:${siteConfig.email}`}
                   className="hover:text-[#D9B873] transition-colors"
                 >
-                  hello@ethixweb.com
+                  {siteConfig.email}
                 </a>
               </p>
               <p className="flex items-center gap-2">
                 <span className="text-emerald-400 font-bold">📞</span>
                 <a
-                  href="tel:+919876543210"
+                  href={`tel:${siteConfig.phoneRaw}`}
                   className="hover:text-[#D9B873] transition-colors"
                 >
-                  +91 98765 43210
+                  {siteConfig.phone}
                 </a>
               </p>
               <p className="text-xs text-[#D8D0C4]/70 pt-1">
-                Active hours: 09:30–20:00 IST (Mon–Sat)
+                Active hours: {siteConfig.operatingHours.display}
               </p>
             </div>
           </div>
@@ -155,9 +156,9 @@ export function Footer() {
         {/* GST & Legal Bottom Bar */}
         <div className="border-t border-[rgba(184,146,74,0.2)] mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#D8D0C4]/75">
           <div className="text-center md:text-left">
-            <span>© 2026 Ethixweb Technologies Pvt. Ltd. Registered in India.</span>
+            <span>© 2026 {siteConfig.legalName} Registered in India.</span>
             <span className="block sm:inline sm:ml-2 text-[#D9B873]">
-              GSTIN: 07AAAAA0000A1Z5 • 18% GST Invoicing with ITC.
+              {siteConfig.gstin ? `GSTIN: ${siteConfig.gstin} • ` : ""}18% GST Invoicing with ITC.
             </span>
           </div>
 
