@@ -15,7 +15,7 @@ Ethixweb India is an enterprise-grade digital agency platform built from scratch
   - **Admin Email**: admin@ethixweb.com
   - **Admin Password**: AdminPassword123!
 
----u
+---
 
 ## 2. Technology Stack & Technical Rationale
 
