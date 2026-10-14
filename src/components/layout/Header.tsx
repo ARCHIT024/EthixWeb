@@ -17,7 +17,7 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#14110F]/75 backdrop-blur-md backdrop-saturate-150 text-white border-b border-white/[0.08] shadow-[0_4px_30px_rgba(0,0,0,0.25)] transition-colors">
+    <header className="sticky top-0 z-40 w-full bg-[#14110F]/55 backdrop-blur-xl backdrop-saturate-180 text-white border-b border-white/[0.1] shadow-[0_4px_30px_rgba(0,0,0,0.3),inset_0_1px_0_0_rgba(255,255,255,0.06)] transition-all">
       <div className="max-w-[1200px] mx-auto px-6 h-[76px] flex items-center justify-between gap-4">
         {/* Brand Logo without pill wrapper */}
         <Link

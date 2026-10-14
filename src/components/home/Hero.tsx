@@ -9,7 +9,7 @@ export function Hero() {
     encodeURIComponent("Hi Ethixweb, I would like to discuss a project for my business.");
 
   return (
-    <section className="relative overflow-hidden bg-[#14110F] text-white">
+    <section className="relative overflow-hidden bg-[#14110F] text-white -mt-[76px] pt-[76px]">
       {/* Decorative Architectural Jaali SVG Texture (0.09 Opacity, 0 Images, 0 JS) */}
       <JaaliPattern opacity={0.09} />
 
