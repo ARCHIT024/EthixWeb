@@ -82,8 +82,12 @@ export function FeaturedWork() {
         {/* 3 Concept Project Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {CONCEPT_PROJECTS.map((project, idx) => (
-            <ScrollReveal key={project.id} delayMs={idx * 120} className="h-full">
-              <div className="bg-[#1C1714] border border-[rgba(184,146,74,0.3)] rounded-[16px] p-[26px] text-white flex flex-col justify-between h-full transition-colors hover:border-[#D9B873]/60">
+            <ScrollReveal
+              key={project.id}
+              delayMs={idx * 120}
+              className="h-full flex flex-col"
+            >
+              <div className="bg-[#1C1714] border border-[rgba(184,146,74,0.3)] rounded-[16px] p-[26px] text-white flex-1 flex flex-col justify-between h-full transition-colors hover:border-[#D9B873]/60">
                 <div>
                   {/* Category Pill Tag */}
                   <div className="text-[12px] font-bold tracking-[0.1em] uppercase text-[#D9B873] mb-3">
@@ -91,12 +95,12 @@ export function FeaturedWork() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-display text-[21px] font-bold text-white mb-3 leading-snug">
+                  <h3 className="font-display text-[21px] font-bold text-white mb-3 leading-snug lg:min-h-[58px]">
                     {project.projectType}
                   </h3>
 
                   {/* The Problem */}
-                  <div className="mb-3 text-[14px] leading-relaxed text-[#D8D0C4]">
+                  <div className="mb-3 text-[14px] leading-relaxed text-[#D8D0C4] lg:min-h-[92px]">
                     <strong className="text-white block text-xs uppercase tracking-wider mb-1">
                       Problem:
                     </strong>
@@ -104,7 +108,7 @@ export function FeaturedWork() {
                   </div>
 
                   {/* What We Would Build */}
-                  <div className="mb-4 text-[14px] leading-relaxed text-[#D8D0C4]">
+                  <div className="mb-4 text-[14px] leading-relaxed text-[#D8D0C4] lg:min-h-[110px]">
                     <strong className="text-white block text-xs uppercase tracking-wider mb-1">
                       What We Build:
                     </strong>
@@ -112,19 +116,19 @@ export function FeaturedWork() {
                   </div>
 
                   {/* Expected Result Range */}
-                  <div className="rounded-xl bg-[#14110F] p-3 border border-[rgba(184,146,74,0.25)] mb-5">
+                  <div className="rounded-xl bg-[#14110F] p-3.5 border border-[rgba(184,146,74,0.25)] mb-5 lg:min-h-[102px] flex flex-col justify-center">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#D9B873] block mb-1">
                       Expected Result Range:
                     </span>
-                    <p className="text-xs font-semibold text-white leading-snug">
+                    <p className="text-xs font-semibold text-white leading-relaxed">
                       {project.expectedResultRange}
                     </p>
                   </div>
                 </div>
 
                 {/* Tech Stack & Card Action */}
-                <div>
-                  <div className="flex flex-wrap gap-1.5 mb-5">
+                <div className="mt-auto">
+                  <div className="flex flex-wrap gap-1.5 mb-5 lg:min-h-[58px] items-start content-start">
                     {project.techStack.map((tech) => (
                       <span
                         key={tech}
