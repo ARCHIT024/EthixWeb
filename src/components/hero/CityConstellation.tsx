@@ -57,7 +57,7 @@ export function CityConstellation() {
   return (
     <div
       id="wrap"
-      className="relative w-full max-w-[580px] lg:max-w-[640px] xl:max-w-[680px] [aspect-ratio:520/535] mx-auto min-[900px]:mr-0 min-[900px]:ml-auto min-[900px]:translate-x-4 lg:min-[900px]:translate-x-8 select-none"
+      className="relative w-full max-w-[580px] lg:max-w-[640px] xl:max-w-[680px] [aspect-ratio:520/535] mx-auto min-[900px]:mr-0 min-[900px]:ml-auto min-[900px]:translate-x-4 lg:min-[900px]:translate-x-8 -translate-y-6 sm:-translate-y-8 lg:-translate-y-12 select-none"
       role="group"
       aria-label="Ethixweb serves businesses across India. Cities: Delhi, Jaipur, Lucknow, Ahmedabad, Kolkata, Mumbai, Pune, Bhubaneswar, Bengaluru, Chennai."
       onMouseEnter={() => {
