@@ -212,3 +212,121 @@ body {
     transform: none !important;
   }
 }
+
+/* === Hero City Constellation (Nakshatra Network) === */
+.gp {
+  animation: gp 8s ease-in-out infinite;
+}
+@keyframes gp {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 1; }
+}
+
+.c {
+  cursor: pointer;
+  outline: none;
+}
+.c .ln {
+  fill: none;
+  stroke: #B8924A;
+  stroke-opacity: 0.3;
+}
+.c .tr {
+  fill: none;
+  stroke: #E0414B;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+}
+.c.on .tr {
+  opacity: 1;
+  animation: tr 0.8s ease-in-out forwards;
+}
+.c .dt {
+  fill: #E0414B;
+  opacity: 0;
+}
+.c.on .dt {
+  animation: run 0.8s ease-in-out forwards;
+}
+.c .nd {
+  fill: #D9B873;
+  transition: fill 0.25s;
+}
+.c.rest .nd {
+  fill: #E0414B;
+}
+.c.on .nd {
+  fill: #E0414B;
+  transition: fill 0.25s 0.72s;
+}
+.c .lb {
+  fill: #D8D0C4;
+  paint-order: stroke;
+  stroke: #14110F;
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  transition: fill 0.25s;
+  font-family: var(--font-body), "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+}
+.c.on .lb {
+  fill: #ffffff;
+  transition: fill 0.25s 0.72s;
+}
+.c .rg {
+  fill: none;
+  stroke: #E0414B;
+  stroke-width: 1.5;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.c.on .rg {
+  animation: ring 1s 0.75s ease-out forwards;
+}
+.hr {
+  transition: stroke-opacity 0.3s;
+}
+.hr.lit {
+  stroke-opacity: 1;
+}
+@keyframes tr {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes run {
+  0% { offset-distance: 0%; opacity: 1; }
+  92% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+@keyframes ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+/* Accessible focus ring on star */
+.c:focus-visible .nd {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* Mobile responsive labels and tap target enlargement (<= 640px) */
+@media (max-width: 640px) {
+  .c .lb {
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.25s, fill 0.25s;
+  }
+  .c.on .lb,
+  .c.rest .lb {
+    opacity: 1;
+  }
+  .c .hit-circle {
+    r: 22px;
+  }
+}
+

@@ -339,6 +339,40 @@ This log records major architectural, design, and implementation decisions made 
   - By calibrating opacities between 4.5% and 10% and applying a radial fade mask concentrated at the top seam, the patterns function as a tactile architectural watermark—felt subliminally as depth rather than distracting foreground graphics.
   - Zero performance tax: All patterns are inline SVG code under 1KB each with 0 client JS, 0 layout shift (CLS = 0), and 0 new network requests.
 
+---
+
+### Entry 017: Hero City Constellation (Nakshatra Network Architecture)
+- **Date**: 2026-10-14
+- **What**:
+  - Replaced the hero section's right column with an interactive, mathematically projected Indian city constellation (`CityConstellation.tsx`):
+    - Ten commercial centers (Delhi, Jaipur, Lucknow, Ahmedabad, Kolkata, Mumbai, Pune, Bhubaneswar, Bengaluru, Chennai) represented as four-pointed stars on a 90-star field (`stars.ts`).
+    - Central hub anchored at Nagpur (`project(79.09, 21.15)`, India's geographic center) with geometric 'E' monogram and subtle radial breathing glow.
+    - Soft quadratic Bezier sub-curves (`p0` at hub perimeter, `p1` elevated control point, `p2` at city) connecting the hub to each city.
+    - Interactive states: hovering, clicking, or keyboard-focusing a city triggers a high-speed red pulse dot (`offset-path`) traveling from hub to city over 0.8s, followed by an expanding arrival ring and 2.0s hold before resetting.
+    - Autoplay engine: picks a non-repeating random city every 2.0s, pausing gracefully on desktop hover (`(hover: hover)`) and respecting `prefers-reduced-motion`.
+    - Maintained two-column hero grid on desktop, stacking cleanly below 900px (`min-[900px]:grid-cols-2 grid-cols-1`).
+    - The existing `QuickEnquiryCard` component and `/api/enquiries` backend remain preserved for the `/contact` route.
+- **Design Decisions & Cultural Rationale**:
+  1. **Why a Constellation (The Nakshatra Story)**:
+     - In Vedic astronomy and classical Indian cosmology, *Nakshatras* (lunar mansions / star clusters) have guided Indian navigation, timing, trade routes, and societal rhythms for millennia.
+     - Transforming Indian commercial hubs into stars in a constellation elevates digital operations into an inspiring, high-craft visual metaphor: Indian enterprises are not merely scattered data points on a map, but guiding stars in a synchronized digital constellation.
+  2. **Why Hub Spokes Only (No Inter-City Lines or Dotted Mesh)**:
+     - Ethixweb operates as the centralized technical command hub for its clients, deploying senior engineering, AI automation, and performance marketing pipelines.
+     - Direct hub-to-city spokes reinforce this dedicated radial relationship. Inter-city lines or a dense mesh network would create visual clutter and confuse the operational hierarchy, distracting from the core value proposition.
+  3. **Why No Map Outline**:
+     - Standard map boundaries are politically delicate, visually noisy, and often feel like generic corporate clip-art.
+     - By using an accurate conic projection (`c = cos(22°)`, `k = 26`, `X0 = 70`, `Y0 = 70`), the constellation naturally traces the unmistakable geographical posture of the Indian subcontinent (from Delhi in the north to Bengaluru and Chennai in the south, Ahmedabad and Mumbai in the west to Kolkata in the east) using pure mathematics alone.
+  4. **Why 2.0s Auto-Play & 2.8s Hold Timings**:
+     - The 0.8s dot transit speed provides a crisp, responsive pulse along the curve without causing motion disorientation.
+     - The 2.0s hold duration after arrival gives human eyes ample time to absorb the highlighted city name and active state before returning to resting state.
+     - The 2.0s auto-play interval creates an ambient, living heartbeat in the hero that immediately communicates active nationwide operations while users read the headline.
+  5. **Performance & Accessibility Integrity**:
+     - All curve geometry, star translations, and label coordinates are precomputed in `src/lib/constellation.ts` with 0 runtime mathematical overhead.
+     - 100% SVG and pure CSS transitions/animations (`opacity`, `transform`, `offset-distance`) running on compositor layers—zero canvas, zero images, zero heavy animation libraries.
+     - Fixed `aspect-ratio: 520 / 640` container guarantees zero Cumulative Layout Shift (CLS = 0).
+     - Full WCAG keyboard accessibility: each city group features `tabIndex={0}`, `role="button"`, `aria-label`, Enter/Space key triggers, and a high-contrast 2px focus ring.
+
+
 
 
 
