@@ -446,3 +446,18 @@ This log records major architectural, design, and implementation decisions made 
 
 
 
+
+
+---
+
+### Entry 021: Admin Portal Login Visual Hierarchy Refinement
+- **Date**: 2026-10-15
+- **What**:
+  - Refined the visual hierarchy and branding on the `/admin/login` page:
+    1. **Removed the "Console" pill**: Completely removed the redundant gold/brass pill next to the brand name to eliminate visual distraction above the heading.
+    2. **Enlarged EthixWeb Brand Logo**: Replaced the plain small text element with the official high-resolution brand logo asset (`/brand/logo.webp`), displayed at `h-9 sm:h-10` with proper aspect ratio, wrapped in an accessible home link (`/`).
+    3. **Hierarchical Rebalance**: Scaled down the "Admin Sign In" heading from `text-2xl` to `text-xl`, ensuring the EthixWeb brand mark commands primary visual weight and is distinctly larger and more prominent than the sign-in title.
+    4. **Verified Functional Integrity**: Confirmed that all security and authentication logic (`/api/admin/login`, Supabase session handshake, error handling, redirect flow) remains completely untouched and functional.
+- **Why**:
+  - The "Console" pill was visually redundant and fragmented the brand impression on the operations gateway.
+  - Elevating the official brand logo above the sign-in text strengthens the portal's identity, aligns with the site-wide brand styling, and creates a clean, premium first impression for authorized personnel.

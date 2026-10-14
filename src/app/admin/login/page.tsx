@@ -3,6 +3,7 @@
 import React, { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 function LoginFormContent() {
   const searchParams = useSearchParams();
@@ -78,14 +79,23 @@ function LoginFormContent() {
             />
           </svg>
         </div>
-        <div className="flex items-center justify-center gap-2 mb-1">
-          <span className="text-lg font-bold tracking-tight text-white">ETHIXWEB</span>
-          <span className="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-[#c59b4b]/15 text-[#c59b4b] border border-[#c59b4b]/30 rounded-md">
-            Console
-          </span>
+
+        {/* Ethixweb Logo (Bigger than Admin Sign In) */}
+        <div className="flex items-center justify-center mb-3">
+          <Link href="/" className="inline-block transition-opacity hover:opacity-90">
+            <Image
+              src="/brand/logo.webp"
+              alt="Ethixweb Logo"
+              width={220}
+              height={36}
+              className="h-9 sm:h-10 w-auto object-contain"
+              priority
+            />
+          </Link>
         </div>
-        <h1 className="text-2xl font-bold text-white tracking-tight">Admin Sign In</h1>
-        <p className="text-xs text-[#9ca3af] mt-1">
+
+        <h1 className="text-xl font-bold text-white tracking-tight">Admin Sign In</h1>
+        <p className="text-xs text-[#9ca3af] mt-1.5">
           Protected pipeline. Authorized operations personnel only.
         </p>
       </div>
