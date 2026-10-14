@@ -83,7 +83,7 @@ export function FinalCTA() {
               <div className="flex flex-col sm:flex-row items-center gap-3.5">
                 <Link href="/contact" className="w-full sm:flex-1">
                   <span className="w-full inline-flex items-center justify-center min-h-[48px] px-6 py-3 rounded-full bg-white text-[#8E1620] hover:bg-white/95 font-bold text-sm sm:text-base transition-colors text-center cursor-pointer">
-                    Complete Detailed Scope Form (/contact) →
+                    Complete Detailed Scope Form →
                   </span>
                 </Link>
 
