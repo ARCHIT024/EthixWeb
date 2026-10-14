@@ -185,9 +185,6 @@ export default function ServicesPage() {
 
         <Container size="default" className="relative z-10 text-center max-w-3xl mx-auto">
           <ScrollReveal>
-            <Badge variant="red" dot size="md" className="mb-4">
-              Capabilities &amp; Scope
-            </Badge>
             <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-dark-bg leading-[1.12]">
               Digital Capabilities Built For Real Business Throughput
             </h1>
@@ -215,7 +212,6 @@ export default function ServicesPage() {
         <Container size="default">
           <ScrollReveal>
             <SectionHeading
-              kicker="Detailed Offerings"
               title="Six Core Disciplines. Zero Agency Fluff."
               description="Explore our standardized service blocks engineered to remove operational bottlenecks and accelerate revenue."
               align="center"
