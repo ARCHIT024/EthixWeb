@@ -8,14 +8,14 @@
 
 Ethixweb India is an enterprise-grade digital agency platform built from scratch to replace bloated, sluggish agency websites with an ultra-fast, accessible, and conversion-optimized web experience. It features a complete public-facing service catalog, trust-centered company profile, multi-layered spam-protected lead pipeline, and a dedicated administrative console for lead pipeline management.
 
-- **Live Production URL**: `[Insert your live production URL here — e.g. https://ethixweb.vercel.app]`
-- **Source Code Repository**: `[Insert your GitHub repository link here — e.g. https://github.com/ARCHIT024/EthixWeb]`
+- **Live Production URL**: https://ethix-web-new.vercel.app/
+- **Source Code Repository**: https://github.com/ARCHIT024/EthixWeb
 - **Demo Administrative Console**:
-  - **Portal URL**: `[https://your-domain.com/admin/login]`
-  - **Admin Email**: `[admin@ethixweb.com]` *(Placeholder: replace with your demo admin email)*
-  - **Admin Password**: `[DemoPassword123!]` *(Placeholder: replace with your demo admin password)*
+  - **Portal URL**: https://ethix-web-new.vercel.app/admin
+  - **Admin Email**: admin@ethixweb.com
+  - **Admin Password**: AdminPassword123!
 
----
+---u
 
 ## 2. Technology Stack & Technical Rationale
 
