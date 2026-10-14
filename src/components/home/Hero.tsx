@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { JaaliPattern } from "@/components/patterns/JaaliPattern";
-import { AvailabilityBadge } from "@/components/home/AvailabilityBadge";
 import { CityConstellation } from "@/components/hero/CityConstellation";
 
 export function Hero() {
@@ -15,14 +14,11 @@ export function Hero() {
       <JaaliPattern opacity={0.09} />
 
       {/* 1260px Max-Width Content Grid: 2-column vertically centered, stacks below 900px */}
-      <div className="relative z-10 max-w-[1260px] mx-auto px-6 pt-12 pb-20 sm:pt-[72px] sm:pb-[84px] grid grid-cols-1 min-[900px]:grid-cols-2 gap-10 lg:gap-12 items-center">
+      <div className="relative z-10 max-w-[1260px] mx-auto px-6 pt-6 pb-12 sm:pt-10 sm:pb-14 lg:pt-10 lg:pb-14 grid grid-cols-1 min-[900px]:grid-cols-2 gap-10 lg:gap-12 items-center">
         {/* Left Column: Proposition & CTAs with 400ms CSS-only Fade-Up */}
-        <div className="hero-fade-up text-left">
-          {/* 1. Availability Badge (IST Real-Time Calculation) */}
-          <AvailabilityBadge />
-
-          {/* 2. Main Page H1 */}
-          <h1 className="font-display font-[800] text-[clamp(40px,6vw,64px)] leading-[1.04] tracking-[-0.02em] text-white my-6 mb-3 text-left">
+        <div className="hero-fade-up text-left min-[900px]:-translate-y-3">
+          {/* Main Page H1 */}
+          <h1 className="font-display font-[800] text-[clamp(40px,5.5vw,64px)] leading-[1.04] tracking-[-0.02em] text-white mt-0 mb-3 text-left">
             We run the tech.<br />
             You run the <span className="text-[#E0414B]">business.</span>
           </h1>
