@@ -49,7 +49,7 @@ const PROCESS_STEPS: ProcessStep[] = [
     deliverables: "90+ PageSpeed & Domain Cutover",
     description:
       "Rigorous performance testing across mobile devices and budget Android browsers. We verify GSTIN invoice generation, secure SSL, and go live with zero downtime.",
-    highlight: "Verified 90+ Google PageSpeed score on mobile and desktop",
+    highlight: "Verified 90+ PageSpeed on mobile and desktop",
   },
   {
     stepNumber: "05",
@@ -92,9 +92,13 @@ export function ProcessSection() {
           {PROCESS_STEPS.map((step, idx) => {
             const isLast = step.stepNumber === "05";
             return (
-              <ScrollReveal key={step.stepNumber} delayMs={idx * 80} className="h-full">
+              <ScrollReveal
+                key={step.stepNumber}
+                delayMs={idx * 80}
+                className="h-full flex flex-col"
+              >
                 <div
-                  className={`bg-white rounded-[16px] p-[26px] flex flex-col justify-between h-full border ${
+                  className={`bg-white rounded-[16px] p-[26px] flex-1 flex flex-col justify-between h-full border ${
                     isLast ? "border-[#B3202A]" : "border-[#E6DCCB]"
                   }`}
                 >
@@ -109,7 +113,7 @@ export function ProcessSection() {
                     </div>
 
                     {/* Step Title */}
-                    <h3 className="font-display text-[21px] font-bold text-[#14110F] mb-1 leading-snug">
+                    <h3 className="font-display text-[21px] font-bold text-[#14110F] mb-1 leading-snug lg:min-h-[54px]">
                       {step.title}
                     </h3>
 
@@ -125,7 +129,7 @@ export function ProcessSection() {
                   </div>
 
                   {/* Bottom Highlight */}
-                  <div className="pt-3 border-t border-[#E6DCCB]">
+                  <div className="pt-3 border-t border-[#E6DCCB] min-h-[50px] flex items-start">
                     <span className="text-[11px] text-[#5C5347] font-medium block">
                       ⚡ {step.highlight}
                     </span>
