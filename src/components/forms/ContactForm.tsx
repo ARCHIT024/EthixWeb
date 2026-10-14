@@ -59,6 +59,7 @@ export function ContactForm() {
   const [submissionCount, setSubmissionCount] = useState(0);
   const formLoadedAtRef = useRef<number>(0);
   const cardContainerRef = useRef<HTMLDivElement>(null);
+  const confirmationContentRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const firstInputRef = useRef<HTMLInputElement>(null);
 
@@ -66,25 +67,26 @@ export function ContactForm() {
     formLoadedAtRef.current = Date.now();
   }, []);
 
-  // Accessibility & Visibility: focus heading and scroll into view if card is not visible
+  // Accessibility & Visibility: focus heading and center confirmation content in view
   useEffect(() => {
     if (formState === "success") {
       headingRef.current?.focus({ preventScroll: true });
 
-      if (cardContainerRef.current) {
-        const rect = cardContainerRef.current.getBoundingClientRect();
-        const isVisible =
-          rect.top >= 64 &&
-          rect.bottom <= (window.innerHeight || document.documentElement.clientHeight);
-        if (!isVisible) {
-          const prefersReducedMotion =
-            typeof window !== "undefined" &&
-            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-          cardContainerRef.current.scrollIntoView({
-            behavior: prefersReducedMotion ? "auto" : "smooth",
-            block: rect.top < 64 ? "start" : "nearest",
-          });
-        }
+      const prefersReducedMotion =
+        typeof window !== "undefined" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // Scroll so the entire confirmation content (tick, heading, text, button) is centered in the viewport
+      if (confirmationContentRef.current) {
+        confirmationContentRef.current.scrollIntoView({
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+          block: "center",
+        });
+      } else if (cardContainerRef.current) {
+        cardContainerRef.current.scrollIntoView({
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+          block: "center",
+        });
       }
     }
   }, [formState, submissionCount]);
@@ -262,61 +264,66 @@ export function ContactForm() {
         style={{ minHeight: cardMinHeight ? `${cardMinHeight}px` : undefined }}
         className="rounded-[24px] p-[22px] sm:p-[36px] bg-[#FAF6EF] text-[#14110F] flex flex-col items-center justify-center text-center h-full order-1 lg:order-2 scroll-mt-24"
       >
-        <svg
-          width="104"
-          height="104"
-          viewBox="0 0 104 104"
-          aria-hidden="true"
-          className="w-[88px] h-[88px] sm:w-[104px] sm:h-[104px]"
+        <div
+          ref={confirmationContentRef}
+          className="flex flex-col items-center justify-center text-center w-full max-w-[420px]"
         >
-          <circle className="halo" cx="52" cy="52" r="44" fill="none" stroke="#25A55F" strokeWidth="2" />
-          <circle className="bgc" cx="52" cy="52" r="44" fill="#25A55F" fillOpacity=".1" />
-          <circle
-            className="ring"
-            cx="52"
-            cy="52"
-            r="44"
-            fill="none"
-            stroke="#25A55F"
-            strokeWidth="3.5"
-            strokeLinecap="round"
-            transform="rotate(-90 52 52)"
-          />
-          <path
-            className="chk"
-            d="M32 54L46 68L73 38"
-            fill="none"
-            stroke="#25A55F"
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+          <svg
+            width="104"
+            height="104"
+            viewBox="0 0 104 104"
+            aria-hidden="true"
+            className="w-[88px] h-[88px] sm:w-[104px] sm:h-[104px]"
+          >
+            <circle className="halo" cx="52" cy="52" r="44" fill="none" stroke="#25A55F" strokeWidth="2" />
+            <circle className="bgc" cx="52" cy="52" r="44" fill="#25A55F" fillOpacity=".1" />
+            <circle
+              className="ring"
+              cx="52"
+              cy="52"
+              r="44"
+              fill="none"
+              stroke="#25A55F"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              transform="rotate(-90 52 52)"
+            />
+            <path
+              className="chk"
+              d="M32 54L46 68L73 38"
+              fill="none"
+              stroke="#25A55F"
+              strokeWidth="5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
 
-        <h2
-          ref={headingRef}
-          tabIndex={-1}
-          className="fu font-display font-bold text-[30px] sm:text-[36px] leading-[1.15] mt-[28px] mb-[12px] text-[#14110F] outline-none"
-          style={{ animationDelay: ".95s" }}
-        >
-          {headingText}
-        </h2>
+          <h2
+            ref={headingRef}
+            tabIndex={-1}
+            className="fu font-display font-bold text-[30px] sm:text-[36px] leading-[1.15] mt-[28px] mb-[12px] text-[#14110F] outline-none"
+            style={{ animationDelay: ".95s" }}
+          >
+            {headingText}
+          </h2>
 
-        <p
-          className="fu text-[16px] sm:text-[18px] text-[#5C5347] max-w-[400px] mt-0 mb-[28px] leading-relaxed font-body"
-          style={{ animationDelay: "1.1s" }}
-        >
-          {getResponseParagraph()}
-        </p>
+          <p
+            className="fu text-[16px] sm:text-[18px] text-[#5C5347] max-w-[400px] mt-0 mb-[28px] leading-relaxed font-body"
+            style={{ animationDelay: "1.1s" }}
+          >
+            {getResponseParagraph()}
+          </p>
 
-        <button
-          type="button"
-          onClick={handleResetToForm}
-          className="fu inline-flex items-center justify-center rounded-full border border-[#CFC3AE] bg-white text-[#14110F] text-[15px] font-medium py-[10px] px-[20px] hover:border-[#9E907B] transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#B3202A] focus:ring-offset-2"
-          style={{ animationDelay: "1.25s" }}
-        >
-          Send another enquiry
-        </button>
+          <button
+            type="button"
+            onClick={handleResetToForm}
+            className="fu inline-flex items-center justify-center rounded-full border border-[#CFC3AE] bg-white text-[#14110F] text-[15px] font-medium py-[10px] px-[20px] hover:border-[#9E907B] transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#B3202A] focus:ring-offset-2"
+            style={{ animationDelay: "1.25s" }}
+          >
+            Send another enquiry
+          </button>
+        </div>
       </div>
     );
   }
