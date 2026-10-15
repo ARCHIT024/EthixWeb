@@ -461,3 +461,19 @@ This log records major architectural, design, and implementation decisions made 
 - **Why**:
   - The "Console" pill was visually redundant and fragmented the brand impression on the operations gateway.
   - Elevating the official brand logo above the sign-in text strengthens the portal's identity, aligns with the site-wide brand styling, and creates a clean, premium first impression for authorized personnel.
+
+---
+
+### Entry 022: Mobile Navigation Drawer Translucency & Layer Isolation
+- **Date**: 2026-10-15
+- **What**:
+  - Resolved mobile navigation drawer transparency bug and upgraded card to an ultra-premium frosted translucent aesthetic:
+    1. **Fixed Containing-Block Trap via React Portal**: The sticky `<header>` utilizes `backdrop-blur-xl` and `backdrop-saturate-180`. Under the CSS specification, applying `backdrop-filter` to an element forces it to become the containing block for all fixed-position descendants. On WebKit (iOS Safari) and mobile browsers, fixed descendants overflowing the 76px header bounds had their backdrop textures truncated or backgrounds dropped, causing the drawer to render completely see-through over the hero copy. Wrapped the drawer and overlay in `createPortal(..., document.body)` mounted upon client hydration, ensuring fixed positioning coordinates and layer compositing attach directly to the document root viewport.
+    2. **Engineered Frosted Translucent Styling**: Replaced the previous opaque solid color with a calibrated translucent glass surface:
+       - `bg-[#14110F]/90` with `backdrop-blur-2xl` and fallback `backgroundColor: "rgba(20, 17, 15, 0.92)"`, `backdropFilter: "blur(24px)"`, and `-webkit-backdrop-filter: "blur(24px)"`.
+       - Soft dimmed backdrop: `bg-black/65` with `backdrop-blur-sm` to cleanly separate background page content.
+       - High-craft micro-borders and shadows: `border-l border-white/15` and deep elevation `shadow-2xl` creating distinct visual depth.
+    3. **Guaranteed Contrast & Readability**: The 0.92 opacity and 24px blur allow background ambient colors and lighting to softly shimmer through while fully obliterating legible background text lines, completely eliminating visual collisions with navigation links and CTAs.
+- **Why**:
+  - The previous rendering glitch caused severe readability degradation on mobile devices where the hero text clashed directly with drawer links and buttons.
+  - The frosted translucent glass treatment delivers a tactile, modern mobile experience that honors the dark luxury design system while guaranteeing WCAG contrast compliance.

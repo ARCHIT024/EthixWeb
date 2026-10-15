@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -15,8 +16,13 @@ interface MobileNavProps {
 
 export function MobileNav({ navLinks }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Toggle open state
   const toggleMenu = () => setIsOpen((prev) => !prev);
@@ -116,24 +122,29 @@ export function MobileNav({ navLinks }: MobileNavProps) {
         )}
       </button>
 
-      {/* Backdrop & Dark Drawer Panel */}
-      {isOpen && (
+      {/* Backdrop & Translucent Dark Drawer Panel */}
+      {isOpen && mounted && createPortal(
         <div className="fixed inset-0 z-50 flex">
-          {/* Backdrop */}
+          {/* Backdrop with frosted blur */}
           <div
-            className="fixed inset-0 bg-black/70 backdrop-blur-xs transition-opacity duration-200"
+            className="fixed inset-0 bg-black/65 backdrop-blur-sm transition-opacity duration-300"
             onClick={closeMenu}
             aria-hidden="true"
           />
 
-          {/* Drawer Content */}
+          {/* Translucent Drawer Content */}
           <div
             id="mobile-navigation-drawer"
             ref={menuRef}
             role="dialog"
             aria-modal="true"
             aria-label="Navigation Menu"
-            className="relative ml-auto flex h-full w-full max-w-xs flex-col justify-between bg-[#14110F] text-white p-6 shadow-2xl border-l border-white/10"
+            className="relative ml-auto flex h-full w-full max-w-xs flex-col justify-between bg-[#14110F]/90 backdrop-blur-2xl text-white p-6 shadow-2xl border-l border-white/15"
+            style={{
+              backgroundColor: "rgba(20, 17, 15, 0.92)",
+              backdropFilter: "blur(24px)",
+              WebkitBackdropFilter: "blur(24px)",
+            }}
           >
             <div>
               {/* Drawer Header */}
@@ -242,7 +253,8 @@ export function MobileNav({ navLinks }: MobileNavProps) {
               </p>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
