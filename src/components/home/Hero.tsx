@@ -57,8 +57,8 @@ export function Hero() {
           </p>
         </div>
 
-        {/* Right Column: City Constellation */}
-        <div className="w-full flex items-center justify-center min-[900px]:justify-end">
+        {/* Right Column: City Constellation (Desktop only, hidden on mobile) */}
+        <div className="hidden min-[900px]:flex w-full items-center justify-end">
           <CityConstellation />
         </div>
       </div>

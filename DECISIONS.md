@@ -477,3 +477,15 @@ This log records major architectural, design, and implementation decisions made 
 - **Why**:
   - The previous rendering glitch caused severe readability degradation on mobile devices where the hero text clashed directly with drawer links and buttons.
   - The frosted translucent glass treatment delivers a tactile, modern mobile experience that honors the dark luxury design system while guaranteeing WCAG contrast compliance.
+
+---
+
+### Entry 023: City Constellation Network Scoped to Desktop Viewports
+- **Date**: 2026-10-15
+- **What**:
+  - Scoped the interactive Indian City Constellation network to desktop/tablet viewports (>=900px) and removed it from mobile devices (<900px):
+    1. **Hidden on Mobile Breakpoints**: Configured the right column container in `src/components/home/Hero.tsx` with `hidden min-[900px]:flex`. On screens below 900px, the hero layout cleanly concludes after the primary value proposition, bilingual tagline, dual CTAs, and operating hours, directly flowing into the digital infrastructure services section.
+    2. **Suspended Background Animation Timers on Mobile**: Updated `CityConstellation.tsx` to guard the automated star-pulse transit cycle with `!window.matchMedia("(min-width: 900px)").matches`. On mobile devices, intervals and state updates are suppressed, conserving battery and mobile CPU cycles.
+- **Why**:
+  - On compact mobile viewports, the multi-city constellation curve animation added extensive vertical scroll length below the hero CTAs, delaying access to service offerings and pricing tiers.
+  - Hiding the animation on mobile creates a punchy, high-converting hero fold while preserving the rich, interactive Nakshatra network experience on desktop displays.

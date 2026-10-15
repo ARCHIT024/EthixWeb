@@ -30,6 +30,8 @@ export function CityConstellation() {
     if (typeof window !== "undefined") {
       const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (prefersReduced) return;
+      const isMobile = !window.matchMedia("(min-width: 900px)").matches;
+      if (isMobile) return;
     }
     autoIntervalRef.current = setInterval(() => {
       if (hoveringRef.current) return;
